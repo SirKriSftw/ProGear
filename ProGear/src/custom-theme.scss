@@ -9,11 +9,62 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
+$my-orange-palette: (
+ 50: #F2B925,
+ 100: #F2A925,
+ 200: #F29925,
+ 300: #F28925,
+ 400: #F27925,
+ 500: #F26925,
+ 600: #F25925,
+ 700: #F24925,
+ 800: #F23925,
+ 900: #F22925,
+ contrast: (
+   50: #FFFFFF,
+   100: #FFFFFF,
+   200: #FFFFFF,
+   300: #FFFFFF,
+   400: #FFFFFF,
+   500: #FFFFFF,
+   600: #FFFFFF,
+   700: #FFFFFF,
+   800: #FFFFFF,
+   900: #FFFFFF
+ )
+);
+
+$my-blue-palette: (
+ 50: #72F4C2,
+ 100: #72E4C2,
+ 200: #72D4C2,
+ 300: #72C4C2,
+ 400: #72B4C2,
+ 500: #72A4C2,
+ 600: #7294C2,
+ 700: #7284C2,
+ 800: #7274C2,
+ 900: #7264C2,
+ contrast: (
+   50: #FFFFFF,
+   100: #FFFFFF,
+   200: #FFFFFF,
+   300: #FFFFFF,
+   400: #FFFFFF,
+   500: #FFFFFF,
+   600: #FFFFFF,
+   700: #FFFFFF,
+   800: #FFFFFF,
+   900: #FFFFFF
+ )
+);
+
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$ProGear-primary: mat.define-palette(mat.$indigo-palette);
-$ProGear-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$ProGear-primary: mat.define-palette($my-orange-palette, 500);
+$ProGear-accent: mat.define-palette($my-blue-palette,500);
 
 // The warn palette is optional (defaults to red).
 $ProGear-warn: mat.define-palette(mat.$red-palette);
