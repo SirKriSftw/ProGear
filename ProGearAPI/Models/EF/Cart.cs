@@ -15,6 +15,8 @@ namespace ProGearAPI.Models.EF
         public int CartId { get; set; }
         public int? UserId { get; set; }
         public double? Total { get; set; }
+        public bool? PaidFor { get; set; }
+        public DateTime? PaidOn { get; set; }
 
         public virtual User User { get; set; }
         public virtual ICollection<Order> Orders { get; set; }

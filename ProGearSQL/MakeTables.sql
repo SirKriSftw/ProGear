@@ -16,7 +16,11 @@ CREATE TABLE Users(
 
 	constraint chk_password check (LEN(password) >= 8),
 	constraint chk_firstName check (LEN(firstName) >= 3),
+<<<<<<< HEAD
+	constraint chk_lastName check (LEN(lastName) >= 3)
+=======
 	constraint chk_lastName check (LEN(lastName) >= 3),
+>>>>>>> b2ecb8eaa5637c6cf114b9d7ff68dba2dca74c64
 )
 
 CREATE TABLE Products (
@@ -29,7 +33,6 @@ CREATE TABLE Products (
 
 	constraint chk_stock check (productStock >= 0),
 	constraint chk_price check (productPrice > 0)
-
 )
 
 CREATE TABLE Cart (
@@ -52,7 +55,8 @@ CREATE TABLE Invoices (
 	total int
 )
 
-CREATE TABLE PaidOrders (
+CREATE TABLE InvoiceItems (
+	itemID int PRIMARY KEY Identity,
 	productID int FOREIGN KEY REFERENCES Products(productID),
 	invoiceID int FOREIGN KEY REFERENCES Invoices(invoiceID),
 	qty int

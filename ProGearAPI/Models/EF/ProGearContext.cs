@@ -18,9 +18,8 @@ namespace ProGearAPI.Models.EF
         }
 
         public virtual DbSet<Cart> Carts { get; set; }
-        public virtual DbSet<Invoice> Invoices { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<PaidOrder> PaidOrders { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
@@ -43,6 +42,12 @@ namespace ProGearAPI.Models.EF
 
                 entity.Property(e => e.CartId).HasColumnName("cartID");
 
+                entity.Property(e => e.PaidFor).HasColumnName("paidFor");
+
+                entity.Property(e => e.PaidOn)
+                    .HasColumnType("datetime")
+                    .HasColumnName("paidOn");
+
                 entity.Property(e => e.Total).HasColumnName("total");
 
                 entity.Property(e => e.UserId).HasColumnName("userID");
@@ -51,22 +56,19 @@ namespace ProGearAPI.Models.EF
                     .WithMany(p => p.Carts)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK__Cart__userID__22751F6C");
+                    .HasConstraintName("FK__Cart__userID__5224328E");
             });
 
-            modelBuilder.Entity<Invoice>(entity =>
+            modelBuilder.Entity<Category>(entity =>
             {
-                entity.Property(e => e.InvoiceId).HasColumnName("invoiceID");
+                entity.HasKey(e => e.CatId)
+                    .HasName("PK__Categori__17B6DD265385E674");
 
-                entity.Property(e => e.Total).HasColumnName("total");
+                entity.Property(e => e.CatId).HasColumnName("catID");
 
-                entity.Property(e => e.UserId).HasColumnName("userID");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.Invoices)
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK__Invoices__userID__29221CFB");
+                entity.Property(e => e.CatName)
+                    .IsUnicode(false)
+                    .HasColumnName("catName");
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -83,43 +85,20 @@ namespace ProGearAPI.Models.EF
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.CartId)
                     .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK__Orders__cartID__2645B050");
+                    .HasConstraintName("FK__Orders__cartID__55F4C372");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK__Orders__productI__25518C17");
-            });
-
-            modelBuilder.Entity<PaidOrder>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.Property(e => e.InvoiceId).HasColumnName("invoiceID");
-
-                entity.Property(e => e.ProductId).HasColumnName("productID");
-
-                entity.Property(e => e.Qty).HasColumnName("qty");
-
-                entity.HasOne(d => d.Invoice)
-                    .WithMany()
-                    .HasForeignKey(d => d.InvoiceId)
-                    .HasConstraintName("FK__PaidOrder__invoi__2BFE89A6");
-
-                entity.HasOne(d => d.Product)
-                    .WithMany()
-                    .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__PaidOrder__produ__2B0A656D");
+                    .HasConstraintName("FK__Orders__productI__55009F39");
             });
 
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.Property(e => e.ProductId).HasColumnName("productID");
 
-                entity.Property(e => e.ProductCat)
-                    .IsUnicode(false)
-                    .HasColumnName("productCat");
+                entity.Property(e => e.CatId).HasColumnName("catID");
 
                 entity.Property(e => e.ProductDetails)
                     .IsRequired()
@@ -134,11 +113,17 @@ namespace ProGearAPI.Models.EF
                 entity.Property(e => e.ProductPrice).HasColumnName("productPrice");
 
                 entity.Property(e => e.ProductStock).HasColumnName("productStock");
+
+                entity.HasOne(d => d.Cat)
+                    .WithMany(p => p.Products)
+                    .HasForeignKey(d => d.CatId)
+                    .OnDelete(DeleteBehavior.SetNull)
+                    .HasConstraintName("FK__Products__catID__4D5F7D71");
             });
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.Email, "UQ__Users__AB6E616473F40955")
+                entity.HasIndex(e => e.Email, "UQ__Users__AB6E6164045EB7A7")
                     .IsUnique();
 
                 entity.Property(e => e.UserId).HasColumnName("userID");
@@ -149,10 +134,15 @@ namespace ProGearAPI.Models.EF
                     .IsUnicode(false)
                     .HasColumnName("email");
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.FirstName)
                     .HasMaxLength(30)
                     .IsUnicode(false)
-                    .HasColumnName("name");
+                    .HasColumnName("firstName");
+
+                entity.Property(e => e.LastName)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("lastName");
 
                 entity.Property(e => e.Password)
                     .HasMaxLength(30)
