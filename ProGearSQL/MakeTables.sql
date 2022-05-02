@@ -1,11 +1,10 @@
-DROP TABLE PaidOrders,Invoices, Orders, Cart, Products, Users
+DROP TABLE Categories, Orders, Cart, Products, Users
 
 SELECT * FROM Users
 SELECT * FROM Products
 SELECT * FROM Cart
 SELECT * FROM Orders
-SELECT * FROM Invoices
-SELECT * FROM PaidOrders
+SELECT * FROM Categories
 
 CREATE TABLE Users(
 	userID int PRIMARY KEY Identity,
@@ -17,14 +16,21 @@ CREATE TABLE Users(
 	constraint chk_password check (LEN(password) >= 8)
 )
 
+CREATE TABLE Categories (
+	catID int PRIMARY KEY Identity,
+	catName varchar(MAX),
+
+	constraint chk_catName check (LEN(catName) >= 3)	
+)
+
 CREATE TABLE Products (
 	productID int PRIMARY KEY Identity,
+	catID int FOREIGN KEY REFERENCES Categories(catID) ON DELETE SET NULL,
 	productName varchar(MAX) NOT NULL,
 	productDetails varchar(MAX) NOT NULL,
 	productStock int NOT NULL,
 	productPrice float NOT NULL,
-	productCat varchar(MAX),
-
+	
 	constraint chk_stock check (productStock >= 0),
 	constraint chk_price check (productPrice > 0)
 )
@@ -32,7 +38,9 @@ CREATE TABLE Products (
 CREATE TABLE Cart (
 	cartID int PRIMARY KEY Identity,
 	userID int FOREIGN KEY REFERENCES Users(userID) ON DELETE CASCADE,
-	total float
+	total float,
+	paidFor bit,
+	paidOn dateTime
 )
 
 CREATE TABLE Orders (
@@ -42,16 +50,3 @@ CREATE TABLE Orders (
 	qty int
 )
 
-CREATE TABLE Invoices (
-	invoiceID int PRIMARY KEY Identity,
-	userID int FOREIGN KEY REFERENCES Users(userID) ON DELETE CASCADE,
-	dateOfInvoice datetime,
-	total int
-)
-
-CREATE TABLE InvoiceItems (
-	itemID int PRIMARY KEY Identity,
-	productID int FOREIGN KEY REFERENCES Products(productID),
-	invoiceID int FOREIGN KEY REFERENCES Invoices(invoiceID),
-	qty int
-)
