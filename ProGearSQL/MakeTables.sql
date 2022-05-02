@@ -11,10 +11,12 @@ CREATE TABLE Users(
 	userID int PRIMARY KEY Identity,
 	email varchar(30) UNIQUE NOT NULL,
 	password varchar(30),
-	name varchar(30),
+	firstName varchar(30),
+	lastName varchar(30),
 
 	constraint chk_password check (LEN(password) >= 8),
-	constraint chk_name check (LEN(name) >= 3)
+	constraint chk_firstName check (LEN(firstName) >= 3),
+	constraint chk_lastName check (LEN(lastName) >= 3),
 )
 
 CREATE TABLE Products (
@@ -46,6 +48,7 @@ CREATE TABLE Orders (
 CREATE TABLE Invoices (
 	invoiceID int PRIMARY KEY Identity,
 	userID int FOREIGN KEY REFERENCES Users(userID) ON DELETE CASCADE,
+	dateOfInvoice datetime,
 	total int
 )
 
