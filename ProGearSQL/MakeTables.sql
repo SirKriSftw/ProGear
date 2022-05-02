@@ -14,13 +14,7 @@ CREATE TABLE Users(
 	firstName varchar(30),
 	lastName varchar(30),
 
-	constraint chk_password check (LEN(password) >= 8),
-	constraint chk_firstName check (LEN(firstName) >= 3),
-<<<<<<< HEAD
-	constraint chk_lastName check (LEN(lastName) >= 3)
-=======
-	constraint chk_lastName check (LEN(lastName) >= 3),
->>>>>>> b2ecb8eaa5637c6cf114b9d7ff68dba2dca74c64
+	constraint chk_password check (LEN(password) >= 8)
 )
 
 CREATE TABLE Products (
