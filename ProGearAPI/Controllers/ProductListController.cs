@@ -23,10 +23,10 @@ namespace ProGearAPI.Controllers
         [Route("getCat/{Id:int}")]
         public IActionResult GetCatList(int Id)
         {
-            var Catlist = from a in dbProGear.Products
+            var catList = from a in dbProGear.Products
                           where a.CatId == Id
                           select a;
-            return Ok(Catlist);
+            return Ok(catList);
         }
 
     }

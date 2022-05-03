@@ -28,7 +28,8 @@ namespace ProGearAPI.Models.EF
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("server=DESKTOP-TDTK0RJ\\KRISSQL;Initial Catalog=ProGear;Persist Security Info=True;User ID=sa;Password=rev511");
+                //optionsBuilder.UseSqlServer("server=DESKTOP-TDTK0RJ\\KRISSQL;Initial Catalog=ProGear;Persist Security Info=True;User ID=sa;Password=rev511");
+                optionsBuilder.UseSqlServer("server=DESKTOP-2LDPKO5\\NICHOLASINSTANCE;Initial Catalog=Project3;Persist Security Info=True;User ID=sa;Password=UrrutiaDB");
             }
         }
 
@@ -98,7 +99,7 @@ namespace ProGearAPI.Models.EF
             {
                 entity.Property(e => e.ProductId).HasColumnName("productID");
 
-                entity.Property(e => e.CatId).HasColumnName("catID");
+                entity.Property(e => e.CatId).HasColumnName("productCat");
 
                 entity.Property(e => e.ProductDetails)
                     .IsRequired()
