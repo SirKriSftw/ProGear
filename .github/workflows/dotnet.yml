@@ -36,19 +36,11 @@ jobs:
         run: |
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
-      - name: Cache Dotnet Coverage
-        id: cache-dotnet-coverage
-        uses: actions/cache@v1
-        with:
-          path: .\.dotnet\coverage
-          key: ${{ runner.os }}-dotnet-coverage
-          restore-keys: ${{ runner.os }}-dotnet-coverage
       - name: Install Dotnet Coverage
-        if: steps.cache-dotnet-coverage.outputs.cache-hit != 'true'
         shell: powershell
         run: |
           New-Item -Path .\.dotnet\coverage -ItemType Directory
-          dotnet tool update dotnet-coverage --tool-path .\.dotnet\coverage
+          dotnet tool install --global dotnet-coverage 
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
