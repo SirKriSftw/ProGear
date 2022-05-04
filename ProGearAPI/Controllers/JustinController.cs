@@ -10,7 +10,7 @@ using ProGearAPI.Models.EF;
 namespace Justin.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("Cart")]
     public class JustinController : ControllerBase
     {
         ProGearContext dbContext = new ProGearContext();
