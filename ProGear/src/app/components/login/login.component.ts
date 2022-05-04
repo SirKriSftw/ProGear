@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, Form } from '@angular/forms';
 import { UserserviceService } from 'src/app/services/userservice/userservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +12,9 @@ export class LoginComponent implements OnInit {
 
   loginForm : FormGroup;
   user : UserserviceService;
+  loginFailed : boolean = false;
 
-  constructor(private formBuilder : FormBuilder, u : UserserviceService) 
+  constructor(private formBuilder : FormBuilder, u : UserserviceService, private router : Router) 
   {
     this.loginForm = formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -20,6 +22,7 @@ export class LoginComponent implements OnInit {
     });
 
     this.user = u;
+    this.loginFailed = false;
   }
 
   ngOnInit(): void {
@@ -38,9 +41,12 @@ export class LoginComponent implements OnInit {
       else
       {
         console.log(data);
+        this.loginFailed = false;
+        this.router.navigate([''])
       }
     }, (err) => {
       console.log("oh no");
+      this.loginFailed = true;
     });
   }
 
