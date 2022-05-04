@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+//using Microsoft.EntityFrameworkCore;
 using ProGearAPI.Models.EF;
 using System.Linq;
 namespace ProGearAPI.Controllers
@@ -27,6 +28,16 @@ namespace ProGearAPI.Controllers
                           where a.CatId == Id
                           select a;
             return Ok(catList);
+        }
+
+        [HttpGet]
+        [Route("search/{query}")]
+        public IActionResult GetCatList(string query)
+        {
+            var searchResult = from s in dbProGear.Products
+                               where s.ProductName.Contains(query) 
+                               select s;
+            return Ok(searchResult);
         }
 
     }

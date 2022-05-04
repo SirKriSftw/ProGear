@@ -99,7 +99,7 @@ namespace ProGearAPI.Models.EF
             {
                 entity.Property(e => e.ProductId).HasColumnName("productID");
 
-                entity.Property(e => e.CatId).HasColumnName("productCat");
+                entity.Property(e => e.CatId).HasColumnName("catID");
 
                 entity.Property(e => e.ProductDetails)
                     .IsRequired()
