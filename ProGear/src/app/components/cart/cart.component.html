@@ -1,0 +1,27 @@
+
+<h1>CART PAGE</h1>
+
+<form>
+    <div>
+      <table id="usertable" border = "2">
+        <tr>
+          <td><b>Product Image</b></td>
+          <td><b>Product Name</b></td>
+          <td><b>Product Details</b></td>
+          <td><b>Product Price</b></td>
+          <td><b>Quantity in Cart</b></td>
+        </tr>
+        <tr *ngFor = "let x of myCart">
+          <td> <img src = "https://i.postimg.cc/J4v6Ss5G/cool-bird-2.png" alt = "Product Image" class = "productImg"> </td>
+          <td> {{x.productName}} </td>
+          <td> {{x.productDetails}} </td>
+          <td> $ {{x.productPrice}} </td>
+          <td> {{x.Qty}} <br>
+            <button type="button" (click) ="subOneQty(x.OrderId, x.Qty)">-</button>
+            <button type="button" (click) ="addOneQty(x.OrderId, x.Qty)">+</button>
+          </td>
+          <td> <button type="button" (click) ="removeOrder(x.OrderId)">Remove from Cart</button> </td>
+        </tr>
+      </table>
+    </div>
+</form>
