@@ -27,13 +27,14 @@ jobs:
         id: cache-sonar-scanner
         uses: actions/cache@v1
         with:
-          path: .\.sonar\scanner
+          path: .\ProGearAPI\.sonar\scanner
           key: ${{ runner.os }}-sonar-scanner
           restore-keys: ${{ runner.os }}-sonar-scanner
       - name: Install SonarCloud scanner
         if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
         shell: powershell
         run: |
+          cd ProGearAPI
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
       - name: Install Dotnet Coverage
@@ -46,11 +47,10 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
+          cd ProGearAPI
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"SirKriSftw_ProGear" /o:"sirkrisftw-1" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet sonarscanner begin /k:"SirKriSftw_ProGear" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
-          cd ProGearAPI
           dotnet build --no-incremental
           dotnet-coverage collect "dotnet test" -f xml  -o coverage.xml
           dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
-          cd ..
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
