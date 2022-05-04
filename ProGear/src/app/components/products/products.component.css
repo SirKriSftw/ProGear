@@ -1,0 +1,53 @@
+.img-card {    /* control the image of the card*/
+    align-items: center;
+    max-width: 100%; 
+    height: 20vh; 
+    object-fit:auto;
+  }
+  
+  .example-card { /* control the height of the card*/
+      width: 225px;  
+      height: 40vw; 
+      object-fit:cover;
+    }
+  .example-header-image {
+    background-size:contain;
+  }
+  mat-grid-tile {
+    background: lightblue; 
+  }
+   
+  ::ng-deep .header .mat-card-header-text {
+    margin: 0 !important;
+  }
+  .flex-row {
+      display: flex;
+      flex-direction: row;
+        flex: 50%;
+        padding: 10px;
+    }
+  /* number of cards in-line control by width*/
+    .mat-card {
+      width: 15%;
+      height: 20%;
+      margin: 30px;
+    }
+  /* control the body of the content height to align the button at the bottom*/  
+  .card-internals { 
+      min-height: 75px; 
+      justify-content: space-between; 
+      display: flex; 
+      flex-direction: column; 
+  }
+  .page-container {
+    width: 100%;
+  }
+  .chains {
+    width: 100%;
+    display: block;
+    overflow-x: scroll;
+    align-content: center;
+  }
+  .chains mat-card {
+    display: inline-block;
+  }
