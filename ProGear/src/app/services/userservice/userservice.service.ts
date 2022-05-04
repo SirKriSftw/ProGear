@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserserviceService {
-
-  private _http : HttpClient;
-
-  constructor(private client : HttpClient)
-  {
-    this._http = client;
+_http:HttpClient
+  constructor(_httpref:HttpClient) { 
+    this._http=_httpref;
+  }
+  register(user:any){
+    return this._http.post("https://localhost:44310/api/User/createUser", user,{headers:new HttpHeaders({"Content-Type":"application/json"})});
   }
 
   getLogin(email : string, password : string)

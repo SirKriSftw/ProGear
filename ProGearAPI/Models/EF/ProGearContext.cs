@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-#nullable disable
 
 namespace ProGearAPI.Models.EF
 {
@@ -28,7 +27,7 @@ namespace ProGearAPI.Models.EF
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("server=DESKTOP-UF6LITD;Initial Catalog=ProGear;Persist Security Info=True;User ID=sa;Password=password");
+                optionsBuilder.UseSqlServer("server=LAPTOP-7FIGL6S6;Initial Catalog=ProGear;Persist Security Info=True;Integrated Security = true");
             }
         }
 
