@@ -39,8 +39,7 @@ jobs:
       - name: Install Dotnet Coverage
         shell: powershell
         run: |
-          New-Item -Path .\ProGearAPI\.dotnet\coverage -ItemType Directory
-          dotnet tool update dotnet-coverage --tool-path .\ProGearAPI\.dotnet\coverage
+          dotnet tool install --global dotnet-coverage
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
