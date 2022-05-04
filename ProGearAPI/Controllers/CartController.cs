@@ -10,6 +10,9 @@ namespace ProGearAPI.Controllers
     public class CartController : Controller
     {
         ProGearContext context = new ProGearContext();
+        double v;
+        double V;
+
 
         #region Old Get Cart
         //[HttpGet]
@@ -50,31 +53,43 @@ namespace ProGearAPI.Controllers
         //}
         #endregion
 
-      
+
         [HttpGet]
         [Route("Cart")]
         public IActionResult GetCart()
         {
+            
             var cart = (from i in context.Carts
                         join x in context.Users on i.UserId equals x.UserId
                         join z in context.Orders on i.CartId equals z.CartId
                         join w in context.Products on z.ProductId equals w.ProductId
                         orderby i.CartId ascending
-                        select new
+                        select new 
                         {
                             i.CartId,
                             i.UserId,
-                            i.Total,
                             i.PaidFor,
                             i.PaidOn,
                             //i.User,
-                            //i.Orders
+                            //i.Orders,
+                            z.OrderId,
                             w.ProductId,
                             w.ProductName,
                             w.ProductDetails,
-                            w.ProductPrice
-                        }
-                        ).DefaultIfEmpty();
+                            w.ProductPrice,
+                            z.Qty,
+                            V = z.Qty * w.ProductPrice,
+                             
+
+                        }).DefaultIfEmpty();
+
+             //foreach (var V in cart)
+             //{
+             //v = v + V;
+             //}
+
+                        
+            
 
             if (cart != null)
             {
@@ -130,21 +145,53 @@ namespace ProGearAPI.Controllers
                             {
                                 i.CartId,
                                 i.UserId,
-                                i.Total,
                                 i.PaidFor,
                                 i.PaidOn,
                                 //i.User,
                                 //i.Orders,
+                                z.OrderId,
                                 w.ProductId,
                                 w.ProductName,
                                 w.ProductDetails,
-                                w.ProductPrice
+                                w.ProductPrice,
+                                z.Qty,
+                                SubTotal = z.Qty * w.ProductPrice
                             }
-                          ).DefaultIfEmpty();
+                             ).DefaultIfEmpty();
+
+                var total = cart.Sum(V => V.SubTotal);
+                Console.WriteLine("Total" , total);
+
+                var final = (from i in context.Carts
+                            join x in context.Users on i.UserId equals x.UserId
+                            join z in context.Orders on i.CartId equals z.CartId
+                            join w in context.Products on z.ProductId equals w.ProductId
+                            //orderby i.CartId ascending
+                            where i.CartId == cartId
+                            select new
+                            {
+                                i.CartId,
+                                total,
+                                i.UserId,
+                                i.PaidFor,
+                                i.PaidOn,
+                                //i.User,
+                                //i.Orders,
+                                z.OrderId,
+                                w.ProductId,
+                                w.ProductName,
+                                w.ProductDetails,
+                                w.ProductPrice,
+                                z.Qty,
+                                SubTotal = z.Qty * w.ProductPrice
+
+                            }
+                            ).DefaultIfEmpty();
+
 
                 if (cart != null)
                 {
-                    return Ok(cart);
+                    return Ok(final);
                 }
                 else
                 {
@@ -158,6 +205,29 @@ namespace ProGearAPI.Controllers
             }
         }
         #endregion
+
+        //[HttpPut]
+        //[Route("UpdateCart")]
+        //public IActionResult UpdateCart(int CartId)
+        //{
+        //    var update = (from i in context.Carts
+        //                  join x in context.Users on i.UserId equals x.UserId
+        //                  join z in context.Orders on i.CartId equals z.CartId
+        //                  join w in context.Products on z.ProductId equals w.ProductId
+        //                  where i.CartId == cartId
+        //                  select i).SingleOrDefault();
+
+        //    if (update != null)
+        //    {
+        //        update.Total =
+        //        return Ok(update);
+        //    }
+        //    else
+        //    {
+        //        return Ok("Not Found Error");
+        //    }
+        //}
+
 
         [HttpPost]
         [Route("AddToCart")]
