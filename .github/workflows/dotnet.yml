@@ -36,6 +36,19 @@ jobs:
         run: |
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+      - name: Cache Dotnet Coverage
+        id: cache-dotnet-coverage
+        uses: actions/cache@v1
+        with:
+          path: .\.sonar\dotnet
+          key: ${{ runner.os }}-dotnet-coverage
+          restore-keys: ${{ runner.os }}-dotnet-coverage
+      - name: Install Dotnet Coverage
+        if: steps.cache-dotnet-coverage.outputs.cache-hit != 'true'
+        shell: powershell
+        run: |
+          New-Item -Path .\.sonar\dotnet -ItemType Directory
+          dotnet tool update dotnet-coverage --tool-path .\.sonar\dotnet
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
@@ -44,7 +57,6 @@ jobs:
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"SirKriSftw_ProGear" /o:"sirkrisftw-1" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet sonarscanner begin /k:"SirKriSftw_ProGear" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
-	  dotnet tool install --global dotnet-coverage
           dotnet build --no-incremental
           dotnet-coverage collect 'dotnet test' -f xml  -o 'coverage.xml'
           dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
