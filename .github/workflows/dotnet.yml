@@ -48,7 +48,7 @@ jobs:
         shell: powershell
         run: |
           New-Item -Path .\.sonar\dotnet -ItemType Directory
-          dotnet tool update dotnet-coverage --tool-path .\.sonar\dotnet
+          dotnet tool install --global dotnet-coverage --tool-path .\.sonar\dotnet
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
