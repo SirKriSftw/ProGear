@@ -23,10 +23,19 @@ jobs:
           path: ~\sonar\cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
+      - name: Cache SonarCloud scanner
+        id: cache-sonar-scanner
+        uses: actions/cache@v1
+        with:
+          path: .\.sonar\scanner
+          key: ${{ runner.os }}-sonar-scanner
+          restore-keys: ${{ runner.os }}-sonar-scanner
       - name: Install SonarCloud scanner
+        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
         shell: powershell
         run: |
-          dotnet tool install --global dotnet-sonarscanner
+          New-Item -Path .\.sonar\scanner -ItemType Directory
+          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
       - name: Install Dotnet Coverage
         shell: powershell
         run: |
@@ -43,4 +52,5 @@ jobs:
           dotnet build --no-incremental
           dotnet-coverage collect "dotnet test" -f xml  -o coverage.xml
           dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+          cd ..
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
