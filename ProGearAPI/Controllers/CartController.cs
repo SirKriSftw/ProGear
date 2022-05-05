@@ -244,7 +244,6 @@ namespace ProGearAPI.Controllers
                 context.Carts.Add(newCart);
                 context.SaveChanges();
 
-
                 return Created("", newCart);
             }
             else
