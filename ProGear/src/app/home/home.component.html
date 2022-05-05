@@ -1,0 +1,221 @@
+<div class="background"> <img src="/assets/background.jpg" alt="background"></div>
+<!-- ------  APPAREL CARROUSEL------- -->
+<h1>APPAREL</h1>
+<mat-divider></mat-divider>
+<div class="container">
+    <input type="radio" name="dot" id="one">
+    <input type="radio" name="dot" id="two">
+    <div class="main-card">
+        <div class="cards">
+            <div class="card" *ngFor="let e of allApparel.slice(0,3) ">
+                <div class="content">
+                    <div class="img">
+                    </div>
+                    <div class="details">
+                        <div class="name">{{e.productName}}</div>
+                        <div class="job">{{e.productDetails}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="card" *ngFor="let e of allApparel.slice(3,5) ">
+
+                <div class="content">
+                    <div class="img">
+                    </div>
+                    <div class="details">
+                        <div class="name">{{e.productName}}</div>
+                        <div class="job">{{e.productDetails}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="content">
+                    <div class="details">
+                        <br>
+                        <a routerLink="../apparel">
+                            <div class="ViewAll" style="font-weight: lighter;">VIEW ALL</div>
+                        </a>
+                    </div>
+                    <div class="media-icons">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="button">
+        <label for="one" class=" active one"></label>
+        <label for="two" class="two"></label>
+    </div>
+</div>
+
+<!-- ------  HOUSEWARES CARROUSEL------- -->
+<div class="background2"> <img src="/assets/background2.jpg" alt="background"></div>
+
+<h1 style="color: white;">HOUSEWARES</h1>
+<mat-divider></mat-divider>
+<div class="container">
+    <input type="radio" name="dot" id="three">
+    <input type="radio" name="dot" id="four">
+    <div class="main-card">
+
+        <div class="cards">
+            <div class="card" *ngFor="let e of allHouseware.slice(0,3) ">
+                <div class="content">
+                    <div class="img">
+                    </div>
+                    <div class="details">
+                        <div class="name">{{e.productName}}</div>
+                        <div class="job">{{e.productDetails}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="card" *ngFor="let e of allHouseware.slice(3,5) ">
+
+                <div class="content">
+                    <div class="img">
+                    </div>
+                    <div class="details">
+                        <div class="name">{{e.productName}}</div>
+                        <div class="job">{{e.productDetails}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="content">
+                    <div class="details">
+                        <br>
+                        <a routerLink="../housewares">
+                            <div class="ViewAll" style="font-weight: lighter;">VIEW ALL</div>
+                        </a>
+                    </div>
+                    <div class="media-icons">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="button">
+        <label for="three" class=" active three"></label>
+        <label for="four" class="four"></label>
+    </div>
+</div>
+
+<!-- ------ TRAVEL CARROUSEL------- -->
+<div class="background2"> <img src="/assets/background3.jpg" alt="background"></div>
+<h1 style="color: white;">TRAVEL</h1>
+<mat-divider></mat-divider>
+<div class="container">
+    <input type="radio" name="dot" id="five">
+    <input type="radio" name="dot" id="six">
+    <div class="main-card">
+        <div class="cards">
+                <div class="card" *ngFor="let e of allTravel.slice(0,3) ">
+                    <div class="content">
+                        <div class="img">
+                        </div>
+                        <div class="details">
+                            <div class="name">{{e.productName}}</div>
+                            <div class="job">{{e.productDetails}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="cards">
+                <div class="card" *ngFor="let e of allTravel.slice(3,5) ">
+    
+                    <div class="content">
+                        <div class="img">
+                        </div>
+                        <div class="details">
+                            <div class="name">{{e.productName}}</div>
+                            <div class="job">{{e.productDetails}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="content">
+                        <div class="details">
+                            <br>
+                            <a routerLink="../travel">
+                                <div class="ViewAll" style="font-weight: lighter;">VIEW ALL</div>
+                            </a>
+                        </div>
+                        <div class="media-icons">
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+    <div class="button">
+        <label for="five" class=" active five"></label>
+        <label for="six" class="six"></label>
+    </div>
+</div>
+<!-- ------  MISCELLANEOUS CARROUSEL------- -->
+<div class="background2"> <img src="/assets/background5.jpg" alt="background"></div>
+
+<h1 style="color: rgb(255, 255, 255);" id="misc">MISCELLANEOUS</h1>
+<mat-divider></mat-divider>
+<div class="container">
+    <input type="radio" name="dot" id="seven">
+    <input type="radio" name="dot" id="eight">
+    <div class="main-card">
+
+        <div class="cards">
+            <div class="card" *ngFor="let e of allMisc.slice(0,3) ">
+                <div class="content">
+                    <div class="img">
+                    </div>
+                    <div class="details">
+                        <div class="name">{{e.productName}}</div>
+                        <div class="job">{{e.productDetails}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="card" *ngFor="let e of allMisc.slice(3,5) ">
+
+                <div class="content">
+                    <div class="img">
+                    </div>
+                    <div class="details">
+                        <div class="name">{{e.productName}}</div>
+                        <div class="job">{{e.productDetails}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="content">
+                    <div class="details">
+                        <br>
+                        <a routerLink="../misc">
+                            <div class="ViewAll" style="font-weight: lighter;">VIEW ALL</div>
+                        </a>
+                    </div>
+                    <div class="media-icons">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="button">
+        <label for="seven" class=" active seven"></label>
+        <label for="eight" class="eight"></label>
+    </div>
+</div>
+<router-outlet></router-outlet>
