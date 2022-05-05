@@ -22,4 +22,8 @@ export class CartService {
     return this._http.get("https://localhost:5001/Cart/remove-order/" + OrderId );
    }
 
+   emptyCart () {
+    return this._http.get("https://localhost:5001/api/Kaelan/emptycart");
+   }
+
 }
