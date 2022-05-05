@@ -11,46 +11,6 @@ namespace ProGearAPI.Controllers
     {
         ProGearContext context = new ProGearContext();
 
-        #region Old Get Cart
-        //[HttpGet]
-        //[Route("Cart")]
-        //public IActionResult GetCart()
-        //{
-        //    var cart = (from i in context.Carts
-        //               join x in context.Users on i.UserId equals x.UserId
-        //               join y in context.Orders on i.CartId equals y.CartId
-        //               join z in context.Products on y.ProductId equals z.ProductId
-        //               select new
-        //                {
-        //                   i.CartId,
-        //                   i.UserId,
-        //                   i.Total,
-        //                   i.PaidFor,
-        //                   i.PaidOn,
-        //                   //i.Orders,
-        //                   x.Email,
-        //                   x.FirstName,
-        //                   x.LastName,
-        //                   y.ProductId,
-        //                   z.ProductName,
-        //                   z.ProductDetails,
-        //                   z.ProductPrice,
-        //                   y.Qty
-        //               }
-        //               ).DefaultIfEmpty();
-
-        //    if (cart != null)
-        //    {
-        //        return Ok(cart);
-        //    }
-        //    else
-        //    {
-        //        return NotFound("No Cart");
-        //    }
-        //}
-        #endregion
-
-      
         [HttpGet]
         [Route("Cart")]
         public IActionResult GetCart()
