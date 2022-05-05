@@ -8,13 +8,22 @@
     padding-top: 20px;
 }
 
+div{
+    display: inline-flex;
+}
+
 .card {
     position: relative;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 10%;
     text-align: center;
 }
 
 .formInfo > mat-checkbox{
     padding-top: 2%;
+}
+
+#sidebar{
+    background-color: white;
+    position: absolute;
+    margin-left: 60%;
 }

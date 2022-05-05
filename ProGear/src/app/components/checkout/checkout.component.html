@@ -194,4 +194,24 @@
       </mat-card-content>
     </form>
   </mat-card>
+  <aside id="sidebar">
+    <div>
+      <table id="usertable" border="2px">
+        <tr>
+          <td><b>Product Name</b></td>
+          <td><b>Product Details</b></td>
+          <td><b>Product Price</b></td>
+          <td><b>Quantity in Cart</b></td>
+        </tr>
+        <tr *ngFor="let x of myCart">
+          <td> <img src="https://i.postimg.cc/J4v6Ss5G/cool-bird-2.png" alt="Product Image" class="productImg"> </td>
+          <td> {{x.productName}} </td>
+          <td> {{x.productDetails}} </td>
+          <td> $ {{x.productPrice}} </td>
+        </tr>
+       </table>
+       <br>
+     </div>
+  </aside>
 </div>
+

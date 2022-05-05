@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { CartService } from 'src/app/services/cart-service.service';
 
 
 @Component({
@@ -12,13 +12,16 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class CheckoutComponent implements OnInit {
 
+  _cartService: CartService;
+
   router: Router;
   hide: boolean = true;
   checkoutForm: FormGroup;
   confirmation: string = "";
   disabled = false;
 
-  constructor(private fb: FormBuilder, routerRef: Router) {
+  constructor(private fb: FormBuilder, routerRef: Router, _cartServiceRef: CartService) {
+    this._cartService = _cartServiceRef;
     this.router = routerRef;
     this.checkoutForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2)]],
@@ -36,6 +39,14 @@ export class CheckoutComponent implements OnInit {
 
     });
     this.checkoutForm.valueChanges.subscribe();
+  }
+
+  myCart: any = [];
+  getCart(cartID: number) {
+    this._cartService.getCart(cartID).subscribe((data) => {
+      this.myCart = data;
+      console.log(this.myCart)
+    })
   }
 
   get firstName() {
@@ -64,6 +75,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getCart(1);
   }
 
 }
