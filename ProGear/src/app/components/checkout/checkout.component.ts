@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -16,6 +16,7 @@ export class CheckoutComponent implements OnInit {
   hide: boolean = true;
   checkoutForm: FormGroup;
   confirmation: string = "";
+  disabled = false;
 
   constructor(private fb: FormBuilder, routerRef: Router) {
     this.router = routerRef;
@@ -27,7 +28,11 @@ export class CheckoutComponent implements OnInit {
       cardZip: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]],
       billAddress: ['', [Validators.required]],
       billCity: ['', [Validators.required]],
-      billZip: ['', [Validators.required]]
+      billZip: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]],
+      shipAddress: ['', [Validators.required]],
+      shipCity: ['', [Validators.required]],
+      shipZip: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]]
+      
 
     });
     this.checkoutForm.valueChanges.subscribe();
