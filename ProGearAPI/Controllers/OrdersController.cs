@@ -31,7 +31,7 @@ namespace ProGearAPI.Controllers
 
                 var remove = (from i in context.Orders
                               where i.ProductId == productId && i.CartId == cartId
-                              select i).SingleOrDefault();
+                              select i).FirstOrDefault();
 
                 if (remove != null)
                 {
