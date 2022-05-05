@@ -1,1 +1,44 @@
-<h1>Hello World</h1>
+<nav>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <span class="img"><img src="/assets/ProGearLogo.png" alt="logo"></span>
+        
+        <span class="example-spacer"></span>
+        <!-- <span style="margin-right: 5%;">Products</span> -->
+        <div class="dropdown">
+            <span class="dropbtn" >PRODUCTS
+                <mat-icon>expand_more</mat-icon>
+            </span>
+            <div class="dropdown-content" style="padding: 1%;">
+                <a routerLink = "apparel">APPAREL</a>
+                <a routerLink = "housewares">HOUSEWARES</a>
+                <a routerLink = "travel">TRAVEL</a>
+                <a routerLink = "misc">MISC</a>
+            </div>
+        </div>
+
+        <button mat-icon-button class="example-icon" aria-label="cart">
+            <a routerLink = "cart">
+            <mat-icon>shopping_cart</mat-icon>
+            </a>
+        </button>
+        <button mat-icon-button class="example-icon" aria-label="user">
+            <a routerLink = "logIn">
+            <mat-icon>person</mat-icon>
+            </a>
+        </button>
+      </mat-toolbar-row>
+  
+    </mat-toolbar>
+</nav>
+
+<router-outlet></router-outlet>
+<footer class="site-footer">
+    <div class="container">
+        <h3 style="text-align: center;" id="follow">FOLLOW US</h3>
+
+        <mat-divider></mat-divider> 
+        <p class="copyright-text">Copyright &copy; 2022 All Rights Reserved by Group.</p>
+
+      </div>
+</footer>
