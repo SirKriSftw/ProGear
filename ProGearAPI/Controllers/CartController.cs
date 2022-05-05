@@ -10,58 +10,38 @@ namespace ProGearAPI.Controllers
     public class CartController : Controller
     {
         ProGearContext context = new ProGearContext();
+        double v;
+        double V;
 
         [HttpGet]
         [Route("Cart")]
         public IActionResult GetCart()
         {
+            
             var cart = (from i in context.Carts
                         join x in context.Users on i.UserId equals x.UserId
                         join z in context.Orders on i.CartId equals z.CartId
                         join w in context.Products on z.ProductId equals w.ProductId
                         orderby i.CartId ascending
-                        select new
+                        select new 
                         {
                             i.CartId,
                             i.UserId,
-                            i.Total,
                             i.PaidFor,
                             i.PaidOn,
-                            //i.User,
-                            //i.Orders
+                            z.OrderId,
                             w.ProductId,
                             w.ProductName,
                             w.ProductDetails,
-                            w.ProductPrice
-                        }
-                        ).DefaultIfEmpty();
+                            w.ProductPrice,
+                            z.Qty,
+                            V = z.Qty * w.ProductPrice,
+                             
+
+                        }).DefaultIfEmpty();
 
             if (cart != null)
             {
-                return Ok(cart);
-            }
-            else
-            {
-                return NotFound("No Cart");
-            }
-        }
-       
-
-        #region Not Needed Cart Method
-        [HttpGet]
-        [Route("CartV2")]
-        public IActionResult GetCart2()
-        {
-            var cart = (from i in context.Carts
-
-                        select i).DefaultIfEmpty();
-
-
-
-            if (cart != null)
-            {
-
-
                 return Ok(cart);
             }
             else
@@ -84,27 +64,54 @@ namespace ProGearAPI.Controllers
                             join x in context.Users on i.UserId equals x.UserId
                             join z in context.Orders on i.CartId equals z.CartId
                             join w in context.Products on z.ProductId equals w.ProductId
-                            //orderby i.CartId ascending
                             where i.CartId == cartId
                             select new
                             {
                                 i.CartId,
                                 i.UserId,
-                                i.Total,
                                 i.PaidFor,
                                 i.PaidOn,
-                                //i.User,
-                                //i.Orders,
+                                z.OrderId,
                                 w.ProductId,
                                 w.ProductName,
                                 w.ProductDetails,
-                                w.ProductPrice
+                                w.ProductPrice,
+                                z.Qty,
+                                SubTotal = z.Qty * w.ProductPrice
                             }
-                          ).DefaultIfEmpty();
+                             ).DefaultIfEmpty();
+
+                var total = cart.Sum(V => V.SubTotal);
+
+                var final = (from i in context.Carts
+                            join x in context.Users on i.UserId equals x.UserId
+                            join z in context.Orders on i.CartId equals z.CartId
+                            join w in context.Products on z.ProductId equals w.ProductId
+                            
+                            where i.CartId == cartId
+                            select new
+                            {
+                                i.CartId,
+                                total,
+                                i.UserId,
+                                i.PaidFor,
+                                i.PaidOn,
+                                z.OrderId,
+                                w.ProductId,
+                                w.ProductName,
+                                w.ProductDetails,
+                                w.ProductPrice,
+                                z.Qty,
+                                SubTotal = z.Qty * w.ProductPrice
+
+                            }
+                            ).DefaultIfEmpty();
+
 
                 if (cart != null)
                 {
-                    return Ok(cart);
+                    UpdateCart(total, cartId); 
+                    return Ok(final);
                 }
                 else
                 {
@@ -119,23 +126,46 @@ namespace ProGearAPI.Controllers
         }
         #endregion
 
-        [HttpPost]
-        [Route("AddToCart")]
-        public IActionResult AddToCart(int UserId, double total, ICollection<Order> order)
+        #region Update Cart
+        [HttpPut]
+        [Route("UpdateCart")]
+        public IActionResult UpdateCart(double? total, int cartId)
         {
-            Cart newCart = new Cart();
+            var update = (from i in context.Carts
+                          where i.CartId == cartId
+                          select i).SingleOrDefault();
 
-            newCart.UserId = UserId;
-            newCart.Total = total;
-            newCart.Orders = order;
+            if (update != null)
+            {
+                update.Total = total;
+                context.SaveChanges();
+                return Ok("Updated Total");
+            }
+            else
+            {
+                return Ok("Update Failed");
+            }
+        }
+        #endregion
+
+        #region Create New Cart
+        [HttpPost]
+        [Route("NewCart")]
+        public IActionResult CreateCart(int userId)
+        {
+            var newCart = new Cart();
+
+            newCart.UserId = userId;
+            newCart.Total = 0;
             newCart.PaidFor = false;
-            newCart.PaidOn = System.DateTime.Now;
+            newCart.PaidOn = null;
+
+
 
             if (newCart != null)
             {
                 context.Carts.Add(newCart);
                 context.SaveChanges();
-
 
                 return Created("", newCart);
             }
@@ -143,9 +173,8 @@ namespace ProGearAPI.Controllers
             {
                 return Ok("Error");
             }
-
         }
-
+        #endregion
     }
 }
 
