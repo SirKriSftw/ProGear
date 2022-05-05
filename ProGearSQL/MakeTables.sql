@@ -6,6 +6,9 @@ SELECT * FROM Cart
 SELECT * FROM Orders
 SELECT * FROM Categories
 
+CREATE DATABASE ProGear
+USE ProGear
+
 CREATE TABLE Users(
 	userID int PRIMARY KEY Identity,
 	email varchar(30) UNIQUE NOT NULL,
@@ -50,3 +53,4 @@ CREATE TABLE Orders (
 	qty int
 )
 
+INSERT INTO Users VALUES ('test@test.com', 'password', 'david', 'acuff')

@@ -14,11 +14,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+<<<<<<< HEAD
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {AuthModule} from '@auth0/auth0-angular';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
+=======
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+>>>>>>> 89410c85d006ac5773fe7a25f9cb16f84dca7fbd
 
 @NgModule({
   declarations: [
@@ -40,6 +48,7 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+<<<<<<< HEAD
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
@@ -47,6 +56,13 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
       domain: 'dev-nxw7ytn5.us.auth0.com',
       clientId: 'trrYmHCgFrgwPRi3p3rEUaFnyxTMZXNi',
     }),
+=======
+    MatCardModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
+>>>>>>> 89410c85d006ac5773fe7a25f9cb16f84dca7fbd
   ],
   providers: [],
   bootstrap: [AppComponent]
