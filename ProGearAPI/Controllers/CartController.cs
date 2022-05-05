@@ -191,6 +191,7 @@ namespace ProGearAPI.Controllers
 
                 if (cart != null)
                 {
+                    UpdateCart(total, cartId); 
                     return Ok(final);
                 }
                 else
@@ -205,6 +206,54 @@ namespace ProGearAPI.Controllers
             }
         }
         #endregion
+
+        [HttpPut]
+        [Route("UpdateCart")]
+        public IActionResult UpdateCart(double? total, int cartId)
+        {
+            var update = (from i in context.Carts
+                          where i.CartId == cartId
+                          select i).SingleOrDefault();
+
+            if (update != null)
+            {
+                update.Total = total;
+                context.SaveChanges();
+                return Ok("Updated Total");
+            }
+            else
+            {
+                return Ok("Update Failed");
+            }
+        }
+
+
+        [HttpPost]
+        [Route("NewCart")]
+        public IActionResult CreateCart(int userId)
+        {
+            var newCart = new Cart();
+
+            newCart.UserId = userId;
+            newCart.Total = 0;
+            newCart.PaidFor = false;
+            newCart.PaidOn = null;
+
+
+
+            if (newCart != null)
+            {
+                context.Carts.Add(newCart);
+                context.SaveChanges();
+
+
+                return Created("", newCart);
+            }
+            else
+            {
+                return Ok("Error");
+            }
+        }
 
         //[HttpPut]
         //[Route("UpdateCart")]
