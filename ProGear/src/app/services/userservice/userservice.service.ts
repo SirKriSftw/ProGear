@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
+import {AuthService} from '@auth0/auth0-angular';
 
 
 
@@ -15,3 +16,4 @@ _http:HttpClient
     return this._http.post("https://localhost:44310/api/User/createUser", user,{headers:new HttpHeaders({"Content-Type":"application/json"})});
   }
 }
+

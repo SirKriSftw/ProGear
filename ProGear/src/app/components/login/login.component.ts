@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators, Form } from '@angular/forms';
-
+import {AuthService} from '@auth0/auth0-angular';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,23 +7,17 @@ import { FormGroup, FormBuilder, FormControl, Validators, Form } from '@angular/
 })
 export class LoginComponent implements OnInit {
 
-  loginForm : FormGroup;
-
-  constructor(private formBuilder : FormBuilder) 
+  constructor(public auth: AuthService) 
   {
-    this.loginForm = formBuilder.group({
-      email: new FormControl(),
-      password: new FormControl()
-    })
-  }
+   
+    }
 
   ngOnInit(): void {
   }
 
-  login()
+  loginUserWithRedirect()
   {
-    console.log(`email: ${this.loginForm.value.email}`);
-    console.log(`password: ${this.loginForm.value.password}`);
+    this.auth.loginWithRedirect();
   }
 
 }

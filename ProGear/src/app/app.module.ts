@@ -14,8 +14,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {AuthModule} from '@auth0/auth0-angular';
+import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RegisterComponent,
     ProductsComponent,
     NavbarComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    LogoutButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -36,8 +40,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatFormFieldModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AuthModule.forRoot({
+      domain: 'dev-nxw7ytn5.us.auth0.com',
+      clientId: 'trrYmHCgFrgwPRi3p3rEUaFnyxTMZXNi',
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
