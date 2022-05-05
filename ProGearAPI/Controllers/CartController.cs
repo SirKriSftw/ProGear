@@ -13,7 +13,6 @@ namespace ProGearAPI.Controllers
         double v;
         double V;
 
-
         #region Old Get Cart
         //[HttpGet]
         //[Route("Cart")]
@@ -53,7 +52,7 @@ namespace ProGearAPI.Controllers
         //}
         #endregion
 
-
+        #region Get Cart
         [HttpGet]
         [Route("Cart")]
         public IActionResult GetCart()
@@ -88,9 +87,6 @@ namespace ProGearAPI.Controllers
              //v = v + V;
              //}
 
-                        
-            
-
             if (cart != null)
             {
                 return Ok(cart);
@@ -100,30 +96,30 @@ namespace ProGearAPI.Controllers
                 return NotFound("No Cart");
             }
         }
-       
+        #endregion
 
         #region Not Needed Cart Method
-        [HttpGet]
-        [Route("CartV2")]
-        public IActionResult GetCart2()
-        {
-            var cart = (from i in context.Carts
+        //[HttpGet]
+        //[Route("CartV2")]
+        //public IActionResult GetCart2()
+        //{
+        //    var cart = (from i in context.Carts
 
-                        select i).DefaultIfEmpty();
-
-
-
-            if (cart != null)
-            {
+        //                select i).DefaultIfEmpty();
 
 
-                return Ok(cart);
-            }
-            else
-            {
-                return NotFound("No Cart");
-            }
-        }
+
+        //    if (cart != null)
+        //    {
+
+
+        //        return Ok(cart);
+        //    }
+        //    else
+        //    {
+        //        return NotFound("No Cart");
+        //    }
+        //}
         #endregion
 
         #region Get Cart By Id
@@ -160,13 +156,13 @@ namespace ProGearAPI.Controllers
                              ).DefaultIfEmpty();
 
                 var total = cart.Sum(V => V.SubTotal);
-                Console.WriteLine("Total" , total);
+               //Console.WriteLine("Total" , total);
 
                 var final = (from i in context.Carts
                             join x in context.Users on i.UserId equals x.UserId
                             join z in context.Orders on i.CartId equals z.CartId
                             join w in context.Products on z.ProductId equals w.ProductId
-                            //orderby i.CartId ascending
+                            
                             where i.CartId == cartId
                             select new
                             {
@@ -207,6 +203,7 @@ namespace ProGearAPI.Controllers
         }
         #endregion
 
+        #region Update Cart
         [HttpPut]
         [Route("UpdateCart")]
         public IActionResult UpdateCart(double? total, int cartId)
@@ -226,8 +223,9 @@ namespace ProGearAPI.Controllers
                 return Ok("Update Failed");
             }
         }
+        #endregion
 
-
+        #region Create New Cart
         [HttpPost]
         [Route("NewCart")]
         public IActionResult CreateCart(int userId)
@@ -254,7 +252,9 @@ namespace ProGearAPI.Controllers
                 return Ok("Error");
             }
         }
+        #endregion
 
+        #region Old Methods
         //[HttpPut]
         //[Route("UpdateCart")]
         //public IActionResult UpdateCart(int CartId)
@@ -278,33 +278,33 @@ namespace ProGearAPI.Controllers
         //}
 
 
-        [HttpPost]
-        [Route("AddToCart")]
-        public IActionResult AddToCart(int UserId, double total, ICollection<Order> order)
-        {
-            Cart newCart = new Cart();
+        //[HttpPost]
+        //[Route("AddToCart")]
+        //public IActionResult AddToCart(int UserId, double total, ICollection<Order> order)
+        //{
+        //    Cart newCart = new Cart();
 
-            newCart.UserId = UserId;
-            newCart.Total = total;
-            newCart.Orders = order;
-            newCart.PaidFor = false;
-            newCart.PaidOn = System.DateTime.Now;
+        //    newCart.UserId = UserId;
+        //    newCart.Total = total;
+        //    newCart.Orders = order;
+        //    newCart.PaidFor = false;
+        //    newCart.PaidOn = System.DateTime.Now;
 
-            if (newCart != null)
-            {
-                context.Carts.Add(newCart);
-                context.SaveChanges();
+        //    if (newCart != null)
+        //    {
+        //        context.Carts.Add(newCart);
+        //        context.SaveChanges();
 
 
-                return Created("", newCart);
-            }
-            else
-            {
-                return Ok("Error");
-            }
+        //        return Created("", newCart);
+        //    }
+        //    else
+        //    {
+        //        return Ok("Error");
+        //    }
 
-        }
-
+        //}
+        #endregion
     }
 }
 
