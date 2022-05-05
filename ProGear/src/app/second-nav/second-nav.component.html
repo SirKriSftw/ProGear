@@ -1,0 +1,20 @@
+<div id="back">
+    <mat-icon >arrow_back</mat-icon>
+    <a routerLink = "../home">BACK TO HOME</a>
+</div>
+
+<div id="navbar">
+    <a routerLink = "../products_all">All</a>
+    <a routerLink = "../products_apparel">APPAREL</a>
+    <a routerLink = "../products_housewares">HOUSEWARES</a>
+    <a routerLink = "../products_travel">TRAVEL</a>
+    <a routerLink = "../products_misc">MISCELLANEOUS</a>
+
+        <div class="search">
+           <input type="text" class="searchTerm" placeholder="What are you looking for?" #userInput>
+           <button (click)="findProducts(userInput.value)" class="searchButton">
+            <mat-icon>search</mat-icon>
+          </button>
+        </div>
+    
+</div>
