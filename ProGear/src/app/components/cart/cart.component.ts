@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -35,6 +36,11 @@ this._cartService.modifyQty(OrderId, Qty+1)
 removeOrder(OrderId: any)
 {
 this._cartService.removeOrder(OrderId)
+}
+
+emptyCart()
+{
+this._cartService.emptyCart()
 }
 
 ngOnInit(): void { this.getCart(1); }

@@ -23,5 +23,10 @@
           <td> <button type="button" (click) ="removeOrder(x.OrderId)">Remove from Cart</button> </td>
         </tr>
       </table>
+      <br>
+      <button type="button" (click) ="emptyCart()">Empty Cart</button>
+      <br>
+      <br>
+      <button type="button" routerLink="../checkout" routerLinkActive="active-link">Go to Checkout</button>
     </div>
 </form>
