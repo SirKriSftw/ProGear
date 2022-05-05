@@ -1,3 +1,4 @@
+
 import { TestBed } from '@angular/core/testing';
 import { UserserviceService } from './userservice.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
@@ -27,26 +28,9 @@ describe('UserserviceService', () => {
     expect(userservice).toBeDefined();
   });
 
-it('register', () => {
-  const testData = true ; 
-  const inputData = {
-    user : 'admin'
-  }
-
-  userservice.register(inputData.user).subscribe((data : any) => expect(data).toEqual(testData));
-
-  const req = httpcontroller.expectOne('register');
-
-  expect(req.request.method).toEqual('POST');
-
-  req.flush(testData);
-
-})
-
-
 
   it('getLogin()', () =>{
-    const testData = true ; 
+    const testData = "true" ; 
     const inputData = {
       email : 'admin',
       password : 'admin',
@@ -54,7 +38,7 @@ it('register', () => {
 
     userservice.getLogin(inputData.email, inputData.password).subscribe((data : any) => expect(data).toEqual(testData));
 
-    const req = httpcontroller.expectOne('login') ;
+    const req = httpcontroller.expectOne('https://localhost:5001/api/User/Login?email=' + inputData.email + '&password=' + inputData.password) ;
 
     expect(req.request.method).toEqual('GET');
 
@@ -77,7 +61,7 @@ it('register', () => {
     }
     );
 
-    const req = httpcontroller.expectOne('login');
+    const req = httpcontroller.expectOne('https://localhost:5001/api/User/Login?email=' + inputData.email + '&password=' + inputData.password);
     expect(req.request.method).toEqual('GET') ;
 
     req.flush(emsg, {status : 500, statusText : 'Server Error'});
