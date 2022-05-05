@@ -18,9 +18,56 @@ namespace ProGearAPI.Controllers
 
             Order newOrder = new Order();
 
-            newOrder.ProductId = productId;
-            newOrder.CartId = cartId;
-            newOrder.Qty = qty;
+            var check = (from i in context.Orders
+                         where i.ProductId == productId && i.CartId == cartId
+                         select new
+                         {
+                             i.Qty
+                         }).FirstOrDefault();
+
+            if (check != null)
+            {
+                int? oldQty = check.Qty;
+
+                var remove = (from i in context.Orders
+                              where i.ProductId == productId && i.CartId == cartId
+                              select i).SingleOrDefault();
+
+                if (remove != null)
+                {
+                    context.Orders.Remove(remove);
+                    context.SaveChanges();
+
+                    newOrder.ProductId = productId;
+                    newOrder.CartId = cartId;
+                    newOrder.Qty = qty + oldQty;
+
+                    if (newOrder != null)
+                    {
+                        context.Orders.Add(newOrder);
+                        context.SaveChanges();
+
+
+                        return Created("", newOrder);
+                    }
+                    else
+                    {
+                        return Ok("Error");
+                    }
+                }
+                else
+                {
+                    return BadRequest("Something Went Wrong");
+                }
+
+                
+            }
+            else
+            {
+                newOrder.ProductId = productId;
+                newOrder.CartId = cartId;
+                newOrder.Qty = qty;
+            }
 
             if (newOrder != null)
             {
@@ -37,6 +84,27 @@ namespace ProGearAPI.Controllers
 
         }
 
+        [HttpGet]
+        [Route("CheckOrder")]
+        public IActionResult CheckOrder(int productId)
+        {
+            var check = (from i in context.Orders
+                         where i.ProductId == productId
+                         select new
+                         {
+                                i.Qty
+                         }).DefaultIfEmpty();
+
+
+            if (check != null)
+            {
+                return Ok(check);
+            }
+            else
+            {
+                return Ok(false);
+            }
+        }
 
         [HttpGet]
         [Route("Orders/{orderId}")]
