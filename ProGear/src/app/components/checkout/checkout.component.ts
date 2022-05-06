@@ -43,6 +43,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   myCart: any = [];
+
   getCart(cartID: number) {
     this._cartService.getCart(cartID).subscribe((data) => {
       this.myCart = data;
@@ -76,7 +77,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCart(1);
+    this.getCart(2);
   }
 
 }
