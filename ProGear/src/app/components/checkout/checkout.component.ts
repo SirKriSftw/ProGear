@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CartService } from 'src/app/services/cart-service.service';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @Component({
@@ -12,13 +13,13 @@ import { CartService } from 'src/app/services/cart-service.service';
 })
 export class CheckoutComponent implements OnInit {
 
+  checked = true;
+
   _cartService: CartService;
 
   router: Router;
-  hide: boolean = true;
   checkoutForm: FormGroup;
   confirmation: string = "";
-  disabled = false;
 
   constructor(private fb: FormBuilder, routerRef: Router, _cartServiceRef: CartService) {
     this._cartService = _cartServiceRef;

@@ -9,12 +9,22 @@
 }
 
 div{
-    display: inline-flex;
+    display: flex;
+    min-height: fit-content;
 }
 
 .card {
     position: relative;
     margin-left: 10%;
+    text-align: center;
+}
+
+.expPanel{
+    position: relative;
+}
+
+#panelDesc{
+    margin-left: 14em;
     text-align: center;
 }
 

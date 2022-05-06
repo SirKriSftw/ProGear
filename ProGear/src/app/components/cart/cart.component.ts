@@ -43,7 +43,7 @@ emptyCart()
 this._cartService.emptyCart()
 }
 
-ngOnInit(): void { this.getCart(1); }
+ngOnInit(): void { this.getCart(2); }
 // replace '1' with global static variable of user's cart ID
 
 }
