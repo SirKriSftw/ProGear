@@ -16,11 +16,11 @@
           <td> {{x.productName}} </td>
           <td> {{x.productDetails}} </td>
           <td> $ {{x.productPrice}} </td>
-          <td> {{x.Qty}} <br>
-            <button type="button" (click) ="subOneQty(x.OrderId, x.Qty)">-</button>
-            <button type="button" (click) ="addOneQty(x.OrderId, x.Qty)">+</button>
+          <td> {{x.qty}} <br>
+            <button type="button" (click) ="subOneQty(x.orderId, x.qty)">-</button>
+            <button type="button" (click) ="addOneQty(x.orderId, x.qty)">+</button>
           </td>
-          <td> <button type="button" (click) ="removeOrder(x.OrderId)">Remove from Cart</button> </td>
+          <td> <button type="button" (click) ="removeOrder(x.orderId)">Remove from Cart</button> </td>
         </tr>
       </table>
       <br>

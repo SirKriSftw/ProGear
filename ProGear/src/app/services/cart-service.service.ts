@@ -15,19 +15,19 @@ export class CartService {
    }
 
    getCart (cartID: number) {
-    return this._http.get("https://localhost:5001/Cart/Cart/" + cartID);
+    return this._http.get("https://localhost:5001/Cart/GetCartById/" + cartID);
    }
 
    modifyQty (OrderId: number, Qty: number) {
-    return this._http.get("https://localhost:5001/Cart/set-order-qty/" + OrderId + "/" + Qty);
+    return this._http.put("https://localhost:5001/Cart/set-order-qty/" + OrderId + "/" + Qty, null);
    }
 
    removeOrder (OrderId: number) {
-    return this._http.get("https://localhost:5001/Cart/remove-order/" + OrderId );
+    return this._http.delete("https://localhost:5001/Cart/remove-order/" + OrderId );
    }
 
    emptyCart () {
-    return this._http.get("https://localhost:5001/Cart/emptycart");
+    return this._http.delete("https://localhost:5001/Cart/emptycart");
    }
 
    // get all old carts, ie reciepts (paidFor == true)

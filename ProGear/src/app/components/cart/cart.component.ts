@@ -23,29 +23,37 @@ this._cartService.getCart(cartID).subscribe( (data) => {this.myCart = data;
  })
 }
 
-subOneQty(OrderId: any, Qty: any)
+subOneQty(OrderId: number, Qty: number)
 {
-this._cartService.modifyQty(OrderId, Qty-1)
+  var q : number = Qty - 1;
+this._cartService.modifyQty(OrderId, q).subscribe( (data) => {data = data;
+  console.log(data) 
+ });
 }
 
-addOneQty(OrderId: any, Qty: any)
+addOneQty(OrderId: number, Qty: number)
 {
-this._cartService.modifyQty(OrderId, Qty+1)
+  var q : number = Qty + 1;
+this._cartService.modifyQty(OrderId, q).subscribe( (data) => {data = data;
+  console.log(data) 
+ });
 }
 
-removeOrder(OrderId: any)
+removeOrder(OrderId: number)
 {
-this._cartService.removeOrder(OrderId)
+this._cartService.removeOrder(OrderId).subscribe( (data) => {data = data;
+  console.log(data) 
+ });
 }
 
 emptyCart()
 {
-this._cartService.emptyCart()
+this._cartService.emptyCart().subscribe( (data) => {data = data;
+  console.log(data) 
+ });
 }
 
-ngOnInit(): void { this.getCart(1); }
-// replace '1' with global static variable of user's cart ID
-// getUserIdByEmail(auth.userEmail) <--this is the method for getting user ID
-// ^^^use this method once the login team is ready to provide static email
+ngOnInit(): void { this.getCart(2); }
+// ^^^ replace this '2' with userId, a static variable from login component
 
 }
