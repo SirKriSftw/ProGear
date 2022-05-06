@@ -24,5 +24,19 @@ namespace ProGearAPI.Controllers
             }
             return Ok(u);
         }
+
+        [HttpGet]
+        [Route("GetId")]
+        public IActionResult GetId(string email)
+        {
+            int id = user.GetUserId(email);
+
+            // unncessary? apparently int can never be null?
+            if (id == null)
+            {
+                return BadRequest("Somehow email doesn't exist");
+            }
+            return Ok(id);
+        }
     }
 }

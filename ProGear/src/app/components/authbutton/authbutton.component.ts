@@ -21,7 +21,7 @@ export class AuthbuttonComponent implements OnInit {
 
   ngOnInit(): void {
     this.user.getUser();
-    //console.log("init log " + this.user.userId);
+    console.log("init log " + this.user.userId);
   }
 
   printUser()

@@ -43,11 +43,11 @@ export class UserserviceService implements OnInit{
       //console.log(data)
       this._userEmail = data?.email;
 
-      // this.getUserId(this._userEmail).subscribe((data) => {
-      //   //console.log(data);
-      //   this.userId = parseInt(data);
-      //   console.log(this.userId);
-      // });
+      this.getUserId(this._userEmail).subscribe((data) => {
+        //console.log(data);
+        this.userId = parseInt(data);
+        console.log(this.userId);
+      });
     });
 
     // this.auth.user$.subscribe((data) => {

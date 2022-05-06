@@ -78,6 +78,15 @@ namespace ProGearAPI.Models.EF
 
         }
 
+        public int GetUserId(string email)
+        {
+            var usr = (from u in db.Users
+                       where u.Email == email
+                       select u.UserId).FirstOrDefault();
+
+            return usr;
+        }
+
 
         public string Login(string email, string password)
         {
