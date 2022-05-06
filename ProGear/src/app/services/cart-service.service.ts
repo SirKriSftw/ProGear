@@ -10,20 +10,24 @@ export class CartService {
   constructor(private _httpRef: HttpClient) { this._http = _httpRef; }
 
    
-  getCart(cartID: number) {
-    return this._http.get("https://localhost:4200/Cart/" + cartID);
+  getUserIdByEmail (userEmail: any) {
+    return this._http.get("https://localhost:5001/Cart/get-user-ID/" + userEmail);
    }
 
-  modifyQty(OrderId: number, Qty: number) {
-    return this._http.get("https://localhost:4200/Cart/set-order-qty/" + OrderId + "/" + Qty);
+   getCart (cartID: number) {
+    return this._http.get("https://localhost:5001/Cart/GetCartById/" + cartID);
    }
 
-  removeOrder(OrderId: number) {
-    return this._http.get("https://localhost:4200/Cart/remove-order/" + OrderId);
+   modifyQty (OrderId: number, Qty: number) {
+    return this._http.put("https://localhost:5001/Cart/set-order-qty/" + OrderId + "/" + Qty, null);
    }
 
-  emptyCart() {
-    return this._http.get("https://localhost:4200/api/Kaelan/emptycart");
+   removeOrder (OrderId: number) {
+    return this._http.delete("https://localhost:5001/Cart/remove-order/" + OrderId );
+   }
+
+   emptyCart () {
+    return this._http.delete("https://localhost:5001/Cart/emptycart");
    }
 
 }
