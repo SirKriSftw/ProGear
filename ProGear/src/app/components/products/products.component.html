@@ -12,7 +12,7 @@
 </div>
 <div class="cards">
   <span *ngFor="let e of DisplayP">
-    <div class="card" *ngIf="(e.catId == selected || selected == 0) && e.productName.includes(searchTerm)">
+    <div class="card" *ngIf="(e.catId == selected || selected == 0) && (e.productName | lowercase).includes(searchTerm | lowercase)">
        <div class="content" >
          <div class="img">
          </div>
