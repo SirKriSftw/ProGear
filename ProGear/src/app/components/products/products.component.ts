@@ -13,16 +13,10 @@ export class ProductsComponent implements OnInit {
   _router:Router;
   _categoryService: CategoriesService;
 
-
   DisplayP: any;
-  AllP:any;
-
   selected:any = 0;
   categoriesList:any=[];
   searchTerm:any = "";
-
-
-
 
   constructor(private _productServiceRef: ProductsService, _routerRef:Router, _categoryServiceRef: CategoriesService) {
     this._productService = _productServiceRef;
@@ -49,22 +43,10 @@ export class ProductsComponent implements OnInit {
       (data) => {
         this.DisplayP = data;
         this._productService.allProducts = this.DisplayP;
-        console.log(this.DisplayP)
-        this.AllP = this.DisplayP;
       }
     )
   }
  
-  searchProducts(search:any){
-    if (search == "")
-    {
-      this.AllProducts();
-    }
-    this._productService.getProductsSearch(search).subscribe((result) => {
-      this.DisplayP = result;
-    });
-  }
-
   searchP(search:any){
     this.searchTerm = search;
   }
