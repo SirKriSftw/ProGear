@@ -1,44 +1,54 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { ProductsComponent } from './components/products/products.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { LayoutModule } from '@angular/cdk/layout';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientModule } from '@angular/common/http';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { CheckoutComponent } from './components/checkout/checkout.component';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { MatButtonModule } from '@angular/material/button';
+// import { MatCarouselModule } from '@ngmodule/material-carousel';
+
+
+import { AppComponent } from './app.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { HomeComponent } from './components/home/home.component';
+import { ProductsComponent } from './components/products/products.component';
+import { NavComponent } from './components/nav/nav.component';
+//import { CheckoutComponent } from './components/checkout/checkout.component';
+
+import { ProductsService } from './services/products.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     LoginComponent,
     RegisterComponent,
     ProductsComponent,
-    NavbarComponent,
-    CheckoutComponent
+    NavComponent
+
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    LayoutModule,
     MatToolbarModule,
+    MatListModule,
     MatButtonModule,
-    MatSidenavModule,
     MatIconModule,
     MatListModule,
     HttpClientTestingModule,
+    HttpClientModule,
+    CommonModule
   ],
-  providers: [],
+  providers: [ProductsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
