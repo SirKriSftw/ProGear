@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
     this.user.getLoggedInEmail().subscribe((data:any)=>{
       this.user.getUserId(data.email).subscribe((data:any) => {
         this.loggedInUser = data;
+        console.log(data);
       })
     })
     console.log(this.loggedInUser);
