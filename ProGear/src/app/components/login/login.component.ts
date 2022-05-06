@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   loginFailed : boolean = false;
   loggedIn : boolean = false;
   token : string = "";
+  loggedInUser:any;
 
   constructor(private formBuilder : FormBuilder, u : UserserviceService, private router : Router) 
   {
@@ -28,8 +29,12 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user.getUser();
-    console.log(this.user.userId);
+    this.user.getLoggedInEmail().subscribe((data:any)=>{
+      this.user.getUserId(data.email).subscribe((data:any) => {
+        this.loggedInUser = data;
+      })
+    })
+    console.log(this.loggedInUser);
   }
 
   get f() { return this.loginForm.controls; }  

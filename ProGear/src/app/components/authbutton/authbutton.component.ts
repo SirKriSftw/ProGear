@@ -20,8 +20,7 @@ export class AuthbuttonComponent implements OnInit {
   public userId : any;
 
   ngOnInit(): void {
-    this.user.getUser();
-    console.log("init log " + this.user.userId);
+
   }
 
   printUser()
@@ -44,7 +43,7 @@ export class AuthbuttonComponent implements OnInit {
   getUserId(email:any)
   {
     //return this._http.get(url, {responseType: "text"});
-    return this._http.get(`https://localhost:5001/api/User/GetId?email=${email}`, {responseType:'text'});
+    return this._http.get(`https://localhost:44310/api/User/GetId/` + email, {responseType:'text'});
   }
 
   getUser()

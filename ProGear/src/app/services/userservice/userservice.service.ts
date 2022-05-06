@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { AuthService } from '@auth0/auth0-angular';
 import { DOCUMENT } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +14,7 @@ export class UserserviceService implements OnInit{
     this._http=_http;
   }
 
-  private _userEmail : any;
-  public userId! : number;
-
-  ngOnInit(): void {
-    this.getUser();
-  }
+  ngOnInit(): void {  }
 
   register(user:any){
     return this._http.post("https://localhost:44310/api/User/createUser", user,{headers:new HttpHeaders({"Content-Type":"application/json"})});
@@ -26,39 +22,17 @@ export class UserserviceService implements OnInit{
 
   getLogin(email : string, password : string)
   {
-    var url = `https://localhost:5001/api/User/Login?email=${email}&password=${password}`;
+    var url = `https://localhost:44310/api/User/Login?email=${email}&password=${password}`;
 
     return this._http.get(url, {responseType: "text"});
   }
 
+  getLoggedInEmail()
+  {
+    return this.auth.user$;
+  }
   getUserId(email:any)
   {
-    //return this._http.get(url, {responseType: "text"});
-    return this._http.get(`https://localhost:5001/api/User/GetId?email=${email}`, {responseType:'text'});
-  }
-
-  getUser()
-  {
-    this.auth.user$.subscribe((data) => {
-      //console.log(data)
-      this._userEmail = data?.email;
-
-      this.getUserId(this._userEmail).subscribe((data) => {
-        //console.log(data);
-        this.userId = parseInt(data);
-        console.log(this.userId);
-      });
-    });
-
-    // this.auth.user$.subscribe((data) => {
-    //   //console.log(data)
-    //   this._userEmail = data?.email;
-
-    //   this.getUserId(this._userEmail).subscribe((data) => {
-    //     //console.log(data);
-    //     this.userId = parseInt(data);
-    //     console.log(this.userId);
-    //   });
-    // });
+    return this._http.get(`https://localhost:44310/api/User/GetId/` + email, {responseType:'text'});
   }
 }

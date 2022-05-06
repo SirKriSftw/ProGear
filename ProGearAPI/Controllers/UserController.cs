@@ -26,7 +26,7 @@ namespace ProGearAPI.Controllers
         }
 
         [HttpGet]
-        [Route("GetId")]
+        [Route("GetId/{email}")]
         public IActionResult GetId(string email)
         {
             int id = user.GetUserId(email);
