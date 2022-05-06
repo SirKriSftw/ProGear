@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductsService } from '../../services/products.service';
 
 @Component({
@@ -11,14 +10,26 @@ import { ProductsService } from '../../services/products.service';
 })
 export class NavComponent implements OnInit {
   _service:ProductsService;
-  searchProducts:any;
   _router:Router;
-  allCat:any;
+  _categories:CategoriesService;
 
-  constructor(_serviceRef:ProductsService,_routerRef:Router) {
+  searchProducts:any;
+  allCat:any;
+  categoriesList:any;
+  selected:any;
+  isAtProducts = false;
+
+  constructor(_serviceRef:ProductsService, _routerRef:Router, _categoriesRef:CategoriesService) {
     this._service=_serviceRef;
     this._router=_routerRef;
+    this._categories = _categoriesRef;
    }
+
+   ngOnInit(): void {
+   }
+
+   
+
   findProducts(userInput:any){
   this._service.getProductsSearch(userInput).subscribe(
     (data)=>{
@@ -45,8 +56,6 @@ export class NavComponent implements OnInit {
 
     )
   }
-  ngOnInit(): void {
-   this.AllProductsCat();
-  }
+  
 
 }

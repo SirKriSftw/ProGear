@@ -7,7 +7,7 @@ namespace ProGearAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductListController : ControllerBase
+    public class ProductsController : ControllerBase
     {
         ProGearContext dbProGear = new ProGearContext();
 

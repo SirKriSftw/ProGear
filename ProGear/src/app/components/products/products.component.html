@@ -1,23 +1,13 @@
-<app-nav></app-nav>
-<!-- IF URL NAVIGATES TO ALL APPAREL -->
-<div class="cards" *ngIf=" allApparelBool">
-  
-  <div class="card" *ngFor="let e of allApparel">
-     <div class="content">
-       <div class="img">
-       </div>
-       <div class="details">
-         <div class="name">{{e.productName}}</div>
-         <div class="job">{{e.productDetails}}</div>
-       </div>
-     </div>
-    </div>
-</div>
-<!-- IF URL NAVIGATES TO ALL PRODUCTS -->
-<div class="cards" *ngIf=" allPBool">
-  
-    <div class="card" *ngFor="let e of allP">
-       <div class="content">
+<mat-form-field appearance="fill">
+  <mat-select [(ngModel)]="selected" name="category" placeholder="All">
+    <mat-option value="0" selected>All</mat-option>
+    <mat-option *ngFor="let c of categoriesList" [value]="c.catId">{{c.catName}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<div class="cards">
+  <span *ngFor="let e of allP">
+    <div class="card" *ngIf="e.catId == selected || selected == 0">
+       <div class="content" >
          <div class="img">
          </div>
          <div class="details">
@@ -26,59 +16,8 @@
          </div>
        </div>
       </div>
+    </span>
 </div>
-<!-- IF URL NAVIGATES TO ALL HOUSEWARES -->
-<div class="cards" *ngIf=" allHousewareBool">
-  
-    <div class="card" *ngFor="let e of allHouseware">
-       <div class="content">
-         <div class="img">
-         </div>
-         <div class="details">
-           <div class="name">{{e.productName}}</div>
-           <div class="job">{{e.productDetails}}</div>
-         </div>
-       </div>
-      </div>
-</div>
-<!-- IF URL NAVIGATES TO ALL TRAVEL-->
-<div class="cards" *ngIf=" allTravelBool">
-    <div class="card" *ngFor="let e of allTravel">
-       <div class="content">
-         <div class="img">
-         </div>
-         <div class="details">
-           <div class="name">{{e.productName}}</div>
-           <div class="job">{{e.productDetails}}</div>
-         </div>
-       </div>
-      </div>
-</div>
-<!-- IF URL NAVIGATES TO ALL MISC -->
-<div class="cards" *ngIf=" allMiscBool">
-    <div class="card" *ngFor="let e of allMisc">
-       <div class="content">
-         <div class="img">
-         </div>
-         <div class="details">
-           <div class="name">{{e.productName}}</div>
-           <div class="job">{{e.productDetails}}</div>
-         </div>
-       </div>
-      </div>
-</div>
-<!-- IF URL NAVIGATES TO SEARCH -->
-<div class="cards" *ngIf=" allSearchBool">
-    <div class="card" *ngFor="let e of allSearch">
-       <div class="content">
-         <div class="img">
-         </div>
-         <div class="details">
-           <div class="name">{{e.productName}}</div>
-           <div class="job">{{e.productDetails}}</div>
-         </div>
-       </div>
-      </div>
-</div>
+
 <router-outlet></router-outlet>
     

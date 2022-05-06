@@ -16,8 +16,8 @@ const routes: Routes = [
 // {path:'search', component:SearchComponent},
 // {path:'Search', component:SearchComponent},
 
-{path:'logIn', component:LoginComponent},
-{path:'createAccount', component:RegisterComponent},
+{path:'login', component:LoginComponent},
+{path:'register', component:RegisterComponent},
 {path:'cart', component:CartComponent}
 
 

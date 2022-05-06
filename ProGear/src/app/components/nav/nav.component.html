@@ -1,20 +1,35 @@
-<div id="back">
-    <mat-icon>arrow_back</mat-icon>
-    <a routerLink = "../home">BACK TO HOME</a>
-</div>
+<nav>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-button>
+        <a routerLink="">
+      <span class="img-span"><img src="/assets/ProGearLogo.png" alt="logo"></span>
+        </a>
+      </button>
+      
+      <span class="example-spacer"></span>
+      <!-- <span style="margin-right: 5%;">Products</span> -->
+      <!-- <div class="dropdown">
+          <span class="dropbtn" >PRODUCTS
+              <mat-icon>expand_more</mat-icon>
+          </span>
+          
+          <div class="dropdown-content" style="padding: 1%;">
+              <a *ngFor="let c of categoriesList">{{c.catName}}</a>
+          </div>
+      </div> -->
+      <button mat-button><a routerLink="products">Products</a></button>
+      <button mat-icon-button class="example-icon" aria-label="cart">
+          <a routerLink = "cart">
+          <mat-icon>shopping_cart</mat-icon>
+          </a>
+      </button>
+      <button mat-icon-button class="example-icon" aria-label="user">
+          <a routerLink = "login">
+          <mat-icon>person</mat-icon>
+          </a>
+      </button>
+    </mat-toolbar-row>
 
-<div id="navbar">
-    <a routerLink = "../products_all">All</a>
-    <a routerLink = "../products_apparel">APPAREL</a>
-    <a routerLink = "../products_housewares">HOUSEWARES</a>
-    <a routerLink = "../products_travel">TRAVEL</a>
-    <a routerLink = "../products_misc">MISCELLANEOUS</a>
-
-        <div class="search">
-           <input type="text" class="searchTerm" placeholder="What are you looking for?" #userInput>
-           <button (click)="findProducts(userInput.value)" class="searchButton">
-            <mat-icon>search</mat-icon>
-          </button>
-        </div>
-    
-</div>
+  </mat-toolbar>
+</nav>
