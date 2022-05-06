@@ -9,6 +9,7 @@ using ProGearAPI.Models.EF;
 
 namespace ProGearAPI.Controllers
 {
+    //Selects userId using the userEmail 
     [ApiController]
     [Route("Cart")]
     public class CartController : ControllerBase
@@ -39,6 +40,8 @@ namespace ProGearAPI.Controllers
             }
         }
 
+
+        //Allows quantity of an order to be changed
         [HttpPut]
         [Route("set-order-qty/{orderID}/{newQty}")]
         public IActionResult modifyOrderQuantity(int orderID, int newQty)
@@ -68,6 +71,7 @@ namespace ProGearAPI.Controllers
             }
         }
 
+        //Removes single order from ordertable by using its id
         [HttpDelete]
         [Route("remove-order/{orderID}")]
         public IActionResult removeOrder(int orderID)
@@ -92,115 +96,7 @@ namespace ProGearAPI.Controllers
         double v;
         double V;
 
-        #region Old Get Cart
-        //[HttpGet]
-        //[Route("Cart")]
-        //public IActionResult GetCart()
-        //{
-        //    var cart = (from i in dbContext.Carts
-        //               join x in dbContext.Users on i.UserId equals x.UserId
-        //               join y in dbContext.Orders on i.CartId equals y.CartId
-        //               join z in dbContext.Products on y.ProductId equals z.ProductId
-        //               select new
-        //                {
-        //                   i.CartId,
-        //                   i.UserId,
-        //                   i.Total,
-        //                   i.PaidFor,
-        //                   i.PaidOn,
-        //                   //i.Orders,
-        //                   x.Email,
-        //                   x.FirstName,
-        //                   x.LastName,
-        //                   y.ProductId,
-        //                   z.ProductName,
-        //                   z.ProductDetails,
-        //                   z.ProductPrice,
-        //                   y.Qty
-        //               }
-        //               ).DefaultIfEmpty();
-
-        //    if (cart != null)
-        //    {
-        //        return Ok(cart);
-        //    }
-        //    else
-        //    {
-        //        return NotFound("No Cart");
-        //    }
-        //}
-        #endregion
-
-        #region Get Cart
-        [HttpGet]
-        [Route("Cart")]
-        public IActionResult GetCart()
-        {
-            
-            var cart = (from i in dbContext.Carts
-                        join x in dbContext.Users on i.UserId equals x.UserId
-                        join z in dbContext.Orders on i.CartId equals z.CartId
-                        join w in dbContext.Products on z.ProductId equals w.ProductId
-                        orderby i.CartId ascending
-                        select new 
-                        {
-                            i.CartId,
-                            i.UserId,
-                            i.PaidFor,
-                            i.PaidOn,
-                            //i.User,
-                            //i.Orders,
-                            z.OrderId,
-                            w.ProductId,
-                            w.ProductName,
-                            w.ProductDetails,
-                            w.ProductPrice,
-                            z.Qty,
-                            V = z.Qty * w.ProductPrice,
-                             
-
-                        }).DefaultIfEmpty();
-
-             //foreach (var V in cart)
-             //{
-             //v = v + V;
-             //}
-
-            if (cart != null)
-            {
-                return Ok(cart);
-            }
-            else
-            {
-                return NotFound("No Cart");
-            }
-        }
-        #endregion
-
-        #region Not Needed Cart Method
-        //[HttpGet]
-        //[Route("CartV2")]
-        //public IActionResult GetCart2()
-        //{
-        //    var cart = (from i in dbContext.Carts
-
-        //                select i).DefaultIfEmpty();
-
-
-
-        //    if (cart != null)
-        //    {
-
-
-        //        return Ok(cart);
-        //    }
-        //    else
-        //    {
-        //        return NotFound("No Cart");
-        //    }
-        //}
-        #endregion
-
+        //Gets all wanted information from a Cart using a specific Cart id
         #region Get Cart By Id
         [HttpGet]
         [Route("Cart/{cartId}")]
@@ -281,7 +177,8 @@ namespace ProGearAPI.Controllers
             }
         }
         #endregion
-
+        
+        //Used to update the total of the cart by adding the subtotal of each order
         #region Update Cart
         [HttpPut]
         [Route("UpdateCart")]
@@ -304,6 +201,7 @@ namespace ProGearAPI.Controllers
         }
         #endregion
 
+        //Create a New Cart for a user typically done on account creation and after a cart is considered checked out
         #region Create New Cart
         [HttpPost]
         [Route("NewCart")]
@@ -332,59 +230,9 @@ namespace ProGearAPI.Controllers
         }
         #endregion
 
-        #region Old Methods
-        //[HttpPut]
-        //[Route("UpdateCart")]
-        //public IActionResult UpdateCart(int CartId)
-        //{
-        //    var update = (from i in dbContext.Carts
-        //                  join x in dbContext.Users on i.UserId equals x.UserId
-        //                  join z in dbContext.Orders on i.CartId equals z.CartId
-        //                  join w in dbContext.Products on z.ProductId equals w.ProductId
-        //                  where i.CartId == cartId
-        //                  select i).SingleOrDefault();
+        
 
-        //    if (update != null)
-        //    {
-        //        update.Total =
-        //        return Ok(update);
-        //    }
-        //    else
-        //    {
-        //        return Ok("Not Found Error");
-        //    }
-        //}
-
-
-        //[HttpPost]
-        //[Route("AddToCart")]
-        //public IActionResult AddToCart(int UserId, double total, ICollection<Order> order)
-        //{
-        //    Cart newCart = new Cart();
-
-        //    newCart.UserId = UserId;
-        //    newCart.Total = total;
-        //    newCart.Orders = order;
-        //    newCart.PaidFor = false;
-        //    newCart.PaidOn = System.DateTime.Now;
-
-        //    if (newCart != null)
-        //    {
-        //        dbContext.Carts.Add(newCart);
-        //        dbContext.SaveChanges();
-
-
-        //        return Created("", newCart);
-        //    }
-        //    else
-        //    {
-        //        return Ok("Error");
-        //    }
-
-        //}
-        #endregion
-
-
+        //Adds an order from the cart using the cartId, productId, and qty
         [HttpPost]
         [Route("AddAnOrder")]
         public IActionResult AddOrder(int productId, int cartId, int qty)
