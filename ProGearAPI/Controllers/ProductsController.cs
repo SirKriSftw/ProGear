@@ -32,7 +32,7 @@ namespace ProGearAPI.Controllers
 
         [HttpGet]
         [Route("search/{query}")]
-        public IActionResult GetCatList(string query)
+        public IActionResult Search(string query)
         {
             var searchResult = from s in dbProGear.Products
                                where s.ProductName.Contains(query) 

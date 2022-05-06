@@ -4,6 +4,12 @@
     <mat-option *ngFor="let c of categoriesList" [value]="c.catId">{{c.catName}}</mat-option>
   </mat-select>
 </mat-form-field>
+<div class="search">
+  <input #search type="text" class="searchTerm" placeholder="What are you looking for?" #userInput>
+  <button (click)="searchProducts(search.value)" class="searchButton">
+   <mat-icon>search</mat-icon>
+ </button>
+</div>
 <div class="cards">
   <span *ngFor="let e of allP">
     <div class="card" *ngIf="e.catId == selected || selected == 0">

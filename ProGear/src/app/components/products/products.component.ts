@@ -56,8 +56,14 @@ export class ProductsComponent implements OnInit {
     )
   }
  
-  showSearch(){
-    this.allSearch=this._productService.searchedProducts;
+  searchProducts(search:any){
+    if (search == "")
+    {
+      this.AllProducts();
+    }
+    this._productService.getProductsSearch(search).subscribe((result) => {
+      this.allP = result;
+    });
   }
   
 }
