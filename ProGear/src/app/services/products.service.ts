@@ -17,15 +17,15 @@ export class ProductsService {
     this._http= _httpRef;
   }
   getAllProducts(){
-    return this._http.get('https://localhost:44310/api/ProductList/List_of_Products');
+    return this._http.get('https://localhost:44310/api/Products/List_of_Products');
   }
   getProductsByID(catID:number){
-    return this._http.get('https://localhost:44310/api/ProductList/getCat/'+ catID);
+    return this._http.get('https://localhost:44310/api/Products/getCat/'+ catID);
   }
   getProductsSearch(type:any){
-    return this._http.get('https://localhost:44310/api/ProductList/search/'+ type);
+    return this._http.get('https://localhost:44310/api/Products/search/'+ type);
   }
   getAllProductsCat(){
-    return this._http.get('https://localhost:44310/api/ProductList/List_of_Categories');
+    return this._http.get('https://localhost:44310/api/Products/List_of_Categories');
   }
 }
