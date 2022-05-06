@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
   loginForm : FormGroup;
   user : UserserviceService;
   loginFailed : boolean = false;
+  loggedIn : boolean = false;
+  token : string = "";
 
   constructor(private formBuilder : FormBuilder, u : UserserviceService, private router : Router) 
   {
@@ -26,7 +28,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.user.getUser();
+    console.log(this.user.userId);
   }
+
+  get f() { return this.loginForm.controls; }  
 
   login(email : string, password : string)
   {
@@ -41,8 +47,16 @@ export class LoginComponent implements OnInit {
       else
       {
         console.log(data);
+
+        this.token = "loggedin";
+        this.loggedIn = true;
+        localStorage.setItem('isLoggedIn', "true");  
+        localStorage.setItem('token', this.token);  
+        console.log(localStorage.getItem('token'));
+        console.log(localStorage);
+
         this.loginFailed = false;
-        this.router.navigate([''])
+        //this.router.navigate([''])
       }
     }, (err) => {
       console.log("oh no");

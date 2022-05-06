@@ -19,6 +19,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginguardService } from './services/loginguard/loginguard.service';
+import { AuthModule } from '@auth0/auth0-angular';
+import { AuthbuttonComponent } from './components/authbutton/authbutton.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterComponent,
     ProductsComponent,
     NavbarComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    AuthbuttonComponent
   ],
   imports: [
     BrowserModule,
@@ -43,9 +47,11 @@ import { HttpClientModule } from '@angular/common/http';
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserModule,
+    AuthModule.forRoot({domain: 'dev--u-n-0vw.us.auth0.com', clientId: 'Q1KkD744eoHkaF9KnnqPYljh0jglvcOH'})
   ],
-  providers: [],
+  providers: [LoginguardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
