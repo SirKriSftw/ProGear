@@ -7,10 +7,11 @@ import {AuthService} from '@auth0/auth0-angular';
 })
 export class UserserviceService {
 _http:HttpClient
-  constructor(_httpref:HttpClient) { 
+  constructor(_httpref:HttpClient, public auth: AuthService) { 
     this._http=_httpref;
   }
   register(user:any){
+    //var name = this.auth.user$.name;
     return this._http.post("https://localhost:44310/api/User/createUser", user,{headers:new HttpHeaders({"Content-Type":"application/json"})});
   }
 }
