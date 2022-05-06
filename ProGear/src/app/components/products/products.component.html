@@ -5,14 +5,14 @@
   </mat-select>
 </mat-form-field>
 <div class="search">
-  <input #search type="text" class="searchTerm" placeholder="What are you looking for?" (keydown.enter)="searchProducts(search.value)">
-  <button type="submit" class="searchButton" (click)="searchProducts(search.value)">
+  <input #search type="text" class="searchTerm" placeholder="What are you looking for?" ngModel (ngModelChange)="searchP(search.value)">
+  <button type="submit" class="searchButton">
    <mat-icon>search</mat-icon>
  </button>
 </div>
 <div class="cards">
-  <span *ngFor="let e of allP">
-    <div class="card" *ngIf="e.catId == selected || selected == 0">
+  <span *ngFor="let e of DisplayP">
+    <div class="card" *ngIf="(e.catId == selected || selected == 0) && e.productName.includes(searchTerm)">
        <div class="content" >
          <div class="img">
          </div>

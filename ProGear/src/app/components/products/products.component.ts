@@ -14,14 +14,13 @@ export class ProductsComponent implements OnInit {
   _categoryService: CategoriesService;
 
 
-  allP: any;
+  DisplayP: any;
+  AllP:any;
+
   selected:any = 0;
   categoriesList:any=[];
-  allSearch:any=[];
+  searchTerm:any = "";
 
-  allPBool: boolean = false;
-
-  allSearchBool: boolean = false;
 
 
 
@@ -38,9 +37,7 @@ export class ProductsComponent implements OnInit {
 
   getCategories() {
     this._categoryService.getAllCategories().subscribe((data:any) => {
-      console.log(data);
       this.categoriesList = data;
-      console.log(this.categoriesList);
       return data;
     }, (err) => {
       console.log(err);
@@ -50,8 +47,10 @@ export class ProductsComponent implements OnInit {
   AllProducts() {
     this._productService.getAllProducts().subscribe(
       (data) => {
-        this.allP = data;
-        this._productService.allProducts = this.allP;
+        this.DisplayP = data;
+        this._productService.allProducts = this.DisplayP;
+        console.log(this.DisplayP)
+        this.AllP = this.DisplayP;
       }
     )
   }
@@ -62,8 +61,12 @@ export class ProductsComponent implements OnInit {
       this.AllProducts();
     }
     this._productService.getProductsSearch(search).subscribe((result) => {
-      this.allP = result;
+      this.DisplayP = result;
     });
+  }
+
+  searchP(search:any){
+    this.searchTerm = search;
   }
   
 }
