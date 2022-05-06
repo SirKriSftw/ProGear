@@ -98,7 +98,7 @@ namespace ProGearAPI.Controllers
 
         #region Get Cart
         [HttpGet]
-        [Route("Cart")]
+        [Route("GetAllCarts")]
         public IActionResult GetCart()
         {
 
@@ -145,7 +145,7 @@ namespace ProGearAPI.Controllers
         //Gets all wanted information from a Cart using a specific Cart id
         #region Get Cart By Id
         [HttpGet]
-        [Route("Cart/{cartId}")]
+        [Route("GetCartById/{cartId}")]
         public IActionResult GetCartById(int cartId)
         {
             try
@@ -250,7 +250,7 @@ namespace ProGearAPI.Controllers
         //Create a New Cart for a user typically done on account creation and after a cart is considered checked out
         #region Create New Cart
         [HttpPost]
-        [Route("NewCart")]
+        [Route("CreateNewCart")]
         public IActionResult CreateCart(int userId)
         {
             var newCart = new Cart();
@@ -384,7 +384,7 @@ namespace ProGearAPI.Controllers
 
         //Get an order details by using an orderId 
         [HttpGet]
-        [Route("Orders/{orderId}")]
+        [Route("OrdersByOrderId/{orderId}")]
         public IActionResult ViewOrders(int orderId)
         {
             var cart = (from i in dbContext.Orders
@@ -415,7 +415,7 @@ namespace ProGearAPI.Controllers
 
         //View all orders by cart Id 
         [HttpGet]
-        [Route("OrdersBy/{cartId}")]
+        [Route("OrdersByCartId/{cartId}")]
         public IActionResult ViewOrdersByCartId(int cartId)
         {
             var cart = (from i in dbContext.Orders
@@ -468,7 +468,7 @@ namespace ProGearAPI.Controllers
 
         //Gets all Current Users 
         [HttpGet]
-        [Route("Users")]
+        [Route("GetAllUsers")]
         public IActionResult GetUser()
         {
             var cart = from i in dbContext.Users
