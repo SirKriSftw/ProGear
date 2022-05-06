@@ -17,7 +17,10 @@ export class LoginComponent implements OnInit {
 
   loginUserWithRedirect()
   {
+    console.log("User should be below me.");
     this.auth.loginWithRedirect();
+    console.log(this.auth.user$);
+    
   }
 
 }

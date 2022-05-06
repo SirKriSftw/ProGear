@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../products.service';
-
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   allMisc: any=[];
 
 
-  constructor(private _productServiceRef: ProductsService) {
+  constructor(private _productServiceRef: ProductsService,public auth: AuthService) {
     this._productService = _productServiceRef;
   }
   AllProducts() {
