@@ -19,15 +19,15 @@ export class CartService {
    }
 
    modifyQty (OrderId: number, Qty: number) {
-    return this._http.put("https://localhost:5001/Cart/set-order-qty/" + OrderId + "/" + Qty, null);
+    return this._http.put("https://localhost:5001/Cart/set-order-qty/" + OrderId + "/" + Qty, null, {responseType : 'text'});
    }
 
    removeOrder (OrderId: number) {
-    return this._http.delete("https://localhost:5001/Cart/remove-order/" + OrderId );
+    return this._http.delete("https://localhost:5001/Cart/remove-order/" + OrderId, {responseType : 'text'} );
    }
 
-   emptyCart () {
-    return this._http.delete("https://localhost:5001/Cart/emptycart");
+   emptyCart (cartID:number) {
+    return this._http.delete("https://localhost:5001/Cart/emptycart/" + cartID, {responseType : 'text'} );
    }
 
    // get all old carts, ie reciepts (paidFor == true)

@@ -446,15 +446,15 @@ namespace ProGearAPI.Controllers
 
     //Completely Empties Cart 
     [HttpDelete]
-    [Route("emptycart")]
+    [Route("emptycart/{cartId}")]
         public IActionResult deleteCart(int cartId)
         {
-            var cart = (from orders in dbContext.Carts
-                        where orders.CartId == cartId
-                        select orders).SingleOrDefault();
+            var cart = (from x in dbContext.Orders
+                       where x.CartId == cartId
+                       select x).SingleOrDefault();
             if (cart != null)
             {
-                dbContext.Carts.Remove(cart);
+                dbContext.Orders.Remove(cart);
                 dbContext.SaveChanges();
                 return Ok("Your Cart Is Now Empty");
 

@@ -23,18 +23,9 @@ this._cartService.getCart(cartID).subscribe( (data) => {this.myCart = data;
  })
 }
 
-subOneQty(OrderId: number, Qty: number)
+modifyQty(OrderId: number, Qty: number)
 {
-  var q : number = Qty - 1;
-this._cartService.modifyQty(OrderId, q).subscribe( (data) => {data = data;
-  console.log(data) 
- });
-}
-
-addOneQty(OrderId: number, Qty: number)
-{
-  var q : number = Qty + 1;
-this._cartService.modifyQty(OrderId, q).subscribe( (data) => {data = data;
+this._cartService.modifyQty(OrderId, Qty).subscribe( (data) => {data = data;
   console.log(data) 
  });
 }
@@ -48,7 +39,7 @@ this._cartService.removeOrder(OrderId).subscribe( (data) => {data = data;
 
 emptyCart()
 {
-this._cartService.emptyCart().subscribe( (data) => {data = data;
+this._cartService.emptyCart(this.myCart[0].cartId).subscribe( (data) => {data = data;
   console.log(data) 
  });
 }
