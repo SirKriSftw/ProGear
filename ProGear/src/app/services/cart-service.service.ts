@@ -10,8 +10,12 @@ export class CartService {
   constructor(private _httpRef : HttpClient) { this._http = _httpRef; }
 
    
+  getUserIdByEmail (userEmail: any) {
+    return this._http.get("https://localhost:5001/Cart/get-user-ID/" + userEmail);
+   }
+
    getCart (cartID: number) {
-    return this._http.get("https://localhost:5001/Cart/" + cartID);
+    return this._http.get("https://localhost:5001/Cart/Cart/" + cartID);
    }
 
    modifyQty (OrderId: number, Qty: number) {
@@ -23,7 +27,9 @@ export class CartService {
    }
 
    emptyCart () {
-    return this._http.get("https://localhost:5001/api/Kaelan/emptycart");
+    return this._http.get("https://localhost:5001/Cart/emptycart");
    }
+
+   // get all old carts, ie reciepts (paidFor == true)
 
 }

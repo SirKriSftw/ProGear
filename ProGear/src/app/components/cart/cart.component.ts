@@ -45,5 +45,7 @@ this._cartService.emptyCart()
 
 ngOnInit(): void { this.getCart(1); }
 // replace '1' with global static variable of user's cart ID
+// getUserIdByEmail(auth.userEmail) <--this is the method for getting user ID
+// ^^^use this method once the login team is ready to provide static email
 
 }
