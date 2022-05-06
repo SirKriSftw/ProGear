@@ -5,8 +5,8 @@
   </mat-select>
 </mat-form-field>
 <div class="search">
-  <input #search type="text" class="searchTerm" placeholder="What are you looking for?" #userInput>
-  <button (click)="searchProducts(search.value)" class="searchButton">
+  <input #search type="text" class="searchTerm" placeholder="What are you looking for?" (keydown.enter)="searchProducts(search.value)">
+  <button type="submit" class="searchButton" (click)="searchProducts(search.value)">
    <mat-icon>search</mat-icon>
  </button>
 </div>
