@@ -38,7 +38,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
