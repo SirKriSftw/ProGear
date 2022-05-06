@@ -96,6 +96,52 @@ namespace ProGearAPI.Controllers
         double v;
         double V;
 
+        #region Get Cart
+        [HttpGet]
+        [Route("Cart")]
+        public IActionResult GetCart()
+        {
+
+            var cart = (from i in dbContext.Carts
+                        join x in dbContext.Users on i.UserId equals x.UserId
+                        join z in dbContext.Orders on i.CartId equals z.CartId
+                        join w in dbContext.Products on z.ProductId equals w.ProductId
+                        orderby i.CartId ascending
+                        select new
+                        {
+                            i.CartId,
+                            i.UserId,
+                            i.PaidFor,
+                            i.PaidOn,
+                            //i.User,
+                            //i.Orders,
+                            z.OrderId,
+                            w.ProductId,
+                            w.ProductName,
+                            w.ProductDetails,
+                            w.ProductPrice,
+                            z.Qty,
+                            V = z.Qty * w.ProductPrice,
+
+
+                        }).DefaultIfEmpty();
+
+            //foreach (var V in cart)
+            //{
+            //v = v + V;
+            //}
+
+            if (cart != null)
+            {
+                return Ok(cart);
+            }
+            else
+            {
+                return NotFound("No Cart");
+            }
+        }
+        #endregion
+
         //Gets all wanted information from a Cart using a specific Cart id
         #region Get Cart By Id
         [HttpGet]
@@ -240,6 +286,7 @@ namespace ProGearAPI.Controllers
 
             Order newOrder = new Order();
 
+            //Checks Quantity of specific item 
             var check = (from i in dbContext.Orders
                          where i.ProductId == productId && i.CartId == cartId
                          select new
@@ -249,17 +296,22 @@ namespace ProGearAPI.Controllers
 
             if (check != null)
             {
+                //Find quanity of already existing product in order
                 int? oldQty = check.Qty;
 
+                //Variable to see where product exists to remove it
                 var remove = (from i in dbContext.Orders
                               where i.ProductId == productId && i.CartId == cartId
                               select i).FirstOrDefault();
 
+                //If product already exists go into this if statement
                 if (remove != null)
                 {
+                    //Remove old order
                     dbContext.Orders.Remove(remove);
                     dbContext.SaveChanges();
 
+                    //Create new order of same product item and increase quantity
                     newOrder.ProductId = productId;
                     newOrder.CartId = cartId;
                     newOrder.Qty = qty + oldQty;
@@ -284,6 +336,7 @@ namespace ProGearAPI.Controllers
 
                 
             }
+            //else we just add a new order using parameters 
             else
             {
                 newOrder.ProductId = productId;
@@ -306,6 +359,7 @@ namespace ProGearAPI.Controllers
 
         }
 
+        //Checks if product exists in an order using productId 
         [HttpGet]
         [Route("CheckOrder")]
         public IActionResult CheckOrder(int productId)
@@ -328,6 +382,7 @@ namespace ProGearAPI.Controllers
             }
         }
 
+        //Get an order details by using an orderId 
         [HttpGet]
         [Route("Orders/{orderId}")]
         public IActionResult ViewOrders(int orderId)
@@ -358,6 +413,7 @@ namespace ProGearAPI.Controllers
             }
         }
 
+        //View all orders by cart Id 
         [HttpGet]
         [Route("OrdersBy/{cartId}")]
         public IActionResult ViewOrdersByCartId(int cartId)
@@ -388,7 +444,7 @@ namespace ProGearAPI.Controllers
             }
         }
 
-
+    //Completely Empties Cart 
     [HttpDelete]
     [Route("emptycart")]
         public IActionResult deleteCart(int cartId)
@@ -410,7 +466,7 @@ namespace ProGearAPI.Controllers
         }
 
 
-
+        //Gets all Current Users 
         [HttpGet]
         [Route("Users")]
         public IActionResult GetUser()
