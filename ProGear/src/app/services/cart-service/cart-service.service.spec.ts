@@ -91,7 +91,7 @@ describe('CartServiceService', () => {
 
     //check Expected URL
     const req = httpController.expectOne(
-      'https://localhost:5001/Cart/Cart/' + inputData.cartID
+      'https://localhost:5001/Cart/GetCartById/' + inputData.cartID
     );
     //check expected http request method
     expect(req.request.method).toEqual('GET');
@@ -115,7 +115,7 @@ describe('CartServiceService', () => {
 
     //Check expected URL
     const req = httpController.expectOne(
-      'https://localhost:5001/Cart/Cart/' + inputData.cartID
+      'https://localhost:5001/Cart/GetCartById/' + inputData.cartID
     );
     // check expected Http request method
     expect(req.request.method).toEqual('GET');
@@ -126,9 +126,9 @@ describe('CartServiceService', () => {
   //modifyQty method test scripts
   it('modifyQty()', () => {
     //dummy Data
-    const testData = true;
+    const testData = 'Order quantity updated.';
     const inputData = {
-      orderID: 5,
+      orderID: 60,
       Qty: 1,
     };
     //Mock modifyQty method call
@@ -144,7 +144,7 @@ describe('CartServiceService', () => {
         inputData.Qty
     );
     // check expected Http request method
-    expect(req.request.method).toEqual('GET');
+    expect(req.request.method).toEqual('PUT');
 
     req.flush(testData);
   });
@@ -174,7 +174,7 @@ describe('CartServiceService', () => {
         inputData.Qty
     );
     // Check expected HTTP Request method
-    expect(req.request.method).toEqual('GET');
+    expect(req.request.method).toEqual('PUT');
 
     req.flush(emsg, { status: 404, statusText: 'Not Found Error' });
   });
@@ -182,7 +182,7 @@ describe('CartServiceService', () => {
   //removeOrder method test scripts
   it('removeOrder()', () => {
     //dummy Data
-    const testData = true;
+    const testData = '';
     const inputData = {
       orderID: 5,
     };
@@ -195,7 +195,7 @@ describe('CartServiceService', () => {
     const req = httpController.expectOne(
       'https://localhost:5001/Cart/remove-order/' + inputData.orderID
     );
-    expect(req.request.method).toEqual('GET');
+    expect(req.request.method).toEqual('DELETE');
 
     req.flush(testData);
   });
@@ -222,7 +222,7 @@ describe('CartServiceService', () => {
     );
     // Check expected HTTP Request method
 
-    expect(req.request.method).toEqual('GET');
+    expect(req.request.method).toEqual('DELETE');
 
     req.flush(emsg, { status: 404, statusText: 'Not Found Error' });
   });
@@ -230,19 +230,19 @@ describe('CartServiceService', () => {
   // emptyCart method test scripts
   it('emptyCart', () => {
     // Dummy Data
-    const testData = true;
+    const testData = '';
     const inputData = {
       orderID: 5,
     };
     // Mock emptycart method call
     cartService.emptyCart(inputData.orderID).subscribe((data : any) => 
-      expect(data).toEqual(testData));
+      expect(data).toEqual(''));
 
     // Check expected URL
     const req = httpController.expectOne('https://localhost:5001/Cart/emptycart/' + inputData.orderID);
     
     // Check expected HTTP Request method
-    expect(req.request.method).toEqual('GET');
+    expect(req.request.method).toEqual('DELETE');
 
     req.flush(testData);
   });
@@ -264,7 +264,7 @@ describe('CartServiceService', () => {
     // Check expected URL
     const req = httpController.expectOne('https://localhost:5001/Cart/emptycart/' + inputData.orderID);
     // Check expected HTTP Request method
-    expect(req.request.method).toEqual('Delete');
+    expect(req.request.method).toEqual('DELETE');
     
     req.flush(emsg, {status: 500, statusText: 'Server Error'});
   });
