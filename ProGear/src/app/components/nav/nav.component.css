@@ -1,9 +1,16 @@
-
+a {
+  text-decoration: none;
+  color:inherit;
+}
 .example-spacer {
     flex: 1 1 auto;
 }
 mat-toolbar{
     padding: 0.5%;
+}
+.ProductsBtn{
+  font-weight: lighter;
+  color:black;
 }
 .dropbtn{
 width: 20%;
@@ -49,10 +56,11 @@ font-weight: lighter;
     overflow: hidden;
   }
   img{
-    max-width: 30%;
+    height:7vh;
+    width:9vh;
+   
     margin-top: 5%;
-    padding: 0%;
-}
+  }
 .site-footer{
     display: block;
     /* width: 90%; */
