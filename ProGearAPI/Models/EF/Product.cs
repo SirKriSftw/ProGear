@@ -24,7 +24,6 @@ namespace ProGearAPI.Models.EF
         [JsonIgnore]
         public virtual Category Cat { get; set; }
         [JsonIgnore]
-
         public virtual ICollection<Order> Orders { get; set; }
     }
 }
