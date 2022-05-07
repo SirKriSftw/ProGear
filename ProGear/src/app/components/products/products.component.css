@@ -11,6 +11,9 @@
     justify-content: space-evenly;
 }
 
+.CatDropDown{
+    margin-left: 10%;
+}
 div.cards {
     width: 80%;
     margin: auto;

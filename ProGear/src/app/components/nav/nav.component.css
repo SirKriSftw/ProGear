@@ -8,6 +8,10 @@ a {
 mat-toolbar{
     padding: 0.5%;
 }
+.ProductsBtn{
+  font-weight: lighter;
+  color:black;
+}
 .dropbtn{
 width: 20%;
 font-weight: lighter;
