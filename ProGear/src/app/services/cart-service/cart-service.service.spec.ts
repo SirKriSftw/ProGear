@@ -147,7 +147,7 @@ describe('CartServiceService', () => {
     expect(req.request.method).toEqual('PUT');
 
     req.flush(testData);
-  });
+  }); 
 
   it('modifyQty() fail', () => {
     //dummy Data
