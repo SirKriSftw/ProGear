@@ -14,6 +14,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 // import { MatCarouselModule } from '@ngmodule/material-carousel';
 
+import { MatCardModule } from '@angular/material/card';
+import {MatFormFieldModule, MatLabel} from '@angular/material/form-field';
+
+
+
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -49,7 +54,10 @@ import { CategoriesService } from './services/categories.service';
     MatIconModule,
     MatListModule,
     MatSelectModule,
-    CommonModule
+    CommonModule,
+    MatCardModule,
+    MatFormFieldModule
+
   ],
   providers: [ProductsService,
               CategoriesService],

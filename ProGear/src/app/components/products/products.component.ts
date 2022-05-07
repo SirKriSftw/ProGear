@@ -3,6 +3,12 @@ import { Router } from '@angular/router';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductsService } from '../../services/products.service';
 
+interface Qts {
+  value: string;
+  viewValue: string;
+}
+
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -17,6 +23,14 @@ export class ProductsComponent implements OnInit {
   selected:any = 0;
   categoriesList:any=[];
   searchTerm:any = "";
+
+  qty: Qts[] = [
+    {value: 'qty-1', viewValue: '1'},
+    {value: 'qty-2', viewValue: '2'},
+    {value: 'qty-3', viewValue: '3'},
+    {value: 'qty-4', viewValue: '4'},
+  ];
+
 
   constructor(private _productServiceRef: ProductsService, _routerRef:Router, _categoryServiceRef: CategoriesService) {
     this._productService = _productServiceRef;
@@ -48,7 +62,7 @@ export class ProductsComponent implements OnInit {
   }
  
   searchP(search:any){
-    this.searchTerm = search;
+    this.searchTerm = search; 
   }
   
 }

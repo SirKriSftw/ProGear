@@ -15,7 +15,7 @@ div.cards {
     width: 80%;
     margin: auto;
     margin-top: 3%;
-    margin-bottom: 20%;
+    margin-bottom: 10%;
 }
 
 .container .cards {
@@ -28,7 +28,7 @@ div.cards {
 
 .cards .card {
     width: 25%;
-    height: 300px;
+    height: 400px;
     display: inline-block;
     background: #fff;
     border-radius: 12px;
@@ -53,20 +53,20 @@ div.cards {
 }
 
 .cards .card .content .img {
-    height: 130px;
-    width: 130px;
-    border-radius: 50%;
+    height: 210px;
+    width: 210px;
+    /* border-radius: 50%; */
     padding: 3px;
-    background: #f26925;
+    /* background: #f26925; */
     margin-bottom: 14px;
 }
 
 .card .content .img img {
     height: 100%;
     width: 100%;
-    border: 3px solid #ffff;
-    border-radius: 50%;
-    object-fit: cover;
+    /* border: 3px solid #ffff;
+    border-radius: 50%; */
+    object-fit: contain;
 }
 
 .card .content .name {
@@ -140,4 +140,27 @@ div.cards {
         margin: auto;
         float: right;
     }
-}
+
+    .img-card {    /* control the image of the card*/
+        align-items: center;
+        max-width: 100%; 
+        max-height: 20vh; 
+        object-fit:contain;
+      }
+     
+    ::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.1em 0px !important;}
+    ::ng-deep .mat-form-field-label-wrapper { top: 5.3em; }
+    
+    ::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+        transform: translateY(-.60em) scale(1.0);
+        width: 133.33333%;
+    }
+    
+    /* ---- */
+    .img-card {    /* control the image of the card*/
+        align-items: center;
+        max-width: 100%; 
+        height: 20vh; 
+        object-fit:auto;
+      }
+    }

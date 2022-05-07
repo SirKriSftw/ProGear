@@ -66,8 +66,8 @@ img{
   text-align: center;
 }
 .cards .card .content .img{
-  height: 130px;
-  width: 130px;
+  height: 200px;
+  width: 200px;
   border-radius: 50%;
   padding: 3px;
   background: #f26925;
