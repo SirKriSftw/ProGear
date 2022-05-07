@@ -34,6 +34,9 @@ describe('CartServiceService', () => {
   it('getUserIdByEmail()', () => {
     //Dummy data
     const testData = true;
+    const inputData = {
+      email :'test@test.com'
+    };
 
     //Mock getUserIdByEmail() method call
     cartService
@@ -42,7 +45,7 @@ describe('CartServiceService', () => {
 
     //Check expected URL
     const req = httpController.expectOne(
-      'https://localhost:5001/Cart/get-user-ID/test@test.com'
+      'https://localhost:5001/Cart/get-user-ID/' + inputData.email
     );
 
     expect(req.request.method).toEqual('GET');
@@ -224,17 +227,19 @@ describe('CartServiceService', () => {
     req.flush(emsg, { status: 404, statusText: 'Not Found Error' });
   });
   // -----------------------------------
-  // getUserIdByEmail method test scripts
+  // emptyCart method test scripts
   it('emptyCart', () => {
     // Dummy Data
     const testData = true;
-
-    // Mock getAllProducts() method call
-    cartService.emptyCart().subscribe((data : any) => 
+    const inputData = {
+      orderID: 5,
+    };
+    // Mock emptycart method call
+    cartService.emptyCart(inputData.orderID).subscribe((data : any) => 
       expect(data).toEqual(testData));
 
     // Check expected URL
-    const req = httpController.expectOne('https://localhost:5001/Cart/emptycart');
+    const req = httpController.expectOne('https://localhost:5001/Cart/emptycart/' + inputData.orderID);
     
     // Check expected HTTP Request method
     expect(req.request.method).toEqual('GET');
@@ -245,9 +250,11 @@ describe('CartServiceService', () => {
   it(' emptyCart() fail', () => {
     // Dummy Data
     const emsg = 'status 500 error';
-
-    // Mock getAllProducts() method call - forced fail
-    cartService.emptyCart().subscribe(() => fail('Should have failed with 500 error'),
+    const inputData = {
+      orderID: 5,
+    };
+    // Mock getCart method call - forced fail
+    cartService.emptyCart(inputData.orderID).subscribe(() => fail('Should have failed with 500 error'),
       (error:HttpErrorResponse) => {
         expect(error.status).toEqual(500, 'status');
         expect(error.error).toEqual(emsg, 'message');
@@ -255,9 +262,9 @@ describe('CartServiceService', () => {
     );
 
     // Check expected URL
-    const req = httpController.expectOne('https://localhost:5001/Cart/emptycart');
+    const req = httpController.expectOne('https://localhost:5001/Cart/emptycart/' + inputData.orderID);
     // Check expected HTTP Request method
-    expect(req.request.method).toEqual('GET');
+    expect(req.request.method).toEqual('Delete');
     
     req.flush(emsg, {status: 500, statusText: 'Server Error'});
   });
