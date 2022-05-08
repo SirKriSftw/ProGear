@@ -1,9 +1,9 @@
+
 import { TestBed } from '@angular/core/testing';
 import { UserserviceService } from './userservice.service';
 import { HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import { HttpClient, HttpErrorResponse} from '@angular/common/http';
-import { Auth0ClientService, AuthConfigService, AuthModule } from '@auth0/auth0-angular';
-import { getAttrsForDirectiveMatching } from '@angular/compiler/src/render3/view/util';
+import { Auth0ClientService, AuthConfigService, AuthModule, AuthService } from '@auth0/auth0-angular';
 
 
 describe('UserserviceService', () => {
@@ -12,14 +12,16 @@ describe('UserserviceService', () => {
   let httpcontroller : HttpTestingController;
   let mockAuthConfig = jasmine.createSpy('AuthConfigService');
   let mockAuth0Client = jasmine.createSpy('Auth0client');
-
+  let mockAuthService = jasmine.createSpy('AuthService')
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports : [HttpClientTestingModule, AuthModule],
       providers : [UserserviceService, 
                   {provide: AuthConfigService, useValue: mockAuthConfig}, 
-                  {provide: Auth0ClientService, useValue: mockAuth0Client}]
+                  {provide: Auth0ClientService, useValue: mockAuth0Client},
+                  {provide : AuthService, useValue : mockAuthService},
+                ]
     });
     userservice = TestBed.inject(UserserviceService);
     httpclient = TestBed.inject(HttpClient);
@@ -109,13 +111,8 @@ it ('getUserId', () => {
 })
 
 
-it('GetUser', () => {
-  const result = userservice.getUser();
-  expect(userservice.ngOnInit).toBeDefined();
-  // Need to add more here .
-});
-
 
 
 
 });
+
