@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { CartService } from 'src/app/services/cart.service';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @Component({
@@ -12,12 +13,16 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class CheckoutComponent implements OnInit {
 
+  checked = true;
+
+  _cartService: CartService;
+
   router: Router;
-  hide: boolean = true;
   checkoutForm: FormGroup;
   confirmation: string = "";
 
-  constructor(private fb: FormBuilder, routerRef: Router) {
+  constructor(private fb: FormBuilder, routerRef: Router, _cartServiceRef: CartService) {
+    this._cartService = _cartServiceRef;
     this.router = routerRef;
     this.checkoutForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2)]],
@@ -27,10 +32,23 @@ export class CheckoutComponent implements OnInit {
       cardZip: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]],
       billAddress: ['', [Validators.required]],
       billCity: ['', [Validators.required]],
-      billZip: ['', [Validators.required]]
+      billZip: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]],
+      shipAddress: ['', [Validators.required]],
+      shipCity: ['', [Validators.required]],
+      shipZip: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]]
+      
 
     });
     this.checkoutForm.valueChanges.subscribe();
+  }
+
+  myCart: any = [];
+
+  getCart(cartID: number) {
+    this._cartService.getCart(cartID).subscribe((data) => {
+      this.myCart = data;
+      console.log(this.myCart)
+    })
   }
 
   get firstName() {
@@ -59,6 +77,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getCart(2);
   }
 
 }

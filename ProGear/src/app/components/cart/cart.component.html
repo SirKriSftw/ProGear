@@ -10,8 +10,8 @@
           <td><b>Product Price</b></td>
           <td><b>Quantity in Cart</b></td>
         </tr>
-        <tr *ngFor = "let x of myCart">
-          <td> <img src = "https://i.postimg.cc/J4v6Ss5G/cool-bird-2.png" alt = "Product Image" class = "productImg"> </td>
+        <tr *ngFor = "let x of myCart" class="img">
+          <td><img src="{{'../../assets/images/pic' + x.productId  + '.png'}}" alt={{x.productId}}> </td>
           <td> {{x.productName}} </td>
           <td> {{x.productDetails}} </td>
           <td> $ {{x.productPrice}} </td>
@@ -19,7 +19,7 @@
             <button type="button" (click) ="x.qty = x.qty - 1; modifyQty(x.orderId, x.qty)">-</button>
             <button type="button" (click) ="x.qty = x.qty + 1; modifyQty(x.orderId, x.qty)">+</button>
           </td>
-          <td> <button type="button" (click) ="removeOrder(x.orderId)" onclick="style.display = 'none'">Remove from Cart</button> </td>
+          <td> <button type="button" class="remove" (click) ="removeOrder(x.orderId)" onclick="style.display = 'none'">Remove from Cart</button> </td>
         </tr>
       </table>
       <br>

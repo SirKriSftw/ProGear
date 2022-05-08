@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -23,14 +23,15 @@ namespace ProGearAPI.Controllers
             try
             {
                 var i = (from x in dbContext.Users
-                            where x.Email == userEmail
-                            select x.UserId).SingleOrDefault();
+                         where x.Email == userEmail
+                         select x.UserId).SingleOrDefault();
 
                 if (i > 0)
                 {
-                    return Ok(i); 
+                    return Ok(i);
                 }
-                else{
+                else
+                {
                     return BadRequest("Invalid email.");
                 }
             }
@@ -50,8 +51,8 @@ namespace ProGearAPI.Controllers
             try
             {
                 var order = (from x in dbContext.Orders
-                            where x.OrderId == orderID
-                            select x).SingleOrDefault();
+                             where x.OrderId == orderID
+                             select x).SingleOrDefault();
 
                 if (order != null)
                 {
@@ -59,9 +60,10 @@ namespace ProGearAPI.Controllers
 
                     dbContext.Update(order);
                     dbContext.SaveChanges();
-                    return Ok("Order quantity updated."); 
+                    return Ok("Order quantity updated.");
                 }
-                else{
+                else
+                {
                     return BadRequest("Invalid Order ID.");
                 }
             }
@@ -77,8 +79,8 @@ namespace ProGearAPI.Controllers
         public IActionResult removeOrder(int orderID)
         {
             var order = (from x in dbContext.Orders
-                       where x.OrderId == orderID
-                       select x).SingleOrDefault();
+                         where x.OrderId == orderID
+                         select x).SingleOrDefault();
 
             if (order != null)
             {
@@ -177,38 +179,38 @@ namespace ProGearAPI.Controllers
                              ).DefaultIfEmpty();
 
                 var total = cart.Sum(V => V.SubTotal);
-               //Console.WriteLine("Total" , total);
+                //Console.WriteLine("Total" , total);
 
                 var final = (from i in dbContext.Carts
-                            join x in dbContext.Users on i.UserId equals x.UserId
-                            join z in dbContext.Orders on i.CartId equals z.CartId
-                            join w in dbContext.Products on z.ProductId equals w.ProductId
-                            
-                            where i.CartId == cartId
-                            select new
-                            {
-                                i.CartId,
-                                total,
-                                i.UserId,
-                                i.PaidFor,
-                                i.PaidOn,
-                                //i.User,
-                                //i.Orders,
-                                z.OrderId,
-                                w.ProductId,
-                                w.ProductName,
-                                w.ProductDetails,
-                                w.ProductPrice,
-                                z.Qty,
-                                SubTotal = z.Qty * w.ProductPrice
+                             join x in dbContext.Users on i.UserId equals x.UserId
+                             join z in dbContext.Orders on i.CartId equals z.CartId
+                             join w in dbContext.Products on z.ProductId equals w.ProductId
 
-                            }
+                             where i.CartId == cartId
+                             select new
+                             {
+                                 i.CartId,
+                                 total,
+                                 i.UserId,
+                                 i.PaidFor,
+                                 i.PaidOn,
+                                 //i.User,
+                                 //i.Orders,
+                                 z.OrderId,
+                                 w.ProductId,
+                                 w.ProductName,
+                                 w.ProductDetails,
+                                 w.ProductPrice,
+                                 z.Qty,
+                                 SubTotal = z.Qty * w.ProductPrice
+
+                             }
                             ).DefaultIfEmpty();
 
 
                 if (cart != null)
                 {
-                    UpdateCart(total, cartId); 
+                    UpdateCart(total, cartId);
                     return Ok(final);
                 }
                 else
@@ -223,7 +225,7 @@ namespace ProGearAPI.Controllers
             }
         }
         #endregion
-        
+
         //Used to update the total of the cart by adding the subtotal of each order
         #region Update Cart
         [HttpPut]
@@ -276,7 +278,7 @@ namespace ProGearAPI.Controllers
         }
         #endregion
 
-        
+
 
         //Adds an order from the cart using the cartId, productId, and qty
         [HttpPost]
@@ -334,7 +336,7 @@ namespace ProGearAPI.Controllers
                     return BadRequest("Something Went Wrong");
                 }
 
-                
+
             }
             //else we just add a new order using parameters 
             else
@@ -368,7 +370,7 @@ namespace ProGearAPI.Controllers
                          where i.ProductId == productId
                          select new
                          {
-                                i.Qty
+                             i.Qty
                          }).DefaultIfEmpty();
 
 
@@ -392,13 +394,13 @@ namespace ProGearAPI.Controllers
                         where i.OrderId == orderId
                         select new
                         {
-                         i.OrderId,
-                         i.ProductId,
-                         i.CartId,
-                         i.Qty,
-                         x.ProductName,
-                         x.ProductPrice,
-                         x.ProductDetails 
+                            i.OrderId,
+                            i.ProductId,
+                            i.CartId,
+                            i.Qty,
+                            x.ProductName,
+                            x.ProductPrice,
+                            x.ProductDetails
 
                         }
                           ).DefaultIfEmpty();
@@ -444,14 +446,14 @@ namespace ProGearAPI.Controllers
             }
         }
 
-    //Completely Empties Cart 
-    [HttpDelete]
-    [Route("emptycart/{cartId}")]
+        //Completely Empties Cart 
+        [HttpDelete]
+        [Route("emptycart/{cartId}")]
         public IActionResult deleteCart(int cartId)
         {
             var cart = (from x in dbContext.Orders
-                       where x.CartId == cartId
-                       select x).SingleOrDefault();
+                        where x.CartId == cartId
+                        select x).SingleOrDefault();
             if (cart != null)
             {
                 dbContext.Orders.Remove(cart);
@@ -476,7 +478,7 @@ namespace ProGearAPI.Controllers
 
             return Ok(cart);
         }
-        
+
 
 
 

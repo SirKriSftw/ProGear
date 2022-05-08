@@ -8,3 +8,21 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'ProGear';
 }
+
+export class ContactClass{
+ 
+   person: {
+    firstname: string;
+    lastname: string;
+    email: string;
+    age: number
+  } 
+
+  
+
+  constructor(input: ContactClass["person"]) {    
+    this.person = input;
+
+}
+
+}

@@ -1,112 +1,238 @@
-<div id="background">
-  <div class="form-container">
-    <h1>Checkout Details</h1>
-    <form [formGroup]="checkoutForm">
-      <mat-form-field hintLabel="Minimum 2 characters" appearance="fill">
-        <mat-label>First Name</mat-label>
-        <input matInput placeholder="John" required formControlName="firstName">
-        <mat-error *ngIf="firstName?.invalid">This field is required!</mat-error>
-      </mat-form-field>
-
-      <mat-form-field hintLabel="Minimum 2 characters" appearance="fill">
-        <mat-label>Last Name</mat-label>
-        <input matInput placeholder="Doe" required formControlName="lastName">
-        <mat-error *ngIf="lastName?.invalid">This field is required!</mat-error>
-      </mat-form-field>
-      <br>
-      <h2>Payment Details</h2>
-      <mat-form-field hintLabel="16 digit card number" appearance="fill">
-        <mat-label>Card Number</mat-label>
-        <input matInput placeholder="0000 0000 0000 0000" required formControlName="cardNum">
-        <mat-error *ngIf="cardNum?.invalid">A Complete Card Number is Required</mat-error>
-      </mat-form-field>
-
-      <mat-form-field hintLabel="2 digit Month / 2 digit Year" appearance="fill">
-        <mat-label>Expiration Date</mat-label>
-        <input matInput placeholder="MM/YY" required formControlName="expirDate">
-        <mat-error *ngIf="expirDate?.invalid">This field is required!</mat-error>
-      </mat-form-field>
-
-      <mat-form-field hintLabel="5 digit Zip Code" appearance="fill">
-        <mat-label>Zip Code</mat-label>
-        <input matInput placeholder="00000" required formControlName="cardZip">
-        <mat-error *ngIf="cardZip?.invalid">Must be 5 digits</mat-error>
-      </mat-form-field>
-      <br>
-      <h2>Billing Address</h2>
-      <mat-form-field hintLabel="Full Address including house number" appearance="fill">
-        <mat-label>Street Address Line 1</mat-label>
-        <input matInput placeholder="123 Rocky Rd" required formControlName="billAddress">
-        <mat-error *ngIf="billAddress?.invalid">Required Field</mat-error>
-      </mat-form-field>
-
-      <mat-form-field hintLabel="City of Residence" appearance="fill">
-        <mat-label>City</mat-label>
-        <input matInput placeholder="Nowhereville" required formControlName="billCity">
-        <mat-error *ngIf="billCity?.invalid">Required Field</mat-error>
-      </mat-form-field>
-
-      <mat-form-field hintLabel="State of Residence" appearance="fill">
-        <mat-label>State</mat-label>
-        <mat-select placeholder="State" required>
-          <mat-option>--</mat-option>
-          <mat-option value="Alabama"> AL </mat-option>
-          <mat-option value="Alaska"> AK </mat-option>
-          <mat-option value="Arizona"> AZ </mat-option>
-          <mat-option value="Arkansas"> AR </mat-option>
-          <mat-option value="California"> CA </mat-option>
-          <mat-option value="Colorado"> CO </mat-option>
-          <mat-option value="Connecticut"> CT </mat-option>
-          <mat-option value="Delaware"> DE </mat-option>
-          <mat-option value="Florida"> FL </mat-option>
-          <mat-option value="Georgia"> GA </mat-option>
-          <mat-option value="Hawaii"> HI </mat-option>
-          <mat-option value="Idaho"> ID </mat-option>
-          <mat-option value="Illinois"> IL </mat-option>
-          <mat-option value="Indiana"> IN </mat-option>
-          <mat-option value="Iowa"> IA </mat-option>
-          <mat-option value="Kansas"> KA </mat-option>
-          <mat-option value="Kentucky"> KY </mat-option>
-          <mat-option value="Louisiana"> LA </mat-option>
-          <mat-option value="Maine"> ME </mat-option>
-          <mat-option value="Maryland"> MD </mat-option>
-          <mat-option value="Massachusettes"> MA </mat-option>
-          <mat-option value="Michigan"> MI </mat-option>
-          <mat-option value="Minnesota"> MN </mat-option>
-          <mat-option value="Mississippi"> MS </mat-option>
-          <mat-option value="Missouri"> MO </mat-option>
-          <mat-option value="Montana"> MT </mat-option>
-          <mat-option value="Nebraska"> NE </mat-option>
-          <mat-option value="Nevada"> NV </mat-option>
-          <mat-option value="New Hampshire"> NH </mat-option>
-          <mat-option value="New Jersey"> NJ </mat-option>
-          <mat-option value="New Mexico"> NM </mat-option>
-          <mat-option value="New York"> NY </mat-option>
-          <mat-option value="North Carolina"> NC </mat-option>
-          <mat-option value="Ohio"> OH </mat-option>
-          <mat-option value="Oklahoma"> OK </mat-option>
-          <mat-option value="Oregon"> OR </mat-option>
-          <mat-option value="Pennsylvania"> PA </mat-option>
-          <mat-option value="Rhode Island"> RI </mat-option>
-          <mat-option value="South Carolina"> SC </mat-option>
-          <mat-option value="South Dekota"> SD </mat-option>
-          <mat-option value="Tennessee"> TN </mat-option>
-          <mat-option value="Texas"> TX </mat-option>
-          <mat-option value="Utah"> UT </mat-option>
-          <mat-option value="Vermont"> VT </mat-option>
-          <mat-option value="Virginia"> VA </mat-option>
-          <mat-option value="Washingthon"> WA </mat-option>
-          <mat-option value="West Virginia"> WV </mat-option>
-          <mat-option value="Wisconsin"> WI </mat-option>
-          <mat-option value="Wyoming"> WY </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field hintLabel="Zip Code of Residence" appearance="fill">
-        <mat-label>Zip Code</mat-label>
-        <input matInput placeholder="00000" required formControlName="billZip">
-        <mat-error *ngIf="billZip?.invalid">Must be 5 digits</mat-error>
-      </mat-form-field>
-    </form>
-  </div>
-</div>
+<body id="background">
+    <div>
+      <mat-card class="card">
+        <form [formGroup]="checkoutForm">
+          <mat-card-content>
+            <section class="formInfo">
+              <h1>Checkout Details</h1>
+              <mat-form-field hintLabel="Minimum 2 characters" appearance="fill">
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="John" required formControlName="firstName">
+                <mat-error *ngIf="firstName?.invalid">This field is required!</mat-error>
+              </mat-form-field>
+              <mat-form-field hintLabel="Minimum 2 characters" appearance="fill">
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="Doe" required formControlName="lastName">
+                <mat-error *ngIf="lastName?.invalid">This field is required!</mat-error>
+              </mat-form-field>
+            </section>
+  
+            <section class="formInfo">
+              <h2>Payment Details</h2>
+              <mat-form-field hintLabel="16 digit card number" appearance="fill">
+                <mat-label>Card Number</mat-label>
+                <input matInput placeholder="0000 0000 0000 0000" required formControlName="cardNum">
+                <mat-error *ngIf="cardNum?.invalid">A Complete Card Number is Required</mat-error>
+              </mat-form-field>
+              <mat-form-field hintLabel="2 digit Month / 2 digit Year" appearance="fill">
+                <mat-label>Expiration Date</mat-label>
+                <input matInput placeholder="MM/YY" required formControlName="expirDate">
+                <mat-error *ngIf="expirDate?.invalid">This field is required!</mat-error>
+              </mat-form-field>
+              <mat-form-field hintLabel="5 digit Zip Code" appearance="fill">
+                <mat-label>Zip Code</mat-label>
+                <input matInput placeholder="00000" required formControlName="cardZip">
+                <mat-error *ngIf="cardZip?.invalid">Must be 5 digits</mat-error>
+              </mat-form-field>
+            </section>
+  
+            <br>
+            <br>
+  
+            <section class="formInfo">
+              <h2>Billing Address</h2>
+              <mat-form-field hintLabel="Full Address including house number" appearance="fill">
+                <mat-label>Street Address Line 1</mat-label>
+                <input matInput placeholder="123 Rocky Rd" required formControlName="billAddress">
+                <mat-error *ngIf="billAddress?.invalid">Required Field</mat-error>
+              </mat-form-field>
+              <mat-form-field hintLabel="City of Residence" appearance="fill">
+                <mat-label>City</mat-label>
+                <input matInput placeholder="Nowhereville" required formControlName="billCity">
+                <mat-error *ngIf="billCity?.invalid">Required Field</mat-error>
+              </mat-form-field>
+              <mat-form-field hintLabel="State of Residence" appearance="fill">
+                <mat-label>State</mat-label>
+                <mat-select placeholder="State" required>
+                  <mat-option>--</mat-option>
+                  <mat-option value="Alabama"> AL </mat-option>
+                  <mat-option value="Alaska"> AK </mat-option>
+                  <mat-option value="Arizona"> AZ </mat-option>
+                  <mat-option value="Arkansas"> AR </mat-option>
+                  <mat-option value="California"> CA </mat-option>
+                  <mat-option value="Colorado"> CO </mat-option>
+                  <mat-option value="Connecticut"> CT </mat-option>
+                  <mat-option value="Delaware"> DE </mat-option>
+                  <mat-option value="Florida"> FL </mat-option>
+                  <mat-option value="Georgia"> GA </mat-option>
+                  <mat-option value="Hawaii"> HI </mat-option>
+                  <mat-option value="Idaho"> ID </mat-option>
+                  <mat-option value="Illinois"> IL </mat-option>
+                  <mat-option value="Indiana"> IN </mat-option>
+                  <mat-option value="Iowa"> IA </mat-option>
+                  <mat-option value="Kansas"> KA </mat-option>
+                  <mat-option value="Kentucky"> KY </mat-option>
+                  <mat-option value="Louisiana"> LA </mat-option>
+                  <mat-option value="Maine"> ME </mat-option>
+                  <mat-option value="Maryland"> MD </mat-option>
+                  <mat-option value="Massachusettes"> MA </mat-option>
+                  <mat-option value="Michigan"> MI </mat-option>
+                  <mat-option value="Minnesota"> MN </mat-option>
+                  <mat-option value="Mississippi"> MS </mat-option>
+                  <mat-option value="Missouri"> MO </mat-option>
+                  <mat-option value="Montana"> MT </mat-option>
+                  <mat-option value="Nebraska"> NE </mat-option>
+                  <mat-option value="Nevada"> NV </mat-option>
+                  <mat-option value="New Hampshire"> NH </mat-option>
+                  <mat-option value="New Jersey"> NJ </mat-option>
+                  <mat-option value="New Mexico"> NM </mat-option>
+                  <mat-option value="New York"> NY </mat-option>
+                  <mat-option value="North Carolina"> NC </mat-option>
+                  <mat-option value="Ohio"> OH </mat-option>
+                  <mat-option value="Oklahoma"> OK </mat-option>
+                  <mat-option value="Oregon"> OR </mat-option>
+                  <mat-option value="Pennsylvania"> PA </mat-option>
+                  <mat-option value="Rhode Island"> RI </mat-option>
+                  <mat-option value="South Carolina"> SC </mat-option>
+                  <mat-option value="South Dekota"> SD </mat-option>
+                  <mat-option value="Tennessee"> TN </mat-option>
+                  <mat-option value="Texas"> TX </mat-option>
+                  <mat-option value="Utah"> UT </mat-option>
+                  <mat-option value="Vermont"> VT </mat-option>
+                  <mat-option value="Virginia"> VA </mat-option>
+                  <mat-option value="Washingthon"> WA </mat-option>
+                  <mat-option value="West Virginia"> WV </mat-option>
+                  <mat-option value="Wisconsin"> WI </mat-option>
+                  <mat-option value="Wyoming"> WY </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field hintLabel="Zip Code of Residence" appearance="fill">
+                <mat-label>Zip Code</mat-label>
+                <input matInput placeholder="00000" required formControlName="billZip">
+                <mat-error *ngIf="billZip?.invalid">Must be 5 digits</mat-error>
+              </mat-form-field>
+            </section>
+          </mat-card-content>
+        </form>
+  
+        <section class="formInfo">
+          <mat-checkbox [(ngModel)]="checked">Is Billing Address Same as Shipping Address?</mat-checkbox>
+        </section>
+  
+        <section class="formInfo">
+  
+  
+          <mat-card-content>
+            <mat-expansion-panel hideToggle
+                                 class = "mat-elevation-z0"
+                                 *ngIf = "!checked"
+                                 [expanded] = "!checked">
+              <mat-expansion-panel-header>
+                <mat-panel-description>
+                  <p id="panelDesc">Please fill out the additional Shipping Address Information</p>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <form [formGroup]="checkoutForm">
+                <section class="formInfo">
+                  <h2>Shipping Address</h2>
+                  <mat-form-field hintLabel="Full Address including house number" appearance="fill">
+                    <mat-label>Street Address Line 1</mat-label>
+                    <input matInput placeholder="123 Rocky Rd" required formControlName="shipAddress">
+                    <mat-error *ngIf="billAddress?.invalid">Required Field</mat-error>
+                  </mat-form-field>
+  
+                  <mat-form-field hintLabel="City of Residence" appearance="fill">
+                    <mat-label>City</mat-label>
+                    <input matInput placeholder="Nowhereville" required formControlName="shipCity">
+                    <mat-error *ngIf="billCity?.invalid">Required Field</mat-error>
+                  </mat-form-field>
+  
+                  <mat-form-field hintLabel="State of Residence" appearance="fill">
+                    <mat-label>State</mat-label>
+                    <mat-select placeholder="State" required>
+                      <mat-option>--</mat-option>
+                      <mat-option value="Alabama"> AL </mat-option>
+                      <mat-option value="Alaska"> AK </mat-option>
+                      <mat-option value="Arizona"> AZ </mat-option>
+                      <mat-option value="Arkansas"> AR </mat-option>
+                      <mat-option value="California"> CA </mat-option>
+                      <mat-option value="Colorado"> CO </mat-option>
+                      <mat-option value="Connecticut"> CT </mat-option>
+                      <mat-option value="Delaware"> DE </mat-option>
+                      <mat-option value="Florida"> FL </mat-option>
+                      <mat-option value="Georgia"> GA </mat-option>
+                      <mat-option value="Hawaii"> HI </mat-option>
+                      <mat-option value="Idaho"> ID </mat-option>
+                      <mat-option value="Illinois"> IL </mat-option>
+                      <mat-option value="Indiana"> IN </mat-option>
+                      <mat-option value="Iowa"> IA </mat-option>
+                      <mat-option value="Kansas"> KA </mat-option>
+                      <mat-option value="Kentucky"> KY </mat-option>
+                      <mat-option value="Louisiana"> LA </mat-option>
+                      <mat-option value="Maine"> ME </mat-option>
+                      <mat-option value="Maryland"> MD </mat-option>
+                      <mat-option value="Massachusettes"> MA </mat-option>
+                      <mat-option value="Michigan"> MI </mat-option>
+                      <mat-option value="Minnesota"> MN </mat-option>
+                      <mat-option value="Mississippi"> MS </mat-option>
+                      <mat-option value="Missouri"> MO </mat-option>
+                      <mat-option value="Montana"> MT </mat-option>
+                      <mat-option value="Nebraska"> NE </mat-option>
+                      <mat-option value="Nevada"> NV </mat-option>
+                      <mat-option value="New Hampshire"> NH </mat-option>
+                      <mat-option value="New Jersey"> NJ </mat-option>
+                      <mat-option value="New Mexico"> NM </mat-option>
+                      <mat-option value="New York"> NY </mat-option>
+                      <mat-option value="North Carolina"> NC </mat-option>
+                      <mat-option value="Ohio"> OH </mat-option>
+                      <mat-option value="Oklahoma"> OK </mat-option>
+                      <mat-option value="Oregon"> OR </mat-option>
+                      <mat-option value="Pennsylvania"> PA </mat-option>
+                      <mat-option value="Rhode Island"> RI </mat-option>
+                      <mat-option value="South Carolina"> SC </mat-option>
+                      <mat-option value="South Dekota"> SD </mat-option>
+                      <mat-option value="Tennessee"> TN </mat-option>
+                      <mat-option value="Texas"> TX </mat-option>
+                      <mat-option value="Utah"> UT </mat-option>
+                      <mat-option value="Vermont"> VT </mat-option>
+                      <mat-option value="Virginia"> VA </mat-option>
+                      <mat-option value="Washingthon"> WA </mat-option>
+                      <mat-option value="West Virginia"> WV </mat-option>
+                      <mat-option value="Wisconsin"> WI </mat-option>
+                      <mat-option value="Wyoming"> WY </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+  
+                  <mat-form-field hintLabel="Zip Code of Residence" appearance="fill">
+                    <mat-label>Zip Code</mat-label>
+                    <input matInput placeholder="00000" required formControlName="shipZip">
+                    <mat-error *ngIf="billZip?.invalid">Must be 5 digits</mat-error>
+                  </mat-form-field>
+                </section>
+              </form>
+  
+            </mat-expansion-panel>
+          </mat-card-content>
+        </section>
+      </mat-card>
+  
+      <aside id="sidebar">
+        <div>
+          <table id="usertable" border="4px">
+            <tr>
+              <td><b>Product Name</b></td>
+              <td><b>Product Price</b></td>
+              <td><b>Quantity in Cart</b></td>
+            </tr>
+            <tr *ngFor="let x of myCart">
+              <td> <img src="https://i.postimg.cc/J4v6Ss5G/cool-bird-2.png" alt="Product Image" class="productImg"> </td>
+              <td> {{x.productName}} </td>
+              <td> $ {{x.productPrice}} </td>
+              <td> {{x.qty}} </td>
+            </tr>
+          </table>
+          <br>
+        </div>
+      </aside>
+    </div>
+  </body>

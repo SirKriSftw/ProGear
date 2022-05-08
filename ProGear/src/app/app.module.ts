@@ -1,56 +1,74 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { ProductsComponent } from './components/products/products.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { LayoutModule } from '@angular/cdk/layout';
+import { FormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { CheckoutComponent } from './components/checkout/checkout.component';
-import { MatFormFieldModule, MatLabel, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
-import { MatOptionModule } from '@angular/material/core';
+// import { MatCarouselModule } from '@ngmodule/material-carousel';
+import { MatCardModule } from '@angular/material/card';
+import {MatFormFieldModule, MatLabel} from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { AppComponent } from './app.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { HomeComponent } from './components/home/home.component';
+import { ProductsComponent } from './components/products/products.component';
+import { NavComponent } from './components/nav/nav.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { ProductsService } from './services/products.service';
+import { CategoriesService } from './services/categories.service';
+import { MatInputModule } from '@angular/material/input';
+import { MatOptionModule } from '@angular/material/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { LayoutModule } from '@angular/cdk/layout';
 import { CartComponent } from './components/cart/cart.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     LoginComponent,
     RegisterComponent,
     ProductsComponent,
-    NavbarComponent,
+    NavComponent,
     CheckoutComponent,
     CartComponent
+   
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    LayoutModule,
+    FormsModule,
     MatToolbarModule,
+    MatListModule,
     MatButtonModule,
-    MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatFormFieldModule,
-    MatInputModule,
     MatSelectModule,
+    CommonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatSidenavModule,
+    MatInputModule,
+    MatExpansionModule,
+    MatCheckboxModule,
     MatOptionModule,
-    ReactiveFormsModule
+    
   ],
-  providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'always'}}],
+  providers: [ProductsService,
+              CategoriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
