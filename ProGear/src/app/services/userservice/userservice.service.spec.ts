@@ -1,19 +1,25 @@
-
 import { TestBed } from '@angular/core/testing';
 import { UserserviceService } from './userservice.service';
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import { HttpClient, HttpErrorResponse} from '@angular/common/http';
+import { Auth0ClientService, AuthConfigService, AuthModule } from '@auth0/auth0-angular';
+import { getAttrsForDirectiveMatching } from '@angular/compiler/src/render3/view/util';
 
 
 describe('UserserviceService', () => {
   let userservice: UserserviceService;
   let httpclient : HttpClient; 
   let httpcontroller : HttpTestingController;
+  let mockAuthConfig = jasmine.createSpy('AuthConfigService');
+  let mockAuth0Client = jasmine.createSpy('Auth0client');
+
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports : [HttpClientTestingModule],
-      providers : [UserserviceService]
+      imports : [HttpClientTestingModule, AuthModule],
+      providers : [UserserviceService, 
+                  {provide: AuthConfigService, useValue: mockAuthConfig}, 
+                  {provide: Auth0ClientService, useValue: mockAuth0Client}]
     });
     userservice = TestBed.inject(UserserviceService);
     httpclient = TestBed.inject(HttpClient);
@@ -30,13 +36,13 @@ describe('UserserviceService', () => {
 
 
   it('getLogin()', () =>{
-    const testData = "true" ; 
+    const testData = true ; 
     const inputData = {
       email : 'admin',
       password : 'admin',
     }   
 
-    userservice.getLogin(inputData.email, inputData.password).subscribe((data : any) => expect(data).toEqual(testData));
+    userservice.getLogin(inputData.email, inputData.password).subscribe((data : any) => expect(data).toBeTruthy(testData));
 
     const req = httpcontroller.expectOne('https://localhost:5001/api/User/Login?email=' + inputData.email + '&password=' + inputData.password) ;
 
@@ -67,6 +73,47 @@ describe('UserserviceService', () => {
     req.flush(emsg, {status : 500, statusText : 'Server Error'});
 
   });
+
+
+
+  it('register()', () =>{
+    const testData = true ; 
+    const inputData = {
+     user : 'admin'
+    }   
+
+    userservice.register('admin').subscribe((data : any) => expect(data).toBeTruthy(testData));
+
+    const req = httpcontroller.expectOne('https://localhost:44310/api/User/createUser') ;
+
+    expect(req.request.method).toEqual('POST');
+
+    req.flush(testData);
+
+  })
+
+
+it ('getUserId', () => {
+  const testData = true ; 
+  const inputData = {
+   email : 'admin'
+  }   
+
+  userservice.getUserId('admin').subscribe((data : any) => expect(data).toBeTruthy(testData));
+
+  const req = httpcontroller.expectOne('https://localhost:5001/api/User/GetId?email=' + inputData.email) ;
+
+  expect(req.request.method).toEqual('GET');
+
+  req.flush(testData);
+})
+
+
+it('GetUser', () => {
+  const result = userservice.getUser();
+  expect(userservice.ngOnInit).toBeDefined();
+  // Need to add more here .
+});
 
 
 
