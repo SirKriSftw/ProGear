@@ -1,0 +1,169 @@
+.container {
+    width: 70%;
+    margin: auto;
+    overflow: hidden;
+    padding: 40px 0;
+    margin-bottom: 15%;
+}
+
+.container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.CatDropDown{
+    margin-left: 10%;
+}
+div.cards {
+    width: 80%;
+    margin: auto;
+    margin-top: 3%;
+    margin-bottom: 10%;
+}
+
+.container .cards {
+    /* width: calc(100% / 2 - 10px); */
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 20px;
+    justify-content: space-between;
+}
+
+.cards .card {
+    width: 25%;
+    height: 400px;
+    display: inline-block;
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+    margin-left: 2%;
+    margin-bottom: 2%;
+    /* transition: all 0.4s ease; */
+}
+
+.cards .card:hover {
+    transform: translateY(-15px);
+}
+
+.cards .card .content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.cards .card .content .img {
+    height: 210px;
+    width: 210px;
+    /* border-radius: 50%; */
+    padding: 3px;
+    /* background: #f26925; */
+    margin-bottom: 14px;
+}
+
+.card .content .img img {
+    height: 100%;
+    width: 100%;
+    /* border: 3px solid #ffff;
+    border-radius: 50%; */
+    object-fit: contain;
+}
+
+.card .content .name {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.card .content .job {
+    font-size: 20px;
+    color: #000000;
+}
+
+.card .content {
+    margin-top: 10px;
+    display: flex;
+
+}
+
+
+.search {
+    float: right;
+    width: 30%;
+    position: relative;
+    display: flex;
+    padding: 1%;
+}
+
+.searchTerm {
+    width: 80%;
+    border: 3px solid #f26925;
+    ;
+    border-right: none;
+    padding: 5px;
+    height: 20px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #000000;
+}
+
+.searchButton {
+
+    width: 40px;
+    height: 36px;
+    border: 1px solid #f26925;
+    background: #f26925;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+
+@media (max-width: 600px) {
+    .cards .card {
+        /* margin: 20px 0 10px 0; */
+        width: 80%;
+        margin-left: 0%;
+        margin: auto;
+        padding: 8%;
+        padding-bottom: 6%;
+        margin-top: 10%;
+    }
+
+    .search {
+        width: 95%;
+        position: relative;
+        display: flex;
+        padding: 1%;
+        padding-top: 5%;
+        margin: auto;
+        float: right;
+    }
+
+    .img-card {    /* control the image of the card*/
+        align-items: center;
+        max-width: 100%; 
+        max-height: 20vh; 
+        object-fit:contain;
+      }
+     
+    ::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.1em 0px !important;}
+    ::ng-deep .mat-form-field-label-wrapper { top: 5.3em; }
+    
+    ::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+        transform: translateY(-.60em) scale(1.0);
+        width: 133.33333%;
+    }
+    
+    /* ---- */
+    .img-card {    /* control the image of the card*/
+        align-items: center;
+        max-width: 100%; 
+        height: 20vh; 
+        object-fit:auto;
+      }
+    }

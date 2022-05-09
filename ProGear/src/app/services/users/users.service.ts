@@ -24,7 +24,7 @@ export class UsersService implements OnInit{
   }
 
   alreadyRegistered(_registerId?: string) {
-    return this._http.get("https://localhost:5001/api/User/CheckForUser?userid=" + _registerId, {responseType: 'text'});
+    return this._http.get("https://localhost:44310/api/User/CheckForUser?userid=" + _registerId, {responseType: 'text'});
   }
 
   register(_registerId?:string,_userEmail?:string,_firstName?:string,_lastName?:string){
@@ -35,6 +35,6 @@ export class UsersService implements OnInit{
       "FirstName":_firstName,
       "LastName":_lastName,
     }
-    return this._http.post(`https://localhost:5001/api/User/Register`, data, {headers:new HttpHeaders({"Content-Type":"application/json"})});
+    return this._http.post(`https://localhost:44310/api/User/Register`, data, {headers:new HttpHeaders({"Content-Type":"application/json"})});
   }
 }
