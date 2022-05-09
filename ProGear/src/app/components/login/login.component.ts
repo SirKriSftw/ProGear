@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     this.auth.user$.subscribe((data) => {
       if (data != null)
       {
-       
+       console.log(data);
         this.users.alreadyRegistered(data.sub).subscribe((data2:any) => { 
           this.users.ConfirmationMessage = data2;
           

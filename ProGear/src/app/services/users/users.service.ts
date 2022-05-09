@@ -25,6 +25,7 @@ export class UsersService implements OnInit{
 
   ngOnInit(): void {
     this.getUser();
+    this.auth.user$.subscribe((result) => {console.log(result)});
   }
 
   register(_registerId?:string,_userEmail?:string,_firstName?:string,_lastName?:string){
