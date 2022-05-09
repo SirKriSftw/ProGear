@@ -14,8 +14,8 @@ export class CartService {
     return this._http.get("https://localhost:44310/Cart/get-user-ID/" + userEmail);
    }
 
-   getCart (cartID: number) {
-    return this._http.get("https://localhost:44310/Cart/GetCartById/" + cartID);
+   getCart (userID: any) {
+    return this._http.get("https://localhost:44310/Cart/GetCartById/" + userID);
    }
 
    modifyQty (OrderId: number, Qty: number) {

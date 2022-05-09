@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -26,7 +26,7 @@ namespace ProGearAPI.Controllers
                          where x.Email == userEmail
                          select x.UserId).SingleOrDefault();
 
-                if (i > 0)
+                if (i != null)
                 {
                     return Ok(i);
                 }
@@ -144,22 +144,25 @@ namespace ProGearAPI.Controllers
         }
         #endregion
 
-        //Gets all wanted information from a Cart using a specific Cart id
-        #region Get Cart By Id
+        //Gets all wanted information from a Cart using a specific user id
+        #region Get Cart By User Id
         [HttpGet]
-        [Route("GetCartById/{cartId}")]
-        public IActionResult GetCartById(int cartId)
+        [Route("GetCartById/{userID}")]
+        public IActionResult GetCartById(string userID)
         {
             try
             {
 
+                var myCartID = (from x in dbContext.Carts 
+                    where x.UserId == userID && x.PaidFor != true
+                    select x.CartId).DefaultIfEmpty().First();
 
                 var cart = (from i in dbContext.Carts
                             join x in dbContext.Users on i.UserId equals x.UserId
                             join z in dbContext.Orders on i.CartId equals z.CartId
                             join w in dbContext.Products on z.ProductId equals w.ProductId
                             //orderby i.CartId ascending
-                            where i.CartId == cartId
+                            where i.CartId == myCartID
                             select new
                             {
                                 i.CartId,
@@ -186,7 +189,7 @@ namespace ProGearAPI.Controllers
                              join z in dbContext.Orders on i.CartId equals z.CartId
                              join w in dbContext.Products on z.ProductId equals w.ProductId
 
-                             where i.CartId == cartId
+                             where i.CartId == myCartID
                              select new
                              {
                                  i.CartId,
@@ -210,7 +213,7 @@ namespace ProGearAPI.Controllers
 
                 if (cart != null)
                 {
-                    UpdateCart(total, cartId);
+                    UpdateCart(total, myCartID);
                     return Ok(final);
                 }
                 else
@@ -420,6 +423,7 @@ namespace ProGearAPI.Controllers
         [Route("OrdersByCartId/{cartId}")]
         public IActionResult ViewOrdersByCartId(int cartId)
         {
+            
             var cart = (from i in dbContext.Orders
                         join x in dbContext.Products on i.ProductId equals x.ProductId
                         where i.CartId == cartId

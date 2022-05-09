@@ -17,9 +17,9 @@ export class CartComponent implements OnInit {
   myCart : any = [];
 
 
-getCart(cartID: number)
+getCart(userID: any)
 {
-this._cartService.getCart(cartID).subscribe( (data) => {this.myCart = data;
+this._cartService.getCart(userID).subscribe( (data) => {this.myCart = data;
   console.log(this.myCart) 
  })
 }
@@ -45,7 +45,7 @@ this._cartService.emptyCart(this.myCart[0].cartId).subscribe( (data) => {data = 
  });
 }
 
-ngOnInit(): void { this.getCart(2); }
-// ^^^ replace this '2' with userId, a static variable from login component
+ngOnInit(): void { this.getCart("1"); }
+// ^^^ replace this "1" with userId, a static variable from login component
 
 }

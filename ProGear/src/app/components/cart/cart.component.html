@@ -11,7 +11,7 @@
           <td><b>Quantity in Cart</b></td>
         </tr>
         <tr *ngFor = "let x of myCart" class="img">
-          <td><img src="{{'../../assets/images/pic' + x.productId  + '.png'}}" alt={{x.productId}}> </td>
+          <td><img src="{{'../../assets/images/pic' + x.productId  + '.png'}}" alt={{x.productId}} class="productImg"> </td>
           <td> {{x.productName}} </td>
           <td> {{x.productDetails}} </td>
           <td> $ {{x.productPrice}} </td>
