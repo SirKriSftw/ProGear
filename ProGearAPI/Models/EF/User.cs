@@ -28,86 +28,7 @@ namespace ProGearAPI.Models.EF
         [JsonIgnore]
         public virtual ICollection<Cart> Carts { get; set; }
 
-        public User authenticate(User authUser)
-        {
-            User loggedUser = new User();
-
-            var vUser = db.Users.Where(u => u.Email == authUser.Email ).SingleOrDefault();
-
-            if (vUser != null)
-            {
-                loggedUser.UserId = vUser.UserId;
-                loggedUser.Email = vUser.Email;
-             
-                loggedUser.FirstName = vUser.FirstName;
-                loggedUser.LastName = vUser.LastName;
-
-                return loggedUser;
-            }
-            else
-            {
-                throw new Exception("Authentication failed");
-            }
-        }
-        public string createUser(User newUser)
-
-        {
-            
-            if (newUser != null)
-            {
-                var vUser = db.Users;
-                foreach (var user in vUser)
-                {
-                    if ((newUser.Email == user.Email))
-                       
-                    {
-                        throw new Exception("USER ALREADY EXIST IN SYSTEM");
-                    }
-                }
-            
-
-                vUser.Add(newUser);
-                db.SaveChanges();
-                return "New User Created";
-
-            }
-            else
-                throw new Exception("INVALID INPUT");
-
-        }
-
-
-        public string Login(string email, string password)
-        {
-            if (check(email) == true)
-            {
-                var usr = (from u in db.Users
-                           where u.Email == email
-                       
-                           select u.FirstName);
-
-                if (usr != null)
-                {
-                    return usr.SingleOrDefault();
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public bool check(string input)
-        {
-            Regex regex = new Regex(@"^[\w!#$%&'+-/=?^_`{|}~]+(.[\w!#$%&'+-/=?^_`{|}~]+)*" + "@" + @"((([-\w]+.)+[a-zA-Z]{2,4})|(([0-9]{1,3}.){3}[0-9]{1,3}))$");
-            Match match = regex.Match(input);
-            return (match.Success) ? true : false;
-        }
-
+        // check if a user is registered in the db already
         public bool Check(string userId)
         {
             var count = db.Users.Where(user => user.UserId == userId).ToList();
@@ -118,6 +39,7 @@ namespace ProGearAPI.Models.EF
             }
             return false;
         }
+        // register a new user
         public void NewRegister(User user)
         {
             try
@@ -128,9 +50,7 @@ namespace ProGearAPI.Models.EF
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
-            }
-           
-            
+            } 
         }
     }
 }

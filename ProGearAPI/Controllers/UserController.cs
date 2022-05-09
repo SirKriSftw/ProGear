@@ -22,27 +22,9 @@ namespace ProGearAPI.Controllers
         
         static User _user = new User();
 
-        [HttpPost]
-        [Route("createUser")]
-        public IActionResult createUser(User newUser)
-
-        {
-
-            try
-            {
-                return Created("", _user.createUser(newUser));
-            }
-            catch (System.Exception ex)
-            {
-                _logger.LogError(ex, ex.Message);
-                return BadRequest(ex.Message);
-            }
-
-        }
+       // check whether user exists in db
        [HttpGet]
        [Route("CheckForUser")]
-
-      
        public IActionResult CheckForUser(string userid)
         {
             User user = new User();
@@ -57,6 +39,7 @@ namespace ProGearAPI.Controllers
             }
            
         }
+        // register new user
         [HttpPost]
         [Route("Register")]
         public IActionResult Register(User user)
