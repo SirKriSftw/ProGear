@@ -19,13 +19,14 @@ export class LoginComponent implements OnInit {
     this.auth.user$.subscribe((data) => {
       if (data != null)
       {
-        this.users.alreadyRegistered(this.users._registerId).subscribe((data2:any) => { 
+       
+        this.users.alreadyRegistered(data.sub).subscribe((data2:any) => { 
           this.users.ConfirmationMessage = data2;
           
           console.log(this.users.ConfirmationMessage);
         
          if(this.users.ConfirmationMessage == "User Registered") {
-     
+              
          }
          else {
            console.log();
@@ -33,7 +34,7 @@ export class LoginComponent implements OnInit {
               {});
          }})
         // sub is the user_id
-        console.log(data.sub);
+    
         
       }
     })
