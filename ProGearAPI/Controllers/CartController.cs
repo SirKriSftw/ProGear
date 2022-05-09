@@ -253,7 +253,7 @@ namespace ProGearAPI.Controllers
         #region Create New Cart
         [HttpPost]
         [Route("CreateNewCart")]
-        public IActionResult CreateCart(int userId)
+        public IActionResult CreateCart(string userId)
         {
             var newCart = new Cart();
 
@@ -479,6 +479,38 @@ namespace ProGearAPI.Controllers
             return Ok(cart);
         }
 
+        //Get A Users Old Carts
+        [HttpGet]
+        [Route("GetOldCarts")]
+        public IActionResult GetOldCarts(string userId)
+        {
+            var old = (from i in dbContext.Carts 
+                      join z in dbContext.Orders on i.CartId equals z.CartId
+                       join x in dbContext.Products on z.ProductId equals x.ProductId     
+                      where i.UserId == userId && i.PaidFor == true
+                      select new
+                      {
+                            i.PaidFor,
+                            i.PaidOn,
+                            z.OrderId,
+                            z.ProductId,
+                            i.CartId,
+                            z.Qty,
+                            x.ProductName,
+                            x.ProductPrice,
+                            x.ProductDetails
+
+                      }).DefaultIfEmpty();
+ 
+            if (old != null)
+            {
+                return Ok(old);
+            }
+            else
+            {
+                return NotFound("No Previous Carts");
+            }
+        }
 
 
 
