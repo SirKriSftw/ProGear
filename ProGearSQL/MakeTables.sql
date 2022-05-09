@@ -2,18 +2,15 @@ DROP TABLE Categories, Orders, Cart, Products, Users
 
 SELECT * FROM Users
 SELECT * FROM Products
+SELECT * FROM Categories
 SELECT * FROM Cart
 SELECT * FROM Orders
-SELECT * FROM Categories
 
 CREATE TABLE Users(
-	userID int PRIMARY KEY Identity,
+	userID varchar(100) PRIMARY KEY,
 	email varchar(30) UNIQUE NOT NULL,
-	password varchar(30),
 	firstName varchar(30),
-	lastName varchar(30),
-
-	constraint chk_password check (LEN(password) >= 8)
+	lastName varchar(30)
 )
 
 CREATE TABLE Categories (
@@ -37,7 +34,7 @@ CREATE TABLE Products (
 
 CREATE TABLE Cart (
 	cartID int PRIMARY KEY Identity,
-	userID int FOREIGN KEY REFERENCES Users(userID) ON DELETE CASCADE,
+	userID varchar(100) FOREIGN KEY REFERENCES Users(userID) ON DELETE CASCADE,
 	total float,
 	paidFor bit,
 	paidOn dateTime
@@ -45,7 +42,7 @@ CREATE TABLE Cart (
 
 CREATE TABLE Orders (
 	orderID int PRIMARY KEY Identity,
-	productID int FOREIGN KEY REFERENCES Products(productID) ON DELETE CASCADE,
+	productID int FOREIGN KEY REFERENCES Products(productID) ON DELETE SET NULL,
 	cartID int FOREIGN KEY REFERENCES Cart(cartID) ON DELETE CASCADE,
 	qty int
 )
@@ -74,5 +71,39 @@ insert into dbo.Products values(3, 'Calendars', 'Keep track of your important ev
 insert into dbo.Products values(4, 'Pens', 'A 4-pack of medium point black ink pens for all your note-taking and contract needs.', 1000, 7.00); --Business deals and contracts have to be signed with something after all.
 insert into dbo.Products values(4, 'Stickers', 'An assortment of stickers to customize or seal whatever you need!', 500, 9.75);
 insert into dbo.Products values(4, 'Magnets', 'A pack of magnet to keep hold of all your documents on a whiteboard or a refrigerator.', 50, 14.75);
+insert into dbo.Products values(1, 'Novelty Socks', 'Festive socks for whatever occasion!', 30, 9.95);
+insert into dbo.Products values(1, 'Gloves', 'Warm, unisex, non-slip winter gloves with touchscreen capability!', 25, 19.99);
+insert into dbo.Products values(1, 'Sweater', 'Stylish crewneck sweater.', 45, 18);
+insert into dbo.Products values(2, 'Food Container', 'A single 1.6 liter microwave and diswasher safe container.', 100, 7.99);
+insert into dbo.Products values(2, 'Coffee Mug Warmer', 'Keeps your beverage of choice nice and warm.', 20, 19.99);
+insert into dbo.Products values(2, 'Mesh Desk Organizer', 'Contains compartments for small office supplies and a drawer for journals.', 45, 24);
+insert into dbo.Products values(2, 'Document Letter Tray Organizer', 'Great for holding A4 sized paper, folders, and other stationary.', 45, 30);
 
+insert into dbo.Products values(3, 'Backpack', 'TSA friendly backpack for all your travelling adventures!', 60, 29.99);
+insert into dbo.Products values(3, 'Waist pack', 'A convenient bag that is easy to carry.', 30, 19.25);
+insert into dbo.Products values(3, 'Passport cover', 'Holds your passport, vaccine card, credit cards, and a pen.', 45, 12.99);
 
+insert into dbo.Products values(4, 'Notepad', 'For rigorous notetaking or idle doodling.', 45, 30);
+insert into dbo.Products values(4, 'Sticky Notes', 'A 6-pack of sticky notes for when you need quick reminders', 45, 30);
+insert into dbo.Products values(4, 'Pencils', 'A box of 12 #2 pencils', 45, 30);
+insert into dbo.Products values(4, 'Binders', 'A quality 3-ring 2" binder for your organizational needs', 45, 30);
+insert into dbo.Products values(4, 'Page protectors', '100 non-glare sheet protectors.', 45, 30);
+insert into dbo.Products values(4, 'Keychain USB Drive', '1 TB waterproof flash drive to fit on your keyring.', 45, 30);
+insert into dbo.Products values(4, 'Paper Clips', '700 pcs box of paper clips', 45, 30);
+insert into dbo.Products values(4, 'Poster', 'Wall art to enhance your space.', 45, 30);
+
+insert into dbo.Users values('1', 'test@test.com', 'David', 'Acuff')
+insert into dbo.Cart values('1', 0, 0, NULL)
+
+insert into dbo.Orders values(2, 1, 1)
+insert into dbo.Orders values(3, 1, 1)
+insert into dbo.Orders values(4, 1, 1)
+insert into dbo.Orders values(5, 1, 1)
+insert into dbo.Orders values(6, 1, 1)
+insert into dbo.Orders values(7, 1, 2)
+insert into dbo.Orders values(8, 1, 2)
+insert into dbo.Orders values(9, 1, 1)
+insert into dbo.Orders values(10, 1, 2)
+insert into dbo.Orders values(11, 1, 3)
+insert into dbo.Orders values(12, 1, 1)
+insert into dbo.Orders values(13, 1, 3)
