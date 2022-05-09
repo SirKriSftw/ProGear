@@ -33,7 +33,7 @@ namespace ProGearAPI.Models.EF
         {
             var count = db.Users.Where(user => user.UserId == userId).ToList();
 
-            if (count.Count()>0)
+            if (count.Count() > 0)
             {
                 return true;
             }

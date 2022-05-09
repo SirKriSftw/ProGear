@@ -53,7 +53,6 @@ namespace ProGearAPI.Controllers
             {
                 return BadRequest(ex);  
             }
-           
         }
     }
 }

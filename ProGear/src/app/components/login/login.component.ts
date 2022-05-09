@@ -12,42 +12,32 @@ export class LoginComponent implements OnInit {
   constructor(public auth: AuthService, public _users: UsersService) 
   {
     this.users = _users;
-   
-    }
+  }
 
   ngOnInit(): void {
+    // first, check if user is logged in or not
+    // logged out would mean the user data is null
     this.auth.user$.subscribe((data) => {
       if (data != null)
       {
-       console.log(data);
+        // call alreadyRegistered to check if the user exists in the database already
         this.users.alreadyRegistered(data.sub).subscribe((data2:any) => { 
-          this.users.ConfirmationMessage = data2;
-          
-          console.log(this.users.ConfirmationMessage);
-        
-         if(this.users.ConfirmationMessage == "User Registered") {
+        this.users.ConfirmationMessage = data2;
               
-         }
-         else {
-           console.log();
-              this.users.register(data.sub, data.email, data.given_name, data.family_name).subscribe((data3:any) => 
-              {});
-         }})
-        // sub is the user_id
-    
-        
-      }
+        // if user is already registered, do nothing
+        if(this.users.ConfirmationMessage == "User Registered") {   
+        }
+        // else, register through the api
+        else {
+          this.users.register(data.sub, data.email, data.given_name, data.family_name).subscribe((data3:any) => {});
+        }})
+    }
     })
-
-  
   }
 
+  // built-in auth function to login
   loginUserWithRedirect()
   {
     this.auth.loginWithRedirect();
-    
-  
   }
- 
-
 }

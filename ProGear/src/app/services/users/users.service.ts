@@ -11,8 +11,6 @@ export class UsersService implements OnInit{
 
   constructor(@Inject(DOCUMENT) public document: Document, public auth: AuthService, private _http: HttpClient) { 
     this._http=_http;
-  
-
   }
 
   public _userEmail : any;
@@ -21,11 +19,12 @@ export class UsersService implements OnInit{
   public _firstName?:string = "";
   public _lastName?:string = "";
   public ConfirmationMessage?:string = "";
-  
 
   ngOnInit(): void {
-    this.getUser();
-    
+  }
+
+  alreadyRegistered(_registerId?: string) {
+    return this._http.get("https://localhost:5001/api/User/CheckForUser?userid=" + _registerId, {responseType: 'text'});
   }
 
   register(_registerId?:string,_userEmail?:string,_firstName?:string,_lastName?:string){
@@ -36,47 +35,6 @@ export class UsersService implements OnInit{
       "FirstName":_firstName,
       "LastName":_lastName,
     }
-    console.log(data);
-    return this._http.post(`https://localhost:44310/api/User/Register`,data, {headers:new HttpHeaders({"Content-Type":"application/json"})});
+    return this._http.post(`https://localhost:5001/api/User/Register`, data, {headers:new HttpHeaders({"Content-Type":"application/json"})});
   }
-
-
-  getLogin(email : string, password : string)
-  {
-    var url = `https://localhost:5001/api/User/Login?email=${email}&password=${password}`;
-
-    return this._http.get(url, {responseType: "text"});
-  }
-
-  getUserId(email:any)
-  {
-    //return this._http.get(url, {responseType: "text"});
-    return this._http.get(`https://localhost:5001/api/User/GetId?email=${email}`, {responseType:'text'});
-  }
-
-  alreadyRegistered(_registerId?: string) {
-    return this._http.get("https://localhost:44310/api/User/CheckForUser?userid=" + _registerId, {responseType: 'text'});
-  }
-  
-  getUser()
-  {
-    console.log("Test");
-    this.auth.user$.subscribe((data) => {
-      //console.log(data)
-      console.log("Test");
-      this._userEmail = data?.email;
-      this._registerId = data?.sub;
-      this._firstName = data?.given_name;
-      this._lastName = data?.family_name;
-      console.log(this._registerId);
-      console.log(this._firstName);
-      console.log(this._lastName);
-      // this.getUserId(this._userEmail).subscribe((data) => {
-      //   //console.log(data);
-      //   this.userId = parseInt(data);
-      // });
-
-    });
-  }
-  
 }
