@@ -122,17 +122,18 @@
       <section class="formInfo">
 
 
-        <mat-card-content>
-          <mat-expansion-panel hideToggle
-                               class = "mat-elevation-z0"
-                               *ngIf = "!checked"
-                               [expanded] = "!checked">
-            <mat-expansion-panel-header>
-              <mat-panel-description>
-                <p id="panelDesc">Please fill out the additional Shipping Address Information</p>
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <form [formGroup]="checkoutForm">
+        <form [formGroup]="checkoutForm">
+          <mat-card-content>
+            <mat-expansion-panel hideToggle
+                                 id="shipExpansion"
+                                 class="mat-elevation-z0"
+                                 *ngIf="!checked"
+                                 [expanded]="!checked">
+              <mat-expansion-panel-header>
+                <mat-panel-description>
+                  <p id="panelDesc">Please fill out the additional Shipping Address Information</p>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
               <section class="formInfo">
                 <h2>Shipping Address</h2>
                 <mat-form-field hintLabel="Full Address including house number" appearance="fill">
@@ -209,10 +210,10 @@
                   <mat-error *ngIf="billZip?.invalid">Must be 5 digits</mat-error>
                 </mat-form-field>
               </section>
-            </form>
+            </mat-expansion-panel>
+          </mat-card-content>
+        </form>
 
-          </mat-expansion-panel>
-        </mat-card-content>
       </section>
     </mat-card>
 
@@ -225,10 +226,13 @@
             <td><b>Quantity in Cart</b></td>
           </tr>
           <tr *ngFor="let x of myCart">
-            <td> <img src="https://i.postimg.cc/J4v6Ss5G/cool-bird-2.png" alt="Product Image" class="productImg"> </td>
             <td> {{x.productName}} </td>
             <td> $ {{x.productPrice}} </td>
             <td> {{x.qty}} </td>
+          </tr>
+          <tr>
+            <td> Cart Total </td>
+            <td>{{cartTotal}}</td>
           </tr>
         </table>
         <br>
