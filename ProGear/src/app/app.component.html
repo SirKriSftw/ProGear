@@ -22,7 +22,7 @@
             <mat-icon>shopping_cart</mat-icon>
             </a>
         </button>
-        <app-login *ngIf="!(auth.isAuthenticated$ | async)" >Login</app-login>
+        <app-login *ngIf="!(auth.isAuthenticated$ | async)">Login</app-login>
         <app-logout-button *ngIf="(auth.isAuthenticated$ | async)"></app-logout-button>
       </mat-toolbar-row>
   
