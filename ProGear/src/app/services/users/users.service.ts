@@ -7,7 +7,7 @@ import { DOCUMENT } from '@angular/common';
 @Injectable({
   providedIn: 'root'
 })
-export class UserserviceService implements OnInit{
+export class UsersService implements OnInit{
 
   constructor(@Inject(DOCUMENT) public document: Document, public auth: AuthService, private _http: HttpClient) { 
     this._http=_http;

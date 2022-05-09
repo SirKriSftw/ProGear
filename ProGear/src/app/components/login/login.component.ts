@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService, User} from '@auth0/auth0-angular';
 import { HttpClient} from '@angular/common/http';
-import { UserserviceService } from 'src/app/services/userservice/userservice.service';
+import { UsersService } from 'src/app/services/users/users.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
-  constructor(public auth: AuthService, public users: UserserviceService) 
+  users:any;
+  constructor(public auth: AuthService, public _users: UsersService) 
   {
+    this.users = _users;
    
     }
 
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
     this.auth.user$.subscribe((data) => {
       if (data != null)
       {
-        this.users.alreadyRegistered(this.users._registerId).subscribe((data2) => { 
+        this.users.alreadyRegistered(this.users._registerId).subscribe((data2:any) => { 
           this.users.ConfirmationMessage = data2;
           
           console.log(this.users.ConfirmationMessage);
@@ -27,8 +28,8 @@ export class LoginComponent implements OnInit {
      
          }
          else {
-           console.log("register");
-              this.users.register(data.sub, data.email, data.given_name, data.family_name).subscribe((data3) => 
+           console.log();
+              this.users.register(data.sub, data.email, data.given_name, data.family_name).subscribe((data3:any) => 
               {});
          }})
         // sub is the user_id

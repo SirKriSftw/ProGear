@@ -33,7 +33,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ProductsService } from './products.service';
 import { SearchComponent } from './search/search.component';
 import { CommonModule } from '@angular/common';
-import { UserserviceService } from './services/userservice/userservice.service';
+import { UsersService } from './services/users/users.service';
 
 @NgModule({
   declarations: [
@@ -76,7 +76,7 @@ import { UserserviceService } from './services/userservice/userservice.service';
     CommonModule,
     MatSidenavModule,
   ],
-  providers: [ProductsService,UserserviceService],
+  providers: [ProductsService,UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
