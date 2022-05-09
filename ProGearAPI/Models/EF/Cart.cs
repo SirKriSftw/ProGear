@@ -13,7 +13,7 @@ namespace ProGearAPI.Models.EF
         }
 
         public int CartId { get; set; }
-        public int? UserId { get; set; }
+        public string UserId { get; set; }
         public double? Total { get; set; }
         public bool? PaidFor { get; set; }
         public DateTime? PaidOn { get; set; }
