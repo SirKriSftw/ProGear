@@ -1,28 +1,58 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using ProGearAPI.Models.EF;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ProGearAPI.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
-        User user = new User();
 
-        [HttpGet]
-        [Route("Login")]
-        public IActionResult GetLogin(string email, string password)
+       
+        private readonly ILogger<UserController> _logger;
+
+        public UserController(ILogger<UserController> logger)
         {
-            string u = user.Login(email, password);
+            _logger = logger;
+        }
+        
+        static User _user = new User();
 
-            if (u == null)
+       // check whether user exists in db
+       [HttpGet]
+       [Route("CheckForUser")]
+       public IActionResult CheckForUser(string userid)
+        {
+            User user = new User();
+            bool IsAlreadyRegistered = user.Check(userid);
+            if (!IsAlreadyRegistered)
             {
-                return BadRequest("Invalid login credentials");
+                return Ok("User Not Registered");
             }
-            return Ok(u);
+            else
+            {
+                return Ok("User Registered");
+            }
+           
+        }
+        // register new user
+        [HttpPost]
+        [Route("Register")]
+        public IActionResult Register(User user)
+        {
+            try
+            {
+                user.NewRegister(user);
+                return Created("User has been Successfully Registered", user);
+            }
+            catch(System.Exception ex)
+            {
+                return BadRequest(ex);  
+            }
         }
     }
 }

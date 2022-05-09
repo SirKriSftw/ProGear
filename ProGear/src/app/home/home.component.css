@@ -1,0 +1,183 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+.background{
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+}
+img{
+    width: 100%;
+    margin: auto;
+}
+
+#misc{
+    margin-top: 5%;
+}
+/*----------------------------------------------------*/
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: lighter;
+}
+
+.container{
+    width: 70%;
+    margin: auto;
+    overflow: hidden;
+    padding: 40px 0;
+    margin-bottom: 15%;
+}
+.container .main-card{
+  display: flex;
+  justify-content: space-evenly;
+  width: 200%;
+  transition: 1s;
+}
+#two:checked ~ .main-card, #four:checked ~ .main-card, #six:checked ~ .main-card ,#eight:checked ~ .main-card {
+  margin-left: -100%;
+}
+.container .main-card .cards{
+  width: calc(100% / 2 - 10px);
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 20px;
+  justify-content: space-between;
+}
+.main-card .cards .card{
+  width: calc(100% / 3 - 10px);
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.4s ease;
+}
+.main-card .cards .card:hover{
+  transform: translateY(-15px);
+}
+.cards .card .content{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.cards .card .content .img{
+  height: 130px;
+  width: 130px;
+  border-radius: 50%;
+  padding: 3px;
+  background: #f26925;
+  margin-bottom: 14px;
+}
+.card .content .img img{
+  height: 100%;
+  width: 100%;
+  border: 3px solid #ffff;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.card .content .name{
+  font-size: 20px;
+  font-weight: 500;
+}
+.card .content .job{
+  font-size: 20px;
+  color: #000000;
+}
+.card .content {
+  margin-top: 10px;
+  display: flex;
+
+}
+ .container .button{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+.button label{
+  height: 15px;
+  width: 15px;
+  border-radius: 20px;
+  background: #f26925;
+  margin: 0 4px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.background2{
+    width: 100%;
+    height: 20%;
+    margin: auto;
+}
+.ViewAll{
+    text-align: center;
+    color:#f26925; 
+    margin-top: 50%;
+    font-size: x-large;
+}
+
+h1{
+    text-align: center;
+    margin-top: 3%;
+    font-size: xx-large;
+}
+.mat-divider{
+display: block;
+margin: auto;
+width: 80%;
+border-top-width: 1px;
+border-top-style: solid;
+
+}
+
+.button label.active{
+  width: 35px;
+}
+#one:checked ~ .button .one, #three:checked ~ .button .three, #five:checked ~ .button .five,
+#seven:checked ~ .button .seven {
+  width: 35px;
+}
+#one:checked ~ .button .two, 
+#three:checked ~ .button .four,
+#five:checked ~ .button .six,
+#seven:checked ~ .button .eight{
+  width: 15px;
+}
+#two:checked ~ .button .one, #four:checked ~ .button .three, 
+#six:checked ~ .button .five,
+#eight:checked ~ .button .seven{
+  width: 15px;
+}
+#two:checked ~ .button .two, #four:checked ~ .button .four, #six:checked ~ .button .six,
+#eight:checked ~ .button .eight{
+  width: 35px;
+}
+input[type="radio"]{
+  display: none;
+}
+a{
+    text-decoration: none;
+}
+@media (max-width: 768px) {
+  .main-card .cards .card{
+    margin: 20px 0 10px 0;
+    width: calc(100% / 2 - 10px);
+  }
+}
+@media (max-width: 600px) {
+  .main-card .cards .card{
+    /* margin: 20px 0 10px 0; */
+    width: 100%;
+    padding: 8%;
+    padding-bottom: 6%;
+    margin-top: 2%;
+  }
+  .background2{
+    height: 5%;
+
+}
+}
