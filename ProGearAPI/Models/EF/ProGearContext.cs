@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -126,10 +127,20 @@ namespace ProGearAPI.Models.EF
 
             modelBuilder.Entity<User>(entity =>
             {
+<<<<<<< HEAD
                 entity.HasIndex(e => e.Email, "UQ__Users__AB6E6164E062AFDA")
                     .IsUnique();
 
                 entity.Property(e => e.UserId)
+=======
+                entity.HasIndex(e => e.Email, "UQ__Users__AB6E616470CC0C99")
+                    .IsUnique();
+
+                entity.HasKey(e => e.UserId)
+                    .HasName("PK__Users__CB9A1CDF4878ABE4");
+
+                entity.Property( e => e.UserId)
+>>>>>>> Login
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("userID");

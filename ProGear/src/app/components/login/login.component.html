@@ -1,1 +1,2 @@
-<p>log-in works!</p>
+<button *ngIf="!(auth.isAuthenticated$ | async)" mat-raised-button color = "primary" (click)="loginUserWithRedirect()">Login</button>
+<app-logout-button *ngIf="(auth.isAuthenticated$ | async)"></app-logout-button>
