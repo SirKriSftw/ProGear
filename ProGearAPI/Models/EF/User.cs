@@ -18,11 +18,12 @@ namespace ProGearAPI.Models.EF
         }
 
         ProGearContext db = new ProGearContext();
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
+       // public string Password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
 
         [JsonIgnore]
         public virtual ICollection<Cart> Carts { get; set; }
@@ -31,13 +32,13 @@ namespace ProGearAPI.Models.EF
         {
             User loggedUser = new User();
 
-            var vUser = db.Users.Where(u => u.Email == authUser.Email && u.Password == authUser.Password).SingleOrDefault();
+            var vUser = db.Users.Where(u => u.Email == authUser.Email ).SingleOrDefault();
 
             if (vUser != null)
             {
                 loggedUser.UserId = vUser.UserId;
                 loggedUser.Email = vUser.Email;
-                loggedUser.Password = "";
+             
                 loggedUser.FirstName = vUser.FirstName;
                 loggedUser.LastName = vUser.LastName;
 
@@ -63,10 +64,7 @@ namespace ProGearAPI.Models.EF
                         throw new Exception("USER ALREADY EXIST IN SYSTEM");
                     }
                 }
-                if (newUser.Password.Length < 8)
-                {
-                    throw new Exception("Password is too short");
-                }
+            
 
                 vUser.Add(newUser);
                 db.SaveChanges();
@@ -85,7 +83,7 @@ namespace ProGearAPI.Models.EF
             {
                 var usr = (from u in db.Users
                            where u.Email == email
-                           && u.Password == password
+                       
                            select u.FirstName);
 
                 if (usr != null)
@@ -109,6 +107,30 @@ namespace ProGearAPI.Models.EF
             Match match = regex.Match(input);
             return (match.Success) ? true : false;
         }
+
+        public bool Check(string userId)
+        {
+            var count = db.Users.Where(user => user.UserId == userId).ToList();
+
+            if (count.Count()>0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public void NewRegister(User user)
+        {
+            try
+            {
+                db.Users.Add(user);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+           
+            
+        }
     }
 }
-
