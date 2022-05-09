@@ -11,19 +11,19 @@
           <td><b>Quantity in Cart</b></td>
         </tr>
         <tr *ngFor = "let x of myCart" class="img">
-          <td><img src="{{'../../assets/images/pic' + x.productId  + '.png'}}" alt={{x.productId}} class="productImg"> </td>
-          <td> {{x.productName}} </td>
-          <td> {{x.productDetails}} </td>
-          <td> $ {{x.productPrice}} </td>
-          <td> {{x.qty}} <br>
+          <td *ngIf = "x.qty > 0"><img src="{{'../../assets/images/pic' + x.productId  + '.png'}}" alt={{x.productId}} class="productImg"> </td>
+          <td *ngIf = "x.qty > 0"> {{x.productName}} </td>
+          <td *ngIf = "x.qty > 0"> {{x.productDetails}} </td>
+          <td *ngIf = "x.qty > 0"> $ {{x.productPrice}} </td>
+          <td *ngIf = "x.qty > 0"> {{x.qty}} <br>
             <button type="button" (click) ="x.qty = x.qty - 1; modifyQty(x.orderId, x.qty)">-</button>
             <button type="button" (click) ="x.qty = x.qty + 1; modifyQty(x.orderId, x.qty)">+</button>
           </td>
-          <td> <button type="button" class="remove" (click) ="removeOrder(x.orderId)" onclick="style.display = 'none'">Remove from Cart</button> </td>
+          <td *ngIf = "x.qty > 0"> <button type="button" class="remove" (click) ="removeOrder(x.orderId);x.qty=0" onclick="style.display = 'none'">Remove from Cart</button> </td>
         </tr>
       </table>
       <br>
-      <button type="button" (click) ="emptyCart()">Empty Cart</button>
+      <button type="button" (click) ="emptyCart();myCart = null;">Empty Cart</button>
       <br>
       <br>
       <button type="button" routerLink="../checkout" routerLinkActive="active-link">Go to Checkout</button>
