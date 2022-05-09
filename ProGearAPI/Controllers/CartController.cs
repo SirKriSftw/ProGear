@@ -457,17 +457,17 @@ namespace ProGearAPI.Controllers
         {
             var cart = (from x in dbContext.Orders
                         where x.CartId == cartId
-                        select x).SingleOrDefault();
+                        select x).DefaultIfEmpty();
             if (cart != null)
             {
-                dbContext.Orders.Remove(cart);
+                cart.ToList().ForEach(x => dbContext.Orders.Remove(x));
                 dbContext.SaveChanges();
                 return Ok("Your Cart Is Now Empty");
 
             }
             else
             {
-                return BadRequest("Your Cart Is Empty");
+                return BadRequest("Your Cart Is Already Empty");
             }
         }
 
