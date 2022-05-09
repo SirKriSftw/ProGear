@@ -485,7 +485,7 @@ namespace ProGearAPI.Controllers
 
         //Get A Users Old Carts
         [HttpGet]
-        [Route("GetOldCarts")]
+        [Route("GetOldCarts/{userId}")]
         public IActionResult GetOldCarts(string userId)
         {
             var old = (from i in dbContext.Carts 

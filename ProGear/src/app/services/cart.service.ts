@@ -30,9 +30,10 @@ export class CartService {
     return this._http.delete("https://localhost:44310/Cart/emptycart/" + cartID, {responseType : 'text'} );
    }
 
-   // this method should get all of a user's old carts, this acts as a user's order history, ie reciepts (paidFor == true)
-   // but, the API is not implemented yet... nor is the component... someone should do that
-   getOldCarts (userID:number) {
+   getOldCarts (userID:any) {
+    // this method should get all of a user's old carts
+    // this acts as a user's order history, ie reciepts (paidFor == true)
+    // but, the component is not implemented yet... someone should do that
     return this._http.get("https://localhost:44310/Cart/GetOldCarts/" + userID);
    }
 
