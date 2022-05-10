@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/carts/cart.service';
 import { Router } from '@angular/router';
+import { LoginComponent } from '../login/login.component';
+import { UsersService } from 'src/app/services/users/users.service';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-cart',
@@ -11,8 +14,12 @@ import { Router } from '@angular/router';
 export class CartComponent implements OnInit {
 
   _cartService : CartService ;
+  _auth : AuthService;
   
-  constructor(_cartServiceRef : CartService) { this._cartService = _cartServiceRef; }
+  constructor(_cartServiceRef : CartService, _authRef : AuthService) { 
+    this._cartService = _cartServiceRef; 
+    this._auth = _authRef;
+  }
 
   myCart : any = [];
 
@@ -45,7 +52,10 @@ this._cartService.emptyCart(this.myCart[0].cartId).subscribe( (data) => {data = 
  });
 }
 
-ngOnInit(): void { this.getCart("1"); }
-// ^^^ replace this "1" with userId, a static variable from login component
+ngOnInit(): void { (this._auth.user$.subscribe((data: any) => 
+  {this.getCart(data.sub);
+    console.log(data.sub);
+    console.log(data);
+ })) }
 
 }

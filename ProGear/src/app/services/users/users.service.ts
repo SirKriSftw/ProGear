@@ -15,7 +15,7 @@ export class UsersService implements OnInit{
 
   public _userEmail : any;
   public userId! : number;
-  public _registerId?:string = "";
+  public static _registerId?:string = "";
   public _firstName?:string = "";
   public _lastName?:string = "";
   public ConfirmationMessage?:string = "";
