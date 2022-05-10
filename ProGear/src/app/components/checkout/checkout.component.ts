@@ -4,6 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CartService } from 'src/app/services/cart-service.service';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { AuthService } from '@auth0/auth0-angular';
 
 
 @Component({
@@ -16,13 +17,15 @@ export class CheckoutComponent implements OnInit {
   checked = true;
 
   _cartService: CartService;
+  _auth: AuthService;
 
   router: Router;
   checkoutForm: FormGroup;
   confirmation: string = "";
 
-  constructor(private fb: FormBuilder, routerRef: Router, _cartServiceRef: CartService) {
+  constructor(private fb: FormBuilder, routerRef: Router, _cartServiceRef: CartService, _authRef: AuthService) {
     this._cartService = _cartServiceRef;
+    this._auth = _authRef
     this.router = routerRef;
     this.checkoutForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2)]],
@@ -90,6 +93,11 @@ export class CheckoutComponent implements OnInit {
     return this.checkoutForm.get('billZip');
   }
 
-  ngOnInit(): void { this.getCart("1"); }
-
+  ngOnInit(): void {
+    (this._auth.user$.subscribe((data: any) => {
+      this.getCart(data.sub);
+      console.log(data.sub);
+      console.log(data);
+    }))
+  }
 }
