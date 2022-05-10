@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CartService } from 'src/app/services/carts/cart.service';
+import { AuthService } from '@auth0/auth0-angular';
 
 
 
@@ -15,13 +16,15 @@ export class CheckoutComponent implements OnInit {
   checked = true;
 
   _cartService: CartService;
+  _auth: AuthService;
 
   router: Router;
   checkoutForm: FormGroup;
   confirmation: string = "";
 
-  constructor(private fb: FormBuilder, routerRef: Router, _cartServiceRef: CartService) {
+  constructor(private fb: FormBuilder, routerRef: Router, _cartServiceRef: CartService, _authRef: AuthService) {
     this._cartService = _cartServiceRef;
+    this._auth = _authRef;
     this.router = routerRef;
     this.checkoutForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2)]],
@@ -91,6 +94,11 @@ export class CheckoutComponent implements OnInit {
     return this.checkoutForm.get('billZip');
   }
 
-  ngOnInit(): void { this.getCart("auth0|627a92e175fc8d00685ae62d"); }
-
+  ngOnInit(): void {
+    (this._auth.user$.subscribe((data: any) => {
+      this.getCart(data.sub);
+      console.log(data.sub);
+      console.log(data);
+    }))
+  }
 }
