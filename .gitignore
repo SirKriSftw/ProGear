@@ -6,6 +6,7 @@
 .angular/
 node_modules/
 .vscode/
+.DS_Store
 # User-specific files
 *.rsuser
 *.suo
