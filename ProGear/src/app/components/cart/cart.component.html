@@ -18,6 +18,7 @@ function changeclassstyle() {
           <td><b>Product Details</b></td>
           <td><b>Product Price</b></td>
           <td><b>Quantity in Cart</b></td>
+          <td><b>Total Price</b></td>
         </tr>
         <tr *ngFor = "let x of myCart" class="img">
           <td *ngIf = "x.productName != null"><img src="{{'../../assets/images/pic' + x.productId  + '.png'}}" alt={{x.productId}} class="productImg"> </td>
@@ -30,6 +31,7 @@ function changeclassstyle() {
             <br> 
             <button type="button" id="updateQtyButton" (click) ="(x.qty > 0) ? modifyQty(x.orderId, x.qty) : [removeOrder(x.orderId), x.productName=null]" onclick="disabled = true" disabled>Update Quantity</button>
           </td>
+          <td *ngIf = "x.productName != null"> $ {{x.qty * x.productPrice}} </td>
           <td *ngIf = "x.productName != null"> <button type="button" class="remove" (click) ="removeOrder(x.orderId);x.productName=null">Remove from Cart</button> </td>
         </tr>
       </table>
