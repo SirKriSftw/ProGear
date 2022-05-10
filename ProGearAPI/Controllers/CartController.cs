@@ -144,6 +144,30 @@ namespace ProGearAPI.Controllers
         }
         #endregion
 
+        [HttpGet]
+        [Route("GetUserCartId/{userID}")]
+        public IActionResult GetUserCartId(string userID)
+        {
+            try {
+                var myCartID = (from x in dbContext.Carts 
+                    where x.UserId == userID && x.PaidFor != true
+                    select x.CartId).DefaultIfEmpty().First();
+                if (myCartID != null)
+                {
+                    return Ok(myCartID);
+                }
+                else
+                {
+                    return NotFound("No Cart");
+                }
+            }
+            catch (Exception es)
+            {
+                throw new Exception(es.Message);
+
+            }
+        }
+
         //Gets all wanted information from a Cart using a specific user id
         #region Get Cart By User Id
         [HttpGet]
