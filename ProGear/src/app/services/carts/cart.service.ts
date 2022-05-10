@@ -14,6 +14,9 @@ export class CartService {
     return this._http.get("https://localhost:44310/Cart/get-user-ID/" + userEmail);
    }
 
+  getCartId(userId: any) {
+    return this._http.get("https://localhost:44310/Cart/GetUserCartId/" + userId);
+  }
    getCart (userID: any) {
     return this._http.get("https://localhost:44310/Cart/GetCartById/" + userID);
    }

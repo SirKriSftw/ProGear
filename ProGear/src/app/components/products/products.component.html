@@ -49,7 +49,7 @@
                 <mat-option *ngFor="let qty of qty" [value]="qty.value">{{qty.viewValue}}</mat-option>
               </mat-select>
             </mat-form-field>
-            <button style="font-size:x-small;float:right;margin-top:4px;" mat-raised-button color="primary" mat-button>
+            <button  (click)="addToCart(e.productId,qty.values)" style="font-size:x-small;float:right;margin-top:4px;" mat-raised-button color="primary" mat-button>
               <mat-icon color="accent">add_shopping_cart</mat-icon>ADD TO CART
             </button>
           </div>
@@ -63,4 +63,3 @@
 
 
 <router-outlet></router-outlet>
-    
