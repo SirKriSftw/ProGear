@@ -61,8 +61,8 @@
 
 5 - run an npm install in the ./ProGear directory
 
-6 - If on Windows, run the START.bat file in the root directory.  If not, do steps 6a and 6b below:
-6a - open the ./ProGearAPI directory and do a "dotnet run" in your command line
+6 - If on Windows, run the START.bat file in the root directory.  If not, do steps 6a and 6b below:  
+6a - open the ./ProGearAPI directory and do a "dotnet run" in your command line  
 6b - open the ./ProGear directory and do a "ng serve -o" in your command line
 
 7 - Enjoy the app!
