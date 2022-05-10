@@ -41,15 +41,18 @@
             </div>
           </div>
           <div style="width:100%;">
-            <mat-form-field
-              style="width:80px;height:2px; border-color:#F26925;"
-              appearance="outline">
+
+            <input #qty type="number" min="1" [max]="e.productStock" [value]="default" style="width:80px;height:50px; border-color:#F26925;"
+                            appearance="outline"/>
+            <!--<mat-form-field style="width:80px;height:2px; border-color:#F26925;"
+                            appearance="outline">
               <mat-label style="font-size:x-small;">QTY</mat-label>
+
               <mat-select style="font-size:small;float:left;height:2px">
                 <mat-option *ngFor="let qty of qty" [value]="qty.value">{{qty.viewValue}}</mat-option>
               </mat-select>
-            </mat-form-field>
-            <button  (click)="addToCart(e.productId,qty.values)" style="font-size:x-small;float:right;margin-top:4px;" mat-raised-button color="primary" mat-button>
+            </mat-form-field>-->
+            <button (click)="addToCart(e.productId,qty.value)" style="font-size:x-small;float:right;margin-top:4px;" mat-raised-button color="primary" mat-button>
               <mat-icon color="accent">add_shopping_cart</mat-icon>ADD TO CART
             </button>
           </div>

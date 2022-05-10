@@ -26,7 +26,8 @@ export class ProductsComponent implements OnInit {
   DisplayP: any;
   selected:any = 0;
   categoriesList:any=[];
-  searchTerm:any = "";
+  searchTerm: any = "";
+  default = 1;
 
   qty: Qts[] = [
     {value: 'qty-1', viewValue: '1'},
@@ -62,6 +63,7 @@ export class ProductsComponent implements OnInit {
     this._productService.getAllProducts().subscribe(
       (data) => {
         this.DisplayP = data;
+        //console.log(this.DisplayP);
         this._productService.allProducts = this.DisplayP;
       }
     )
@@ -72,11 +74,11 @@ export class ProductsComponent implements OnInit {
   }
 
   addToCart(productId: any, qty: any) {
-    console.log(productId);
-    console.log(qty);
+    //console.log(productId);
+    //console.log(qty);
     this._authService.user$.subscribe(data => {
       this._cartService.getCartId(data?.sub).subscribe(sub => {
-        this._productService.addToCart(productId, sub, 1).subscribe( sub2 => console.log(sub));
+        this._productService.addToCart(productId, sub, qty).subscribe( sub2 => console.log(sub));
 
       }, (err) => {
         console.log(err);
