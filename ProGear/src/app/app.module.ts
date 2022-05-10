@@ -24,6 +24,8 @@ import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { AuthModule } from '@auth0/auth0-angular';
+
 
 
 @NgModule({
@@ -55,7 +57,13 @@ import { MatExpansionModule } from '@angular/material/expansion';
     ReactiveFormsModule,
     MatCardModule,
     MatCheckboxModule,
-    MatExpansionModule
+    MatExpansionModule,
+
+    AuthModule.forRoot({
+      domain: 'dev-nxw7ytn5.us.auth0.com',
+      clientId: 'trrYmHCgFrgwPRi3p3rEUaFnyxTMZXNi',
+    }),
+
   ],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'always'}}],
   bootstrap: [AppComponent]

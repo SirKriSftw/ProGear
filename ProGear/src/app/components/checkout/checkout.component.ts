@@ -44,8 +44,13 @@ export class CheckoutComponent implements OnInit {
 
   myCart: any = [];
 
-  getCart(cartID: number) {
-    this._cartService.getCart(cartID).subscribe((data) => {
+  PayForCart() {
+    this._cartService.PayForCart(this.myCart[0].cartId).subscribe();
+    console.log(this.myCart);
+  }
+
+  getCart(userID: any) {
+    this._cartService.getCart(userID).subscribe((data) => {
       this.myCart = data;
       console.log(this.myCart)
     })
@@ -75,9 +80,16 @@ export class CheckoutComponent implements OnInit {
   get billZip() {
     return this.checkoutForm.get('billZip');
   }
-
-  ngOnInit(): void {
-    this.getCart(2);
+  get shipAddress() {
+    return this.checkoutForm.get('billAddress');
   }
+  get shipCity() {
+    return this.checkoutForm.get('billCity');
+  }
+  get shipZip() {
+    return this.checkoutForm.get('billZip');
+  }
+
+  ngOnInit(): void { this.getCart("1"); }
 
 }

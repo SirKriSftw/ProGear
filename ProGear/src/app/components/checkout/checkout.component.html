@@ -139,13 +139,13 @@
                 <mat-form-field hintLabel="Full Address including house number" appearance="fill">
                   <mat-label>Street Address Line 1</mat-label>
                   <input matInput placeholder="123 Rocky Rd" required formControlName="shipAddress">
-                  <mat-error *ngIf="billAddress?.invalid">Required Field</mat-error>
+                  <mat-error *ngIf="shipAddress?.invalid">Required Field</mat-error>
                 </mat-form-field>
 
                 <mat-form-field hintLabel="City of Residence" appearance="fill">
                   <mat-label>City</mat-label>
                   <input matInput placeholder="Nowhereville" required formControlName="shipCity">
-                  <mat-error *ngIf="billCity?.invalid">Required Field</mat-error>
+                  <mat-error *ngIf="shipCity?.invalid">Required Field</mat-error>
                 </mat-form-field>
 
                 <mat-form-field hintLabel="State of Residence" appearance="fill">
@@ -207,7 +207,7 @@
                 <mat-form-field hintLabel="Zip Code of Residence" appearance="fill">
                   <mat-label>Zip Code</mat-label>
                   <input matInput placeholder="00000" required formControlName="shipZip">
-                  <mat-error *ngIf="billZip?.invalid">Must be 5 digits</mat-error>
+                  <mat-error *ngIf="shipZip?.invalid">Must be 5 digits</mat-error>
                 </mat-form-field>
               </section>
             </mat-expansion-panel>
@@ -227,15 +227,22 @@
           </tr>
           <tr *ngFor="let x of myCart">
             <td> {{x.productName}} </td>
-            <td> $ {{x.productPrice}} </td>
+            <td style="text-align: center;"> ${{x.productPrice}} </td>
             <td> {{x.qty}} </td>
           </tr>
           <tr>
-            <td> Cart Total </td>
-            <td>{{cartTotal}}</td>
+            <td style="text-align: center;">-----</td>
+            <td style="text-align: center;">-----</td>
+            <td style="text-align: center;">-----</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><b>Cart Total</b></td>
+            <td style="text-align: center;"> ${{myCart[0].total}}</td>
           </tr>
         </table>
         <br>
+        <button mat-raised-button (click)="PayForCart()">Finalize Checkout</button>
       </div>
     </aside>
   </div>

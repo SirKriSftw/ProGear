@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
+#nullable disable
 
 namespace ProGearAPI.Models.EF
 {
@@ -27,10 +28,7 @@ namespace ProGearAPI.Models.EF
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-
-
-                optionsBuilder.UseSqlServer("server=tcp:p3-progear.database.windows.net;Initial Catalog=progeardb;Persist Security Info=True;User ID=project3;Password=Password@123456;");
-
+                optionsBuilder.UseSqlServer("Server=tcp:p3-progear.database.windows.net,1433;Initial Catalog=progeardb;Persist Security Info=False;User ID=project3;Password=Password@123456;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             }
         }
 
@@ -52,19 +50,22 @@ namespace ProGearAPI.Models.EF
 
                 entity.Property(e => e.Total).HasColumnName("total");
 
-                entity.Property(e => e.UserId).HasColumnName("userID");
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("userID");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Carts)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK__Cart__userID__5224328E");
+                    .HasConstraintName("FK__Cart__userID__634EBE90");
             });
 
             modelBuilder.Entity<Category>(entity =>
             {
                 entity.HasKey(e => e.CatId)
-                    .HasName("PK__Categori__17B6DD265385E674");
+                    .HasName("PK__Categori__17B6DD2661E53F4B");
 
                 entity.Property(e => e.CatId).HasColumnName("catID");
 
@@ -87,13 +88,13 @@ namespace ProGearAPI.Models.EF
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.CartId)
                     .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK__Orders__cartID__55F4C372");
+                    .HasConstraintName("FK__Orders__cartID__671F4F74");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.ProductId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK__Orders__productI__55009F39");
+                    .OnDelete(DeleteBehavior.SetNull)
+                    .HasConstraintName("FK__Orders__productI__662B2B3B");
             });
 
             modelBuilder.Entity<Product>(entity =>
@@ -120,15 +121,18 @@ namespace ProGearAPI.Models.EF
                     .WithMany(p => p.Products)
                     .HasForeignKey(d => d.CatId)
                     .OnDelete(DeleteBehavior.SetNull)
-                    .HasConstraintName("FK__Products__catID__4D5F7D71");
+                    .HasConstraintName("FK__Products__catID__5E8A0973");
             });
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.Email, "UQ__Users__AB6E6164045EB7A7")
+                entity.HasIndex(e => e.Email, "UQ__Users__AB6E6164E062AFDA")
                     .IsUnique();
 
-                entity.Property(e => e.UserId).HasColumnName("userID");
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("userID");
 
                 entity.Property(e => e.Email)
                     .IsRequired()
@@ -145,11 +149,6 @@ namespace ProGearAPI.Models.EF
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasColumnName("lastName");
-
-                entity.Property(e => e.Password)
-                    .HasMaxLength(30)
-                    .IsUnicode(false)
-                    .HasColumnName("password");
             });
 
             OnModelCreatingPartial(modelBuilder);
