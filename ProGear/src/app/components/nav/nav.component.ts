@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CategoriesService } from 'src/app/services/categories.service';
-import { ProductsService } from '../../services/products.service';
+import { CategoriesService } from 'src/app/services/categories/categories.service';
+import { ProductsService } from '../../services/products/products.service';
 
 @Component({
   selector: 'app-nav',
