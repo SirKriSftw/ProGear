@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CartService } from 'src/app/services/carts/cart.service';
 
 
+
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -42,8 +43,14 @@ export class CheckoutComponent implements OnInit {
 
   myCart: any = [];
 
-  getCart(cartID: number) {
-    this._cartService.getCart(cartID).subscribe((data) => {
+
+  PayForCart() {
+    this._cartService.PayForCart(this.myCart[0].cartId).subscribe();
+    console.log(this.myCart);
+  }
+
+  getCart(userID: any) {
+    this._cartService.getCart(userID).subscribe((data) => {
       this.myCart = data;
       console.log(this.myCart)
     })
@@ -74,8 +81,16 @@ export class CheckoutComponent implements OnInit {
     return this.checkoutForm.get('billZip');
   }
 
-  ngOnInit(): void {
-    this.getCart(2);
+  get shipAddress() {
+    return this.checkoutForm.get('billAddress');
   }
+  get shipCity() {
+    return this.checkoutForm.get('billCity');
+  }
+  get shipZip() {
+    return this.checkoutForm.get('billZip');
+  }
+
+  ngOnInit(): void { this.getCart("auth0|627a92e175fc8d00685ae62d"); }
 
 }

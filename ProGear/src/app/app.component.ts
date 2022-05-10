@@ -7,6 +7,7 @@ import { AuthService } from '@auth0/auth0-angular';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  
   title = 'ProGear';
 constructor(public auth: AuthService) {
 

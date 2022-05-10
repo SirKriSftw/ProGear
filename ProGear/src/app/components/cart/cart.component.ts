@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/carts/cart.service';
 import { Router } from '@angular/router';
-import { LoginComponent } from '../login/login.component';
-import { UsersService } from 'src/app/services/users/users.service';
 import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
@@ -12,7 +10,6 @@ import { AuthService } from '@auth0/auth0-angular';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-
   _cartService : CartService ;
   _auth : AuthService;
   
@@ -57,5 +54,4 @@ ngOnInit(): void { (this._auth.user$.subscribe((data: any) =>
     console.log(data.sub);
     console.log(data);
  })) }
-
 }

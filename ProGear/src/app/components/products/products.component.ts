@@ -29,14 +29,6 @@ export class ProductsComponent implements OnInit {
   searchTerm: any = "";
   default = 1;
 
-  qty: Qts[] = [
-    {value: 'qty-1', viewValue: '1'},
-    {value: 'qty-2', viewValue: '2'},
-    {value: 'qty-3', viewValue: '3'},
-    {value: 'qty-4', viewValue: '4'},
-  ];
-
-
   constructor(private _productServiceRef: ProductsService, _routerRef: Router, _categoryServiceRef: CategoriesService, _authServiceRef: AuthService, _cartServiceRef: CartService) {
     this._productService = _productServiceRef;
     this._router=_routerRef;

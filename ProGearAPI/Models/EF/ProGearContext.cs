@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
+#nullable disable
 
 namespace ProGearAPI.Models.EF
 {
@@ -133,6 +134,7 @@ namespace ProGearAPI.Models.EF
                     .HasName("PK__Users__CB9A1CDF4878ABE4");
 
                 entity.Property( e => e.UserId)
+
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("userID");

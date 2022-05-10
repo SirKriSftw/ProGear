@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -272,6 +272,26 @@ namespace ProGearAPI.Controllers
             else
             {
                 return Ok("Update Failed");
+            }
+        }
+
+        //Get and update the value of PaidFor in current Cart
+        [HttpPut]
+        [Route("UpdatePaid/{cartId}")]
+        public IActionResult UpdatePaid(int cartId)
+        {
+            var myCart = (from x in dbContext.Carts
+                          where x.CartId == cartId
+                          select x).DefaultIfEmpty().First();
+            myCart.PaidFor = true;
+            try
+            {
+                dbContext.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
         #endregion

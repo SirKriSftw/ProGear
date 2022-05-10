@@ -40,4 +40,8 @@ export class CartService {
     return this._http.get("https://localhost:44310/Cart/GetOldCarts/" + userID);
    }
 
+   PayForCart(cartId: number) {
+    //this changes the cart's paid for status to true upon checkout
+    return this._http.put("https://localhost:44310/Cart/UpdatePaid/" + cartId, null);
+  }
 }

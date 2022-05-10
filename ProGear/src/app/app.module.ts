@@ -15,7 +15,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule, MatLabel, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatOptionModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -46,12 +46,11 @@ import { CategoriesService } from './services/categories/categories.service';
     NavComponent,
     CheckoutComponent,
     CartComponent
-   
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
     MatToolbarModule,
@@ -64,12 +63,10 @@ import { CategoriesService } from './services/categories/categories.service';
     MatCardModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    
     MatInputModule,
     MatExpansionModule,
     MatCheckboxModule,
     MatOptionModule,
-    
     AuthModule.forRoot({
       domain: 'dev-nxw7ytn5.us.auth0.com',
       clientId: 'trrYmHCgFrgwPRi3p3rEUaFnyxTMZXNi',
