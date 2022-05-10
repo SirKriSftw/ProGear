@@ -1,7 +1,7 @@
 # ProGear
  Revature Project 3
-
-[PUT LOGO HERE]
+ 
+![logo](https://user-images.githubusercontent.com/60492952/167699664-a9e8e5da-2710-4e86-8a4b-dfd24101696e.png)
 
 # Technologies Used
 
