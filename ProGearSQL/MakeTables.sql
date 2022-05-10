@@ -83,14 +83,14 @@ insert into dbo.Products values(3, 'Backpack', 'TSA friendly backpack for all yo
 insert into dbo.Products values(3, 'Waist pack', 'A convenient bag that is easy to carry.', 30, 19.25);
 insert into dbo.Products values(3, 'Passport cover', 'Holds your passport, vaccine card, credit cards, and a pen.', 45, 12.99);
 
-insert into dbo.Products values(4, 'Notepad', 'For rigorous notetaking or idle doodling.', 45, 30);
-insert into dbo.Products values(4, 'Sticky Notes', 'A 6-pack of sticky notes for when you need quick reminders', 45, 30);
-insert into dbo.Products values(4, 'Pencils', 'A box of 12 #2 pencils', 45, 30);
-insert into dbo.Products values(4, 'Binders', 'A quality 3-ring 2" binder for your organizational needs', 45, 30);
-insert into dbo.Products values(4, 'Page protectors', '100 non-glare sheet protectors.', 45, 30);
-insert into dbo.Products values(4, 'Keychain USB Drive', '1 TB waterproof flash drive to fit on your keyring.', 45, 30);
-insert into dbo.Products values(4, 'Paper Clips', '700 pcs box of paper clips', 45, 30);
-insert into dbo.Products values(4, 'Poster', 'Wall art to enhance your space.', 45, 30);
+insert into dbo.Products values(4, 'Notepad', 'For rigorous notetaking or idle doodling.', 80, 14.25);
+insert into dbo.Products values(4, 'Sticky Notes', 'A 6-pack of sticky notes for when you need quick reminders', 140, 8.00);
+insert into dbo.Products values(4, 'Pencils', 'A box of 12 #2 pencils', 400, 5.15);
+insert into dbo.Products values(4, 'Binders', 'A quality 3-ring 2" binder for your organizational needs', 90, 9.50);
+insert into dbo.Products values(4, 'Page protectors', '100 non-glare sheet protectors.', 45, 9.45);
+insert into dbo.Products values(4, 'Keychain USB Drive', '1 TB waterproof flash drive to fit on your keyring.', 65, 22.50);
+insert into dbo.Products values(4, 'Paper Clips', '100 pcs box of 2 inch paper clips', 300, 6.99);
+insert into dbo.Products values(4, 'Poster', 'Wall art to enhance your space.', 50, 13.95);
 
 insert into dbo.Users values('1', 'test@test.com', 'David', 'Acuff')
 insert into dbo.Cart values('1', 0, 0, NULL)
