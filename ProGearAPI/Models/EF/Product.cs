@@ -20,8 +20,8 @@ namespace ProGearAPI.Models.EF
         public int ProductStock { get; set; }
         public double ProductPrice { get; set; }
 
+        [JsonIgnore]
         public virtual Category Cat { get; set; }
-
         [JsonIgnore]
         public virtual ICollection<Order> Orders { get; set; }
     }

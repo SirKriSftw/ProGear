@@ -1,6 +1,7 @@
-import { TestBed } from '@angular/core/testing';
+import { flush, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { ContactClass } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -14,22 +15,79 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
-  it('should create the app', () => {
+  //---Practice----//
+
+describe('Contact Class test', ()=> {
+  let appComponent: AppComponent | null;
+  let person = {
+      "firstname" : ' ',
+      "lastname": ' ',
+      "age": 0,
+      "email": ' '
+    };
+
+    let contact = new ContactClass(person);
+  
+    beforeEach(()=> {
+      appComponent = new AppComponent();
+    })
+
+    it('Sanity check', ()=>  {
+      expect(true).not.toBe(false);
+    })
+
+    it('should set instance correctly', () => {
+      expect(appComponent).not.toBeNull();
+    })
+
+  it('should have a valid constructor', () => {
+    expect(contact).not.toBeNull();
+     
+  });
+
+  it('should get and set firstname correctly', ()=> {
+    contact.person.firstname ='Gerome';
+    expect(contact.person.firstname).toBe('Gerome');
+  });
+
+  it('should get and set id correctly', ()=> {
+    contact.person.age = 1;
+    expect(contact.person.age).toBe(1);
+  });
+
+
+  
+
+  afterEach(()=> {
+    contact.person = {
+      "firstname" : ' ',
+      "lastname": ' ',
+      "age": 0,
+      "email": ' '
+    };
+
+    appComponent = null;
+
+  });
+
+});
+
+
+
+
+  //-Practice----//
+
+
+  xit('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ProGear'`, () => {
+  xit(`should have as title 'ProGear'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('ProGear');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('ProGear app is running!');
-  });
 });

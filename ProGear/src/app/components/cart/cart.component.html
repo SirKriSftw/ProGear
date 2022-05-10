@@ -1,1 +1,44 @@
-<p>cart works!</p>
+<script>
+function changeclassstyle() {
+  var c = document.getElementsByClassName("c1");
+  for (var i=0; i<c.length; i++) {
+    c[i].style.color = "green";
+  }
+}
+</script>
+
+<h1>CART PAGE</h1>
+
+<form>
+    <div>
+      <table id="usertable" border = "2">
+        <tr>
+          <td><b>Product Image</b></td>
+          <td><b>Product Name</b></td>
+          <td><b>Product Details</b></td>
+          <td><b>Product Price</b></td>
+          <td><b>Quantity in Cart</b></td>
+          <td><b>Total Price</b></td>
+        </tr>
+        <tr *ngFor = "let x of myCart" class="img">
+          <td *ngIf = "x.productName != null"><img src="{{'../../assets/images/pic' + x.productId  + '.png'}}" alt={{x.productId}} class="productImg"> </td>
+          <td *ngIf = "x.productName != null"> {{x.productName}} </td>
+          <td *ngIf = "x.productName != null"> {{x.productDetails}} </td>
+          <td *ngIf = "x.productName != null"> $ {{x.productPrice}} </td>
+          <td *ngIf = "x.productName != null"> {{x.qty}} <br>
+            <button type="button" (click) ="x.qty = ((x.qty > 0) ? x.qty - 1 : x.qty)" onclick="this.nextSibling.nextSibling.nextSibling.disabled = false">-</button>
+            <button type="button" (click) ="x.qty = x.qty + 1" onclick="this.nextSibling.nextSibling.disabled = false">+</button>
+            <br> 
+            <button type="button" id="updateQtyButton" (click) ="(x.qty > 0) ? modifyQty(x.orderId, x.qty) : [removeOrder(x.orderId), x.productName=null]" onclick="disabled = true" disabled>Update Quantity</button>
+          </td>
+          <td *ngIf = "x.productName != null"> $ {{x.qty * x.productPrice}} </td>
+          <td *ngIf = "x.productName != null"> <button type="button" class="remove" (click) ="removeOrder(x.orderId);x.productName=null">Remove from Cart</button> </td>
+        </tr>
+      </table>
+      <br>
+      <button type="button" (click) ="emptyCart();myCart = null;">Empty Cart</button>
+      <br>
+      <br>
+      <button type="button" routerLink="/checkout" routerLinkActive="active-link">Go to Checkout</button>
+    </div>
+</form>

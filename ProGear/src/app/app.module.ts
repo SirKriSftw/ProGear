@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from '@auth0/auth0-angular';
 
 // NG Materials
@@ -15,7 +15,11 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule, MatLabel, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatOptionModule } from '@angular/material/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 // Components
 import { AppComponent } from './app.component';
@@ -25,6 +29,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ProductsComponent } from './components/products/products.component';
 import { NavComponent } from './components/nav/nav.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { CartComponent } from './components/cart/cart.component';
 
 // Services
 import { ProductsService } from './services/products/products.service';
@@ -39,12 +44,13 @@ import { CategoriesService } from './services/categories/categories.service';
     LogoutButtonComponent,
     ProductsComponent,
     NavComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
     MatToolbarModule,
@@ -56,6 +62,11 @@ import { CategoriesService } from './services/categories/categories.service';
     CommonModule,
     MatCardModule,
     MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatExpansionModule,
+    MatCheckboxModule,
+    MatOptionModule,
     AuthModule.forRoot({
       domain: 'dev-nxw7ytn5.us.auth0.com',
       clientId: 'trrYmHCgFrgwPRi3p3rEUaFnyxTMZXNi',

@@ -134,6 +134,7 @@ namespace ProGearAPI.Models.EF
                     .HasName("PK__Users__CB9A1CDF4878ABE4");
 
                 entity.Property( e => e.UserId)
+
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("userID");

@@ -19,7 +19,7 @@ export class ProductsService {
   getAllProducts(){
     return this._http.get('https://localhost:44310/api/Products/List_of_Products');
   }
-  getProductsByID(catID:number){
+  getProductsByID(catID:any){
     return this._http.get('https://localhost:44310/api/Products/getCat/'+ catID);
   }
   getProductsSearch(type:any){
@@ -27,5 +27,9 @@ export class ProductsService {
   }
   getAllProductsCat(){
     return this._http.get('https://localhost:44310/api/Products/List_of_Categories');
+  }
+
+  addToCart(productId: number, cartId:any, qty:number) {
+    return this._http.post('https://localhost:44310/Cart/AddAnOrder?productId=' + productId + '&cartId=' + cartId + '&qty=' + qty, null, { responseType: 'text' });
   }
 }
