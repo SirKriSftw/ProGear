@@ -11,7 +11,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
-import { CartService } from '../../services/cart.service';
+import { CartService } from 'src/app/services/carts/cart.service';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './cart.component';
 
