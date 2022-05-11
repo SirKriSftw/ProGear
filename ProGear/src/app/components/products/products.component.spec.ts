@@ -1,11 +1,11 @@
-import { HttpClient, HttpHandler } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Auth0ClientService, AuthConfigService, AuthService } from '@auth0/auth0-angular';
 import { of, throwError } from 'rxjs';
-import { CategoriesService } from 'src/app/services/categories.service';
-import { ProductsService } from 'src/app/services/products.service';
+import { CategoriesService } from 'src/app/services/categories/categories.service';
+import { ProductsService } from 'src/app/services/products/products.service';
 import { ProductsComponent } from './products.component';
-
 
 describe('ProductsComponent', () => {
   // variables/objects setup
@@ -26,7 +26,11 @@ describe('ProductsComponent', () => {
       providers:[ HttpClient, HttpHandler, 
         // make sure to use fake service instead for unit testing
         { provide: ProductsService, useValue: prodServiceSpyObj },
-        { provide: CategoriesService, useValue: catServiceSpyObj }
+        { provide: CategoriesService, useValue: catServiceSpyObj },
+        // Auth0-Related services
+        AuthService,
+        { provide: AuthConfigService, useValue: undefined }, 
+        { provide: Auth0ClientService, useValue: undefined}
       ]
     })
     .compileComponents();
@@ -89,7 +93,7 @@ describe('ProductsComponent', () => {
   it('getCategories() - call failed', () => {
     // ARRANGE
     var testData = {
-      data : new Error('err')
+      data : new Error('err'),
     }
     let catResult : any;
     catServiceSpyObj.getAllCategories.and.returnValue(throwError(() => new Error('err')));

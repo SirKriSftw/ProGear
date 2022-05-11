@@ -1,7 +1,7 @@
 import { HttpClient, HttpHandler } from '@angular/common/http';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { of, throwError } from 'rxjs';
-import { ProductsService } from 'src/app/services/products.service';
+import { ProductsService } from 'src/app/services/products/products.service';
 import { HomeComponent } from './home.component';
 
 describe('HomeComponent', () => {
@@ -183,5 +183,13 @@ describe('HomeComponent', () => {
         expect(prodServiceSpyObj.productsMisc).toEqual(component.allMisc);
       });
   });
+
+  // ---------------------------
+  // HTML Element Testing
+  it('HTML Element check - ViewAll', fakeAsync(() => {
+    const ul = fixture.debugElement.nativeElement.querySelector('.ViewAll');
+    fixture.detectChanges();
+    expect(ul.innerHTML).toBe('VIEW ALL')
+  }));
 
 });

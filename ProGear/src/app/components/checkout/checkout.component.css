@@ -1,0 +1,16 @@
+#background {
+    flex-direction: row;
+    background-image: url("https://trello-backgrounds.s3.amazonaws.com/60d388dc2ed6f37139ce3025/1280x720/5c0e68b609cf4ffd223463c64f2a9996/Desktop-Background-4.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-width: 100%;
+    min-height: 100%;
+    padding-top: 20px;
+}
+
+#sidebar{
+    margin-top: 1em;
+    background-color: white;
+    background-size: cover;
+}
+
