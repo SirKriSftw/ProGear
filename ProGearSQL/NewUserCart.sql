@@ -7,7 +7,7 @@ on Users
 after insert
 as 
 begin
-declare @userid varchar;
+declare @userid varchar(100);
 select @userid =list.userID from inserted list;
 insert Cart values (@userid , null , 0, null)
 end
