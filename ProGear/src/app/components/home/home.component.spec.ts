@@ -4,19 +4,11 @@ import { of, throwError } from 'rxjs';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { HomeComponent } from './home.component';
 
-<<<<<<<< HEAD:ProGear/src/app/components/home/home.component.spec.ts
 describe('HomeComponent', () => {
   // variables/object setup
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
   let prodServiceSpyObj : jasmine.SpyObj<ProductsService>
-
-
-describe('RegisterComponent', () => {
-  let component: RegisterComponent;
-  let fixture: ComponentFixture<RegisterComponent>;
-  let userServiceSpyObj : jasmine.SpyObj<UserserviceService>  //1. Create SpyObj
->>>>>>>> main:ProGear/src/app/components/register/register.component.spec.ts
 
   beforeEach(async () => {
     prodServiceSpyObj = jasmine.createSpyObj('ProductsService',
@@ -26,9 +18,7 @@ describe('RegisterComponent', () => {
       providers: [ HttpClient, HttpHandler,
         // make sure to use fake service instead for unit testing
         { provide: ProductsService, useValue: prodServiceSpyObj }
-    ]    
-
->>>>>>>> main:ProGear/src/app/components/register/register.component.spec.ts
+      ]
     })
     .compileComponents();
     fixture = TestBed.createComponent(HomeComponent);
@@ -71,8 +61,7 @@ describe('RegisterComponent', () => {
     expect(spyProductsHouseware).toHaveBeenCalled();
     expect(spyProductsTravel).toHaveBeenCalled();
     expect(spyProductsMisc).toHaveBeenCalled();
-});
-========
+  });
 
   // AllProducts() method testing
   it('AllProducts() - call success', () => {
@@ -146,14 +135,12 @@ describe('RegisterComponent', () => {
 
     // ASSERT
     prodServiceSpyObj.getProductsByID(testData.catID).subscribe(
-    (result) => {
+      (result) => {
         expect(result).toEqual(testData.products);
         expect(component.allHouseware).toEqual(result);
         expect(prodServiceSpyObj.productsHouseweres).toEqual(component.allHouseware);
       });
-    });
-    expect(registerResult).toEqual(testData.data);
-  })
+  });
 
   // ProductsTravel() method testing
   it('ProductsTravel() - call success', () => {
@@ -174,7 +161,7 @@ describe('RegisterComponent', () => {
         expect(component.allTravel).toEqual(result);
         expect(prodServiceSpyObj.productsTravel).toEqual(component.allTravel);
       });
-});
+  });
 
   // ProductsMisc() method testing
   it('ProductsMisc() - call success', () => {
@@ -182,7 +169,7 @@ describe('RegisterComponent', () => {
     var testData = {
       catID: 1,
       products : "Testing"
-}
+    }
     prodServiceSpyObj.getProductsByID.and.returnValue(of("Testing"));
 
     // ACT
