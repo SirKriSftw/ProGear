@@ -5,7 +5,7 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProGearAPI", "ProGearAPI.csproj", "{960C44F7-878D-40AB-BF30-832322B174AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProGearAPI.Test", "..\ProGearAPI.Test\ProGearAPI.Test.csproj", "{E9EEB045-F14A-481A-A2D5-C04131917E7F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProGearAPI.Test", "..\ProGearAPI\ProGearAPI.Test\ProGearAPI.Test.csproj", "{E9EEB045-F14A-481A-A2D5-C04131917E7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
