@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+
 import { ProductsService } from './products.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
@@ -13,7 +14,7 @@ describe('ProductsService', () => {
     TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule ],
       providers: [ ProductsService ]
-    });
+  });
     productService = TestBed.inject(ProductsService);
     httpController = TestBed.inject(HttpTestingController);
   });

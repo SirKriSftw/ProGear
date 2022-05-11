@@ -26,7 +26,7 @@ namespace ProGearAPI.Controllers
         public IActionResult GetCatList(int Id)
         {
             List<Product> catList = (from a in dbProGear.Products
-                                     where a.CatId == Id
+                          where a.CatId == Id
                                      select a).ToList();
             return Ok(catList);
         }
@@ -36,7 +36,7 @@ namespace ProGearAPI.Controllers
         public IActionResult Search(string query)
         {
             List<Product> searchResult = (from s in dbProGear.Products
-                                          where s.ProductName.Contains(query) 
+                               where s.ProductName.Contains(query) 
                                           select s).ToList();
             return Ok(searchResult);
         }

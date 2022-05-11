@@ -1,6 +1,6 @@
 #background {
     flex-direction: row;
-    background-image: url("https://trello-backgrounds.s3.amazonaws.com/60d388dc2ed6f37139ce3025/1280x720/5c0e68b609cf4ffd223463c64f2a9996/Desktop-Background-4.jpg");
+    
     background-repeat: no-repeat;
     background-size: cover;
     min-width: 100%;
@@ -8,9 +8,92 @@
     padding-top: 20px;
 }
 
-#sidebar{
-    margin-top: 1em;
+#wrapper{
+    justify-content: center;
+    margin: auto;
+    display: block;
+    width: 80%;
+}
+
+.formInfo {
+  text-align:center;
+}
+
+#asideDiv, #cardDiv {
+    display: block;
+    float: left;
+    margin: auto;
+    margin-top: 5%;
+    
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+}
+#asideDiv {
+  border-color: black;
+  border-width: 3px;
+  border-style: solid;
+}
+  #asideDiv > h1 {
+    background: black;
+    color: white;
+    padding-left: 30px;
+    padding-top: 22px;
+    padding-bottom: 22px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+.card.mat-card {
+  padding-top: 20px;
+  padding-bottom: 100px;
+}
+section, .mat-card-content{
     background-color: white;
-    background-size: cover;
+}
+
+
+#cardDiv{
+    width: 60%;
+    margin-right: 2em;
+    background: black;
+    color: white;
+    padding: 3px;
+}
+#cardDiv > h1{
+    padding-left: 30px;
+}
+
+#checkoutTable{
+    display: block;
+    margin: auto;
+    margin-top: 2em;
+    width: 80%;
+
+    text-align: center;
+}
+
+#userTable {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #C6C6C6;
+}
+
+#tableHeader {
+  background-color: black;
+  color: white;
+  text-transform: uppercase;
+  font-weight: lighter;
+}
+
+
+#checkoutButton {
+  margin-top:20px;
+  margin-bottom: 20px;
 }
 
