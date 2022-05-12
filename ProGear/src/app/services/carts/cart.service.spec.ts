@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { ProductsService } from '../services/products.service';
+import { ProductsService } from '../products/products.service';
 import { CartService } from './cart.service';
 import {
   HttpClientTestingModule,

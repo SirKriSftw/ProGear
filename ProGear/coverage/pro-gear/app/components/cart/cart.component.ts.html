@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">23.52% </span>
+                <span class="strong">9.52% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/17</span>
+                <span class='fraction'>2/21</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">10% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/10</span>
+                <span class='fraction'>0/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">6.25% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/12</span>
+                <span class='fraction'>1/16</span>
             </div>
         
             
@@ -113,7 +113,15 @@
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -127,9 +135,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -160,13 +171,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { NgModule } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../../services/cart.service';
+import { CartService } from '../../services/carts/cart.service';
 import { Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
 &nbsp;
 @Component({
   selector: 'app-cart',
@@ -174,17 +189,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-&nbsp;
   _cartService : CartService ;
+  _auth : AuthService;
   
-  constructor(_cartServiceRef : CartService) { this._cartService = _cartServiceRef; }
+<span class="fstat-no" title="function not covered" >  constructor(_</span>cartServiceRef : CartService, _authRef : AuthService) { 
+<span class="cstat-no" title="statement not covered" >    this._cartService = _cartServiceRef; </span>
+<span class="cstat-no" title="statement not covered" >    this._auth = _authRef;</span>
+  }
 &nbsp;
-  myCart : any = [];
+<span class="cstat-no" title="statement not covered" >  myCart : any = [];</span>
 &nbsp;
 &nbsp;
-<span class="fstat-no" title="function not covered" >getCart(</span>cartID: number)
+<span class="fstat-no" title="function not covered" >getCart(</span>userID: any)
 {
-<span class="cstat-no" title="statement not covered" >this._cartService.getCart(cartID).subscribe( <span class="fstat-no" title="function not covered" >(d</span>ata) =&gt; {<span class="cstat-no" title="statement not covered" >this.myCart = data;</span></span>
+<span class="cstat-no" title="statement not covered" >this._cartService.getCart(userID).subscribe( <span class="fstat-no" title="function not covered" >(d</span>ata) =&gt; {<span class="cstat-no" title="statement not covered" >this.myCart = data;</span></span>
 <span class="cstat-no" title="statement not covered" >  console.log(this.myCart) </span>
  })
 }
@@ -210,17 +228,20 @@ export class CartComponent implements OnInit {
  });
 }
 &nbsp;
-<span class="fstat-no" title="function not covered" >ngOnInit(</span>): void { <span class="cstat-no" title="statement not covered" >this.getCart(2); </span>}
-// ^^^ replace this '2' with userId, a static variable from login component
-&nbsp;
-}</pre></td></tr></table></pre>
+<span class="fstat-no" title="function not covered" >ngOnInit(</span>): void { <span class="cstat-no" title="statement not covered" >(this._auth.user$.subscribe(<span class="fstat-no" title="function not covered" >(d</span>ata: any) =&gt; </span>
+  {<span class="cstat-no" title="statement not covered" >this.getCart(data.sub);</span>
+<span class="cstat-no" title="statement not covered" >    console.log(data.sub);</span>
+<span class="cstat-no" title="statement not covered" >    console.log(data);</span>
+ })) }
+}
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sun May 08 2022 16:14:07 GMT-0400 (Eastern Daylight Time)
+                at Thu May 12 2022 08:09:24 GMT-0400 (Eastern Daylight Time)
             </div>
         <script src="../../../prettify.js"></script>
         <script>

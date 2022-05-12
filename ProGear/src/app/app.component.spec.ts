@@ -17,65 +17,65 @@ describe('AppComponent', () => {
 
   //---Practice----//
 
-describe('Contact Class test', ()=> {
-  let appComponent: AppComponent | null;
-  let person = {
-      "firstname" : ' ',
-      "lastname": ' ',
-      "age": 0,
-      "email": ' '
-    };
+// describe('Contact Class test', ()=> {
+//   let appComponent: AppComponent | null;
+//   let person = {
+//       "firstname" : ' ',
+//       "lastname": ' ',
+//       "age": 0,
+//       "email": ' '
+//     };
 
-    let contact = new ContactClass(person);
+//     let contact = new ContactClass(person);
   
-    beforeEach(()=> {
-      appComponent = new AppComponent();
-    })
+//     beforeEach(()=> {
+//       appComponent = new AppComponent();
+//     })
 
-    it('Sanity check', ()=>  {
-      expect(true).not.toBe(false);
-    })
+//     it('Sanity check', ()=>  {
+//       expect(true).not.toBe(false);
+//     })
 
-    it('should set instance correctly', () => {
-      expect(appComponent).not.toBeNull();
-    })
+//     it('should set instance correctly', () => {
+//       expect(appComponent).not.toBeNull();
+//     })
 
-  it('should have a valid constructor', () => {
-    expect(contact).not.toBeNull();
+//   it('should have a valid constructor', () => {
+//     expect(contact).not.toBeNull();
      
-  });
+//   });
 
-  it('should get and set firstname correctly', ()=> {
-    contact.person.firstname ='Gerome';
-    expect(contact.person.firstname).toBe('Gerome');
-  });
+//   it('should get and set firstname correctly', ()=> {
+//     contact.person.firstname ='Gerome';
+//     expect(contact.person.firstname).toBe('Gerome');
+//   });
 
-  it('should get and set id correctly', ()=> {
-    contact.person.age = 1;
-    expect(contact.person.age).toBe(1);
-  });
+//   it('should get and set id correctly', ()=> {
+//     contact.person.age = 1;
+//     expect(contact.person.age).toBe(1);
+//   });
 
 
   
 
-  afterEach(()=> {
-    contact.person = {
-      "firstname" : ' ',
-      "lastname": ' ',
-      "age": 0,
-      "email": ' '
-    };
+//   afterEach(()=> {
+//     contact.person = {
+//       "firstname" : ' ',
+//       "lastname": ' ',
+//       "age": 0,
+//       "email": ' '
+//     };
 
-    appComponent = null;
+//     appComponent = null;
 
-  });
+//   });
 
-});
-
-
+// });
 
 
-  //-Practice----//
+
+
+//   //-Practice----//
 
 
   xit('should create the app', () => {

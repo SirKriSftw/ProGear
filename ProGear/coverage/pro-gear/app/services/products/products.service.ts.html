@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for app/app.component.ts</title>
+    <title>Code coverage report for app/services/products/products.service.ts</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../prettify.css" />
-    <link rel="stylesheet" href="../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../sort-arrow-sprite.png);
+            background-image: url(../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">app</a> app.component.ts</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">app/services/products</a> products.service.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">40% </span>
+                <span class="strong">22.22% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/5</span>
+                <span class='fraction'>2/9</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">12.5% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>1/8</span>
             </div>
         
             
@@ -96,9 +96,9 @@
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -106,17 +106,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -125,42 +114,59 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 &nbsp;
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+@Injectable({
+  providedIn: 'root'
 })
-export class AppComponent {
-  
-<span class="cstat-no" title="statement not covered" >  title = 'ProGear';</span>
-<span class="fstat-no" title="function not covered" >constructor(public <span class="cstat-no" title="statement not covered" >a</span>uth: AuthService)</span> {
-&nbsp;
+export class ProductsService {
+  _http:HttpClient;
+  allProducts:any;
+  allProductsCat:any;
+  productsApparel:any;
+  productsHouseweres:any;
+  productsTravel:any;
+  productsMisc:any;
+  searchedProducts:any;
+<span class="fstat-no" title="function not covered" >  constructor(private <span class="cstat-no" title="statement not covered" >_</span>httpRef:HttpClient)</span> { 
+<span class="cstat-no" title="statement not covered" >    this._http= _httpRef;</span>
   }
-}
+<span class="fstat-no" title="function not covered" >  getAllProducts(</span>){
+<span class="cstat-no" title="statement not covered" >    return this._http.get('https://localhost:44310/api/Products/List_of_Products');</span>
+  }
+<span class="fstat-no" title="function not covered" >  getProductsByID(</span>catID:any){
+<span class="cstat-no" title="statement not covered" >    return this._http.get('https://localhost:44310/api/Products/getCat/'+ catID);</span>
+  }
+<span class="fstat-no" title="function not covered" >  getProductsSearch(</span>type:any){
+<span class="cstat-no" title="statement not covered" >    return this._http.get('https://localhost:44310/api/Products/search/'+ type);</span>
+  }
+<span class="fstat-no" title="function not covered" >  getAllProductsCat(</span>){
+<span class="cstat-no" title="statement not covered" >    return this._http.get('https://localhost:44310/api/Products/List_of_Categories');</span>
+  }
 &nbsp;
-export class ContactClass{
- 
-   person: {
-    firstname: string;
-    lastname: string;
-    email: string;
-    age: number
-  } 
-&nbsp;
-  
-&nbsp;
-<span class="fstat-no" title="function not covered" >  constructor(i</span>nput: ContactClass["person"]) {    
-<span class="cstat-no" title="statement not covered" >    this.person = input;</span>
-&nbsp;
-}
-&nbsp;
+<span class="fstat-no" title="function not covered" >  addToCart(</span>productId: number, cartId:any, qty:number) {
+<span class="cstat-no" title="statement not covered" >    return this._http.post('https://localhost:44310/Cart/AddAnOrder?productId=' + productId + '&amp;cartId=' + cartId + '&amp;qty=' + qty, null, { responseType: 'text' });</span>
+  }
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -171,14 +177,14 @@ export class ContactClass{
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
                 at Thu May 12 2022 08:09:24 GMT-0400 (Eastern Daylight Time)
             </div>
-        <script src="../prettify.js"></script>
+        <script src="../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../sorter.js"></script>
-        <script src="../block-navigation.js"></script>
+        <script src="../../../sorter.js"></script>
+        <script src="../../../block-navigation.js"></script>
     </body>
 </html>
     
